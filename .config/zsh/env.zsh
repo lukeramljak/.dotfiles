@@ -6,6 +6,7 @@ export PATH="$HOME/.scripts:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 export GPG_TTY="${TTY:-$(tty)}"
+export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH" # mac only
 
 export SUDO_PROMPT="passwd: "
 export TERMINAL="wezterm"
