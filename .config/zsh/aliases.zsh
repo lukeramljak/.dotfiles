@@ -2,7 +2,6 @@
 ## Aliases
 ##
 
-alias dots="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
 alias c="clear"
 alias q="exit"
 alias cleanram="sudo sh -c 'sync; echo 3 > /proc/sys/vm/drop_caches'"
