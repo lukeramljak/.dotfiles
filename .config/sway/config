@@ -7,13 +7,13 @@ set $right l
 set $term wezterm
 set $files nautilus
 set $browser firefox
-set $code code
+set $code $term -e nvim
 set $menu killall rofi || rofi -show drun -theme ~/.config/rofi/launcher.rasi swaymsg exec --
 
 output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 
-output DP-2 resolution 3840x2160@120.hz position 0,0
-output DP-2 scale 1.3
+output DP-1 resolution 3840x2160@120.hz position 0,0
+output DP-1 scale 1.25
 
 ### Idle configuration
 #
