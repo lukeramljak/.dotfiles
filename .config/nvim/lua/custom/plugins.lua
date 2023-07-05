@@ -66,11 +66,15 @@ local plugins = {
     "williamboman/mason.nvim",
     opts = {
       ensure_installed = {
+        -- python 
         "black",
         "debugpy",
         "mypy",
         "ruff",
         "pyright",
+        -- web dev
+        "html-lsp",
+        "prettier",
       },
     },
   },
