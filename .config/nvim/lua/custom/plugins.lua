@@ -1,5 +1,16 @@
 local plugins = {
   {
+    "nvim-treesitter/nvim-treesitter",
+    opts = {
+      ensure_installed = {
+        "python",
+        "html",
+        "css",
+        "json",
+      },
+    },
+  },
+  {
     "kylechui/nvim-surround",
     event = "VeryLazy",
     config = function()
