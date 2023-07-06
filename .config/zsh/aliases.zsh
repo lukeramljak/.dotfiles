@@ -4,6 +4,7 @@
 
 alias lg="lazygit"
 alias vim="nvim"
+alias pvpn="protonvpn-cli"
 alias c="clear"
 alias q="exit"
 alias cleanram="sudo sh -c 'sync; echo 3 > /proc/sys/vm/drop_caches'"
