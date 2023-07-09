@@ -69,7 +69,6 @@ local plugins = {
         -- python 
         "black",
         "debugpy",
-        "mypy",
         "ruff",
         "pyright",
         -- web dev
