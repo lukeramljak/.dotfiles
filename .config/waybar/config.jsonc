@@ -6,15 +6,28 @@
     "margin-bottom": 0,
     "margin-left": 0,
     "margin-right": 0,
-    "modules-left": ["custom/launcher", "wlr/workspaces"],
-    "modules-center": ["cpu", "memory", "disk"],
-    "modules-right": ["tray", "pulseaudio", "clock"],
+    "modules-left": ["wlr/workspaces"],
+    "modules-center": ["cpu", "memory"],
+    "modules-right": ["pulseaudio", "custom/audio_idle_inhibitor", "tray", "clock"],
     // Modules configuration
 	"clock": {
 		"format": " {:%H:%M}",
 		"tooltip": "true",
         	"tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
         	"format-alt": " {:%d/%m}"
+	},
+
+  "custom/audio_idle_inhibitor": {
+		"format": "{icon}",
+		"exec": "sway-audio-idle-inhibit --dry-print-both-waybar",
+		"exec-if": "which sway-audio-idle-inhibit",
+		"return-type": "json",
+		"format-icons": {
+			"output": " ",
+			"input": "",
+			"output-input": "  ",
+			"none": ""
+		}
 	},
 
 	"wlr/workspaces": {
