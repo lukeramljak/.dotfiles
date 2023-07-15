@@ -2,6 +2,7 @@
 ## Aliases
 ##
 
+alias python="python3"
 alias lg="lazygit"
 alias vim="nvim"
 alias pvpn="protonvpn-cli"
