@@ -1,7 +1,3 @@
 [DP-1]
 path = "/home/luke/.wallpapers/"
-duration = "10m"
-
-[DP-2]
-path = "/home/luke/.wallpapers"
-duration = "10m"
+duration = "5m"
