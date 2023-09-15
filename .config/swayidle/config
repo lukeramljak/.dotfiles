@@ -1,1 +1,2 @@
-timeout 330 'lgtv off' resume 'lgtv on'
+timeout 5 'lgtv screenOff' resume 'lgtv screenOn'
+timeout 600 'lgtv off' resume 'lgtv on'

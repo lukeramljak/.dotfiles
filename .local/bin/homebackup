@@ -1,2 +1,2 @@
 #!/bin/sh
-rsync -aAXHv --delete --exclude={"/home/*/.thumbnails/","/home/*/.cache/*","/home/*/.local/share/libvirt/*","/home/*/.local/share/Trash/*","/home/*/.local/share/Steam/*","/home/*/.steam/*"} /home /run/media/luke/Backup/
+rsync -aAXHv --delete --exclude={"/home/*/.thumbnails/","/home/*/.cache/*","/home/*/.local/share/libvirt/*","/home/*/.local/share/Trash/*","/home/*/.local/share/Steam/*","/home/*/.steam/*", "home/*/vms"} /home /media/luke/Backup/
