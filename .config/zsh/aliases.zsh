@@ -2,6 +2,7 @@
 ## Aliases
 ##
 
+alias reboot="systemctl reboot"
 alias python="python3"
 alias lg="lazygit"
 alias vim="nvim"
