@@ -1,8 +1,0 @@
-#!/bin/sh
-
-# Check if "ssl" is already present in the arguments
-if [[ "$@" != *"ssl"* ]]; then
-  set -- "$@" "ssl"
-fi
-
-/opt/lgtv-venv/bin/lgtv C2 "$@"

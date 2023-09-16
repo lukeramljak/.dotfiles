@@ -9,10 +9,10 @@ export GPG_TTY="${TTY:-$(tty)}"
 export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH" # mac only
 
 export SUDO_PROMPT="passwd: "
-export TERMINAL="wezterm"
-export BROWSER="firefox"
-export VISUAL="nvim"
-export EDITOR="nvim"
+export TERMINAL="konsole"
+export BROWSER="brave-browser"
+export VISUAL="codium"
+export EDITOR="codium"
 
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"
