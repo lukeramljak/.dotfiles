@@ -8,7 +8,7 @@
 }
 
 window#waybar {
-    background: rgba(30, 30, 46, 0.5);
+    background: rgba(30, 30, 46, 1.0);
     /* background: transparent; */
     /* border-bottom: 1px solid #282828; */
     color: #f4d9e1

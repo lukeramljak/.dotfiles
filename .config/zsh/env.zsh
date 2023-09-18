@@ -5,12 +5,13 @@
 export PATH="$HOME/.scripts:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
+export PATH="$HOME/var/lib/flatpak/exports/bin:$PATH"
 export GPG_TTY="${TTY:-$(tty)}"
 export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH" # mac only
 
 export SUDO_PROMPT="passwd: "
-export TERMINAL="konsole"
-export BROWSER="brave-browser"
+export TERMINAL="wezterm"
+export BROWSER="firefox"
 export VISUAL="codium"
 export EDITOR="codium"
 
