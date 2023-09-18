@@ -1,2 +1,5 @@
-timeout 5 'lgtv screenOff' resume 'lgtv screenOn'
-timeout 600 'lgtv off' resume 'lgtv on'
+swayidle -w \
+	timeout 300 'swaylock -f -c 000000' \
+	timeout 600 'swaymsg "output * dpms off"' \
+		resume 'swaymsg "output * dpms on"' \
+	before-sleep 'swaylock -f -c 000000'

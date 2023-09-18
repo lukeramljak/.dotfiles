@@ -5,17 +5,17 @@ set $left h
 set $down j
 set $up k
 set $right l
-set $term wezterm
-set $files nautilus
-set $browser firefox
-set $code $term -e nvim
+set $term konsole
+set $files dolphin
+set $browser brave-browser
+set $code codium
 set $menu killall rofi || rofi -show drun -theme ~/.config/rofi/launcher.rasi swaymsg exec --
 
 output DP-1 resolution 3440x1440@144hz position 0,0
 output DP-1 scale 1.25
 
 input * {
-  repeat_delay 300
+  repeat_delay 350
   repeat_rate 60
   xkb_options caps:escape
 }

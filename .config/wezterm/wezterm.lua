@@ -7,9 +7,9 @@ return {
 	color_scheme = "Catppuccin Mocha",
 
 	-- Font config
-	font = wezterm.font("JetBrainsMono NF"),
+	font = wezterm.font("FiraCodeNerdFontMono"),
 	warn_about_missing_glyphs = false,
-	font_size = 12,
+	font_size = 11,
 	line_height = 1.0,
 	-- Cursor style
 	default_cursor_style = "BlinkingUnderline",
@@ -135,6 +135,6 @@ return {
 	-- General
 	automatically_reload_config = true,
 	inactive_pane_hsb = { saturation = 1.0, brightness = 1.0 },
-	-- window_background_opacity = 0.8,
+	window_background_opacity = 0.8,
 	window_close_confirmation = "NeverPrompt",
 }
