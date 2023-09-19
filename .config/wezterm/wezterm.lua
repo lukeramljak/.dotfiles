@@ -4,7 +4,7 @@ return {
 	-- OpenGL for GPU acceleration, Software for CPU
 	front_end = "OpenGL",
 
-	color_scheme = "Catppuccin Mocha",
+	color_scheme = "One Dark (Gogh)",
 
 	-- Font config
 	font = wezterm.font("FiraCodeNerdFontMono"),
