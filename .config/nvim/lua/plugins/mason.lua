@@ -5,9 +5,12 @@ return {
       "stylua",
       "eslint-lsp",
       "json-lsp",
+      "html-lsp",
+      "css-lsp",
+      "emmet-ls",
       "lua-language-server",
       "prettier",
-      "typescript-language-server"
-    }
-  }
+      "typescript-language-server",
+    },
+  },
 }
