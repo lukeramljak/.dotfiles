@@ -1,2 +1,0 @@
-#!/bin/sh
-rsync -aAXHv --delete --exclude={"/home/*/.thumbnails/","/home/*/.cache/*","/home/*/.local/share/Trash/*"} /home /run/media/luke/Backup/

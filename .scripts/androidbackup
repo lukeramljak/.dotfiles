@@ -1,2 +1,0 @@
-#!/bin/sh
-adb-sync --reverse --delete /sdcard/DCIM /run/media/luke/Backup/phone/

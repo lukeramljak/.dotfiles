@@ -1,2 +1,0 @@
-#!/bin/sh
-rsync -aAXHv --delete /mnt/ssd/photos/* /run/media/luke/Backup/photos
