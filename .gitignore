@@ -1,6 +1,2 @@
 .stow-local-ignore
 .DS_Store
-.zcompdump
-.zsh_history
-.zsh_sessions
-.config/lazygit
