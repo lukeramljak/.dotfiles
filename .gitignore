@@ -1,2 +1,4 @@
 .stow-local-ignore
 .DS_Store
+.config/lazygit
+.config/nvm
