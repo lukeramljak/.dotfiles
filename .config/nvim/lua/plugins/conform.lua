@@ -21,9 +21,9 @@ return {
       ["handlebars"] = { "prettier" },
     },
     formatters = {
-      prettier = {
-        prepend_args = { "--single-quote" },
-      },
+      -- prettier = {
+      --   prepend_args = { "--single-quote" },
+      -- },
     },
   },
 }
