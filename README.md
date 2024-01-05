@@ -1,18 +1,16 @@
 # dotfiles
 
-## Handy install features
+## Install script features
 
-- Automatically checks and installs `stow` if not already installed.
+- Automatically check for and install `stow` if not already installed.
 - Choose which directories to include per system.
-- Optionally handle submodules.
+- Optionally handle git submodules.
 
-## Supported package managers
+## Supported Package Managers
 
-- apt (Debian, Ubuntu, etc)
-- dnf (Fedora)
-- pacman (Arch Linux)
-- brew (macOS)
-
-## Requirements
-
-`git` to clone this repo and handle submodules. The install script will install `stow` if needed.
+| Package Manager        | OS                       |
+| ---------------------- | ------------------------ |
+| apt                    | Debian, Ubuntu, etc      |
+| dnf                    | Fedora                   |
+| pacman                 | Arch Linux               |
+| brew                   | macOS                    |
