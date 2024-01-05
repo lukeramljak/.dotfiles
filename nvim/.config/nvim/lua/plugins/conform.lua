@@ -1,29 +1,27 @@
 return {
   "stevearc/conform.nvim",
-  optional = true,
+  event = { "BufWritePre" },
+  cmd = { "ConformInfo" },
+  -- Everything in opts will be passed to setup()
   opts = {
+    -- Define your formatters
     formatters_by_ft = {
-      ["javascript"] = { "prettier" },
-      ["javascriptreact"] = { "prettier" },
-      ["typescript"] = { "prettier" },
-      ["typescriptreact"] = { "prettier" },
-      ["vue"] = { "prettier" },
-      ["css"] = { "prettier" },
-      ["scss"] = { "prettier" },
-      ["less"] = { "prettier" },
-      ["html"] = { "prettier" },
-      ["json"] = { "prettier" },
-      ["jsonc"] = { "prettier" },
-      ["yaml"] = { "prettier" },
-      ["markdown"] = { "prettier" },
-      ["markdown.mdx"] = { "prettier" },
-      ["graphql"] = { "prettier" },
-      ["handlebars"] = { "prettier" },
+      lua = { "stylua" },
+      python = { "isort", "black" },
+      javascript = { { "prettierd", "prettier" } },
+      html = { { "prettierd", "prettier" } },
     },
+    -- Set up format-on-save
+    format_on_save = { timeout_ms = 500, lsp_fallback = true },
+    -- Customize formatters
     formatters = {
-      -- prettier = {
-      --   prepend_args = { "--single-quote" },
-      -- },
+      shfmt = {
+        prepend_args = { "-i", "2" },
+      },
     },
   },
+  init = function()
+    -- If you want the formatexpr, here is the place to set it
+    vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
+  end,
 }
