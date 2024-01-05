@@ -1,19 +1,18 @@
-## Installing
+# dotfiles
 
-Requires `git` and GNU `stow`
+## Handy install features
 
-Clone into the `$HOME` directory
+- Automatically checks and installs `stow` if not already installed.
+- Choose which directories to include per system.
+- Optionally handle submodules.
 
-```bash
-git clone https://github.com/lukeramljak/dotfiles.git ~
-```
+## Supported package managers
 
-Run `stow` to symlink everything or select specific directories
+- apt (Debian, Ubuntu, etc)
+- dnf (Fedora)
+- pacman (Arch Linux)
+- brew (macOS)
 
-```bash
-stow */ # Everything (the '/' ignores the README)
-```
+## Requirements
 
-```bash
-stow zsh # Just the zsh config
-```
+`git` to clone this repo and handle submodules. The install script will install `stow` if needed.
