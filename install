@@ -37,14 +37,19 @@ function ask() {
 	[ "$response_lc" = "y" ]
 }
 
+all_flag=false
+
+if [ "$1" = "--all" ]; then
+	all_flag=true
+fi
+
 for dir in */; do
 	if [ -d "$dir" ]; then
 		dirname=$(basename "$dir")
-		if ask "${dirname}?"; then
+		if [ "$all_flag" = true ] || ask "${dirname}?"; then
 			stow "$dirname"
 
 			if [ "$dirname" = "zsh" ]; then
-				echo "Checking and initializing submodules..."
 				git submodule update --init --recursive
 			fi
 		fi
