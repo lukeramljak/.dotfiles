@@ -43,6 +43,10 @@ vim.o.termguicolors = true
 
 vim.o.swapfile = false
 vim.o.backup = false
+vim.o.undofile = true
+
+vim.o.expandtab = true
+vim.o.tabstop = 2
 
 vim.g.netrw_browse_split = 0
 vim.g.netrw_banner = 0

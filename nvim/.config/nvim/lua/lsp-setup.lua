@@ -93,6 +93,7 @@ local servers = {
   cssls = {},
   tailwindcss = {},
   emmet_ls = {},
+  bashls = {},
 
   lua_ls = {
     Lua = {
