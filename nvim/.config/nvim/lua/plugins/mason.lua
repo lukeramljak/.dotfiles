@@ -3,7 +3,7 @@ return {
   opts = {
     ensure_installed = {
       "css-lsp",
-      "emmet-ls",
+      "emmet-language-server",
       "html-lsp",
       "prettier",
     },
