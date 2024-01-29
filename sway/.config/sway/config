@@ -156,7 +156,7 @@ bindsym $mod+Shift+period exec systemctl suspend
 
 # applications
 bindsym $mod+Return exec $term
-bindsym $mod+E exec $file
+bindsym $mod+E exec $files
 bindsym $mod+W exec $browser
 bindsym $mod+Shift+W exec firefox -P work
 bindsym $mod+D exec $menu
