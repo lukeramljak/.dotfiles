@@ -1,10 +1,8 @@
-include ~/.config/sway/startup.conf
-
-set $mod Mod1
+set $mod Mod4
 set $term foot
 set $files thunar
 set $browser firefox
-set $menu wofi --show drun
+set $menu tofi-drun | xargs swaymsg exec --
 
 output DP-1 resolution 3440x1440@143.975hz position 1440,339
 output DP-2 resolution 2560x1440@144hz position 0,0 transform 270
@@ -17,12 +15,8 @@ input * {
 
 output * bg ~/.wallpapers/wallhaven/wallhaven-1pr8q9.jpg fill
 
-for_window [class=".*"] border pixel 2
-                          # class                 border  backgr. text    indicator child_border
-for_window [class="^.*"] client.focused          #77dd77 #285577 #ffffff #2e9ef4   #285577
-
-gaps inner 8
-gaps outer 8
+# gaps inner 8
+# gaps outer 8
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -65,8 +59,8 @@ bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
-# bindsym $mod+w layout tabbed
-# bindsym $mod+e layout toggle split
+bindsym $mod+t layout tabbed
+bindsym $mod+Shift+t layout toggle split
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
@@ -147,10 +141,10 @@ bar {
 }
 
 # ------------------------------------------
-# CUSTOM KEYS START
+# CUSTOM START
 # ------------------------------------------
 
-exec nm-applet
+exec $HOME/.config/sway/autostart.sh
 
 # audio
 bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
@@ -162,11 +156,22 @@ bindsym $mod+Shift+period exec systemctl suspend
 
 # applications
 bindsym $mod+Return exec $term
-bindsym $mod+E exec $files
+bindsym $mod+E exec $file
 bindsym $mod+W exec $browser
+bindsym $mod+Shift+W exec firefox -P work
 bindsym $mod+D exec $menu
 
 # utitilies
 bindsym CTRL+Alt+L exec swaylock -c 000000
+bindsym $mod+Shift+n exec swaync-client -t -sw
+bindsym $mod+Shift+s exec flameshot gui --raw | wl-copy
+bindsym $mod+Shift+v exec cliphist list | $menu | cliphist decode | wl-copy
+
+# window rules
+for_window [app_id="flameshot"] border pixel 0, floating enable, fullscreen disable, move absolute position 0 0
+for_window [class=".*"] border pixel 2
+                          # class                 border  backgr. text    indicator child_border
+for_window [class="^.*"] client.focused          #77dd77 #285577 #ffffff #2e9ef4   #285577
+for_window [app_id="pavucontrol"] floating enable
 
 include /etc/sway/config.d/*
