@@ -4,13 +4,13 @@ set $files thunar
 set $browser firefox
 set $menu tofi-drun | xargs swaymsg exec --
 
-output DP-1 resolution 3440x1440@143.975hz position 1440,339
-output DP-2 resolution 2560x1440@144hz position 0,0 transform 270
+output DP-1 resolution 3440x1440@143.975hz position 2560,360
+output DP-2 resolution 2560x1440@144hz position 0,0 
 
 input * {
   repeat_delay 250
   repeat_rate 40
-  xkb_options caps:escape
+  xkb_options caps:escape,altwin:swap_lalt_lwin
 }
 
 output * bg ~/.wallpapers/wallhaven/wallhaven-1pr8q9.jpg fill
@@ -98,7 +98,7 @@ bindsym $mod+Shift+0 move container to workspace 10
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # exit sway (logs you out of your Wayland session)
-bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+bindsym $mod+Shift+x exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
 
 # Sway has a "scratchpad", which is a bag of holding for windows.
 # You can send windows there and get them back later.
@@ -127,7 +127,6 @@ mode "resize" {
     bindsym Escape mode "default"
 }
 
-
 bindsym $mod+r mode "resize"
 
 bar {
@@ -144,8 +143,6 @@ bar {
 # CUSTOM START
 # ------------------------------------------
 
-exec $HOME/.config/sway/autostart.sh
-
 # audio
 bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
 bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
@@ -156,22 +153,35 @@ bindsym $mod+Shift+period exec systemctl suspend
 
 # applications
 bindsym $mod+Return exec $term
-bindsym $mod+E exec $files
-bindsym $mod+W exec $browser
-bindsym $mod+Shift+W exec firefox -P work
-bindsym $mod+D exec $menu
+bindsym $mod+e exec $files
+bindsym $mod+w exec $browser
+bindsym $mod+d exec $menu
+
+# work
+bindsym $mod+Shift+w exec firefox -P work
+bindsym $mod+Shift+e exec microsoft-edge
 
 # utitilies
-bindsym CTRL+Alt+L exec swaylock -c 000000
+bindsym CTRL+Alt+l exec swaylock -c 000000
 bindsym $mod+Shift+n exec swaync-client -t -sw
 bindsym $mod+Shift+s exec flameshot gui --raw | wl-copy
 bindsym $mod+Shift+v exec cliphist list | $menu | cliphist decode | wl-copy
 
-# window rules
-for_window [app_id="flameshot"] border pixel 0, floating enable, fullscreen disable, move absolute position 0 0
-for_window [class=".*"] border pixel 2
-                          # class                 border  backgr. text    indicator child_border
-for_window [class="^.*"] client.focused          #77dd77 #285577 #ffffff #2e9ef4   #285577
-for_window [app_id="pavucontrol"] floating enable
+default_border pixel 2
+
+for_window {
+  [app_id="firefox"] inhibit_idle fullscreen
+  [app_id="mpv"] inhibit_idle focus
+  [app_id="flameshot"] border pixel 0, floating enable, fullscreen disable, move absolute position 0 0
+	[title="Picture-in-Picture"] floating enable, sticky enable
+	[app_id="pavucontrol"] floating enable
+}
+
+exec {
+  nm-applet
+  swaync
+  flameshot
+  gnome-keyring-daemon
+}
 
 include /etc/sway/config.d/*
