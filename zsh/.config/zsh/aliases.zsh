@@ -37,7 +37,7 @@ alias tmuxk="tmux kill-session -t"
 alias tmuxa="tmux attach -t"
 alias tmuxl="tmux list-sessions"
 
-alias gs="git status"
+alias gst="git status"
 alias gss="git status -s"
 alias ga="git add"
 alias gp="git push"

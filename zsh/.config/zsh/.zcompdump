@@ -1087,7 +1087,7 @@ _comps=(
 'numfmt' '_numfmt'
 'nvim' '_vim'
 'nvlc' '_vlc'
-'nvm' '_nvm'
+'nvm' '_bash_complete -o default -F __nvm'
 'nvram' '_nvram'
 'objdump' '_objdump'
 'od' '_od'
