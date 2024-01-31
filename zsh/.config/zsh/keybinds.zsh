@@ -13,4 +13,6 @@ bindkey "^?" backward-delete-char
 bindkey "^H" backward-delete-char
 bindkey "^U" backward-kill-line
 
+bindkey -s ^f "tmux-sessioniser\n"
+
 # vim:ft=zsh:nowrap
