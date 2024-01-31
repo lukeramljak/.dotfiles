@@ -1,57 +1,12 @@
-#!/bin/bash
+#!/usr/bin/env zsh
 
-# Check if stow is installed
-if ! command -v stow >/dev/null 2>&1; then
-	echo "Stow not found. Attempting to install..."
-
-	# Check the package manager and install stow
-	if command -v apt >/dev/null 2>&1; then
-		sudo apt update
-		sudo apt install -y stow
-	elif command -v dnf >/dev/null 2>&1; then
-		sudo dnf install -y stow
-	elif command -v pacman >/dev/null 2>&1; then
-		sudo pacman -Syu --noconfirm stow
-	elif command -v brew >/dev/null 2>&1; then
-		brew install stow
-	else
-		echo "Error: Unsupported package manager. Please install Stow manually."
-		exit 1
-	fi
-
-	# Check again if stow is installed
-	if ! command -v stow >/dev/null 2>&1; then
-		echo "Error: Failed to install stow. Please install it manually."
-		exit 1
-	fi
+if [[ -d $DOTFILES ]]; then
+    pushd $DOTFILES
+    for folder in */; do
+        echo "stow $folder"
+        stow --restow "${folder%/}"
+    done
+    popd
+else
+    echo "DOTFILES directory does not exist."
 fi
-
-function ask() {
-	read -p "$1 (Y/n): " resp
-	if [ -z "$resp" ]; then
-		response_lc="y"
-	else
-		response_lc=$(echo "$resp" | tr '[:upper:]' '[:lower:]')
-	fi
-
-	[ "$response_lc" = "y" ]
-}
-
-all_flag=false
-
-if [ "$1" = "--all" ]; then
-	all_flag=true
-fi
-
-for dir in */; do
-	if [ -d "$dir" ]; then
-		dirname=$(basename "$dir")
-		if [ "$all_flag" = true ] || ask "${dirname}?"; then
-			stow "$dirname"
-
-			if [ "$dirname" = "zsh" ]; then
-				git submodule update --init --recursive
-			fi
-		fi
-	fi
-done
