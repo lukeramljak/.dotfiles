@@ -1,12 +1,8 @@
 #!/usr/bin/env zsh
 
-if [[ -d $DOTFILES ]]; then
-    pushd $DOTFILES
-    for folder in */; do
-        echo "stow $folder"
-        stow --restow "${folder%/}"
-    done
-    popd
-else
-    echo "DOTFILES directory does not exist."
-fi
+pushd $DOTFILES
+for folder in */; do
+    echo "stow $folder"
+    stow --restow "${folder%/}"
+done
+popd
