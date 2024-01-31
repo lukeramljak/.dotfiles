@@ -2,18 +2,25 @@ set $mod Mod4
 set $term foot
 set $files thunar
 set $browser firefox
-set $menu tofi-drun | xargs swaymsg exec --
+set $menu bemenu-run
 
-output DP-1 resolution 3440x1440@143.975hz position 2560,360
-output DP-2 resolution 2560x1440@144hz position 0,0 
+output * bg ~/.wallpapers/wallhaven/wallhaven-1pr8q9.jpg fill
+
+output DP-1 {
+  mode 3440x1440@143.975hz
+  position 2560 360
+}
+
+output DP-2 {
+  mode 2560x1440@144hz
+  position 0 0
+}
 
 input * {
   repeat_delay 250
   repeat_rate 40
   xkb_options caps:escape,altwin:swap_lalt_lwin
 }
-
-output * bg ~/.wallpapers/wallhaven/wallhaven-1pr8q9.jpg fill
 
 # gaps inner 8
 # gaps outer 8
@@ -155,7 +162,7 @@ bindsym $mod+Shift+period exec systemctl suspend
 bindsym $mod+Return exec $term
 bindsym $mod+e exec $files
 bindsym $mod+w exec $browser
-bindsym $mod+d exec $menu
+bindsym $mod+Space exec $menu
 
 # work
 bindsym $mod+Shift+w exec firefox -P work
@@ -165,7 +172,7 @@ bindsym $mod+Shift+e exec microsoft-edge
 bindsym CTRL+Alt+l exec swaylock -c 000000
 bindsym $mod+Shift+n exec swaync-client -t -sw
 bindsym $mod+Shift+s exec flameshot gui --raw | wl-copy
-bindsym $mod+Shift+v exec cliphist list | $menu | cliphist decode | wl-copy
+bindsym $mod+Shift+v exec cliphist list | bemenu | cliphist decode | wl-copy
 
 default_border pixel 2
 
@@ -182,6 +189,7 @@ exec {
   swaync
   flameshot
   gnome-keyring-daemon
+  wl-paste --watch cliphist store
 }
 
 include /etc/sway/config.d/*
