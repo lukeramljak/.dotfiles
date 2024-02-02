@@ -2,7 +2,7 @@ set $mod Mod4
 set $term foot
 set $files thunar
 set $browser firefox
-set $menu bemenu-run
+set $menu tofi-drun | xargs swaymsg exec --
 
 output * bg ~/.wallpapers/wallhaven/wallhaven-1pr8q9.jpg fill
 
@@ -103,7 +103,7 @@ bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
 
 # reload the configuration file
-bindsym $mod+Shift+c reload
+bindsym $mod+Shift+r reload
 # exit sway (logs you out of your Wayland session)
 bindsym $mod+Shift+x exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
 
@@ -172,7 +172,8 @@ bindsym $mod+Shift+e exec microsoft-edge
 bindsym CTRL+Alt+l exec swaylock -c 000000
 bindsym $mod+Shift+n exec swaync-client -t -sw
 bindsym $mod+Shift+s exec flameshot gui --raw | wl-copy
-bindsym $mod+Shift+v exec cliphist list | bemenu | cliphist decode | wl-copy
+bindsym $mod+Shift+v exec cliphist list | tofi | cliphist decode | wl-copy
+bindsym $mod+Shift+c exec $HOME/git/hyprpicker/build/hyprpicker -a
 
 default_border pixel 2
 
