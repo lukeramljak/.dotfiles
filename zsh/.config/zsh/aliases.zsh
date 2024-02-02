@@ -3,8 +3,10 @@
 ##
 
 alias shutdown="sudo shutdown now"
-alias restart="sudo reboot"
+alias reboot="sudo reboot"
 alias suspend="sudo pm-suspend"
+
+alias dots="cd $DOTFILES"
 
 alias c="clear"
 alias q="exit"
