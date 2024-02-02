@@ -1,10 +1,5 @@
+vim.g.mapleader = " "
 local map = vim.keymap.set
-
--- move to window using the <ctrl> hjkl keys
-map("n", "<C-h>", "<C-w>h", { desc = "Go to left window", remap = true })
-map("n", "<C-j>", "<C-w>j", { desc = "Go to lower window", remap = true })
-map("n", "<C-k>", "<C-w>k", { desc = "Go to upper window", remap = true })
-map("n", "<C-l>", "<C-w>l", { desc = "Go to right window", remap = true })
 
 -- buffers
 map("n", "<S-h>", "<cmd>bprevious<cr>", { desc = "Prev buffer" })
@@ -16,23 +11,6 @@ map("n", "<leader>`", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
 
 map("n", "<leader>fl", vim.cmd.Ex, { desc = "Open netrw" })
 
--- LSP
-map("n", "K", vim.lsp.buf.hover, { desc = "Hover" })
-map("n", "gd", vim.lsp.buf.definition, { desc = "Go to definition" })
-map("n", "<leader>cr", vim.lsp.buf.references, { desc = "Go to reference" })
-map("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code actions" })
-
--- formatting
-map("n", "<leader>cf", vim.lsp.buf.format, { desc = "Format" })
-
--- telescope
--- find
-map("n", "<leader>/", "<cmd>Telescope live_grep<CR>", { desc = "Live grep" })
-map("n", "<leader>fb", "<cmd>Telescope buffers sort_mru=true sort_lastused=true<CR>", { desc = "Buffers" })
-map("n", "<leader>ff", "<cmd>Telescope find_files<CR>", { desc = "Find Files (root dir)" })
-map("n", "<leader><space>", "<cmd>Telescope find_files<CR>", { desc = "Find Files (root dir)" })
-map("n", "<leader>fg", "<cmd>Telescope git_files<CR>", { desc = "Find Files (git-files)" })
-map("n", "<leader>fr", "<cmd>Telescope oldfiles<CR>", { desc = "Recent" })
 -- git
 map("n", "<leader>gc", "<cmd>Telescope git_commits<CR>", { desc = "commits" })
 map("n", "<leader>gs", "<cmd>Telescope git_status<CR>", { desc = "status" })
@@ -73,3 +51,19 @@ map("o", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev search result
 -- better indenting
 map("v", "<", "<gv")
 map("v", ">", ">gv")
+
+-- increment/decrement numbers
+map("n", "<leader>+", "<C-a>", { desc = "Increment number" }) -- increment
+map("n", "<leader>-", "<C-x>", { desc = "Decrement number" }) -- decrement
+
+-- window management
+map("n", "<leader>wv", "<C-w>v", { desc = "Split window vertically" }) -- split window vertically
+map("n", "<leader>wh", "<C-w>s", { desc = "Split window horizontally" }) -- split window horizontally
+map("n", "<leader>we", "<C-w>=", { desc = "Make splits equal size" }) -- make split windows equal width & height
+map("n", "<leader>wx", "<cmd>close<CR>", { desc = "Close current split" }) -- close current split window
+
+-- move to window using the <ctrl> hjkl keys
+map("n", "<C-h>", "<C-w>h", { desc = "Go to left window", remap = true })
+map("n", "<C-j>", "<C-w>j", { desc = "Go to lower window", remap = true })
+map("n", "<C-k>", "<C-w>k", { desc = "Go to upper window", remap = true })
+map("n", "<C-l>", "<C-w>l", { desc = "Go to right window", remap = true })
