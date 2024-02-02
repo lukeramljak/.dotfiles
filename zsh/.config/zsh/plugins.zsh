@@ -23,7 +23,6 @@ autoload compinit
 compinit
 
 zinit light-mode for \
-  hlissner/zsh-autopair \
   zdharma-continuum/fast-syntax-highlighting \
   MichaelAquilina/zsh-you-should-use \
   zsh-users/zsh-autosuggestions \
