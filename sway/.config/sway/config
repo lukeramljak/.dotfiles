@@ -183,6 +183,8 @@ for_window {
   [app_id="flameshot"] border pixel 0, floating enable, fullscreen disable, move absolute position 0 0
 	[title="Picture-in-Picture"] floating enable, sticky enable
 	[app_id="pavucontrol"] floating enable
+  [class=".*"] inhibit_idle fullscreen
+  [app_id=".*"] inhibit_idle fullscreen
 }
 
 exec {
@@ -191,6 +193,8 @@ exec {
   flameshot
   gnome-keyring-daemon
   wl-paste --watch cliphist store
+  wlsunset -l 31.7 -L 115.9
+  $HOME/.config/sway/scripts/swayidle.sh
 }
 
 include /etc/sway/config.d/*
