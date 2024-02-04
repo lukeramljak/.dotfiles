@@ -1,16 +1,19 @@
 #!/usr/bin/env zsh
 
-# only stow mac directory on mac
-os_name="$(uname -s)"
-
 pushd $DOTFILES
+
+os_name="$(uname -s)"
+linux_folders="foot hypr sway tofi"
+
 for folder in */; do
-  if [[ "$os_name" == "Darwin" && "$folder" == "mac/" ]]; then
-    echo "stow $folder"
-    stow --restow "${folder%/}"
-  else
-    echo "stow $folder"
-    stow --restow "${folder%/}"
+  if [[ "$os_name" == "Linux" && "$folder" == "mac/" ]]; then
+    continue
   fi
+
+  if [[ "$os_name" == "Darwin" && $linux_folders =~ (^| )"${folder%/}"($| ) ]]; then
+    continue
+    
+  echo "stow $folder"
+  stow --restow "${folder%/}"
 done
 popd
