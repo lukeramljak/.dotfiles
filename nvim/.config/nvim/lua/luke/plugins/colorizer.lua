@@ -4,12 +4,14 @@ return {
 	config = function()
 		require("colorizer").setup({
 			user_default_options = {
-				names = false,
 				css = true,
 				tailwind = true,
 			},
-			filetypes = {
-				css = { names = true },
+			buftypes = {
+				"*",
+				-- exclude prompt and popup buftypes from highlight
+				"!prompt",
+				"!popup",
 			},
 		})
 	end,
