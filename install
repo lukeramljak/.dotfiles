@@ -3,15 +3,15 @@
 pushd $DOTFILES
 
 os_name="$(uname -s)"
-linux_folders="foot hypr sway tofi"
 
 for folder in */; do
   if [[ "$os_name" == "Linux" && "$folder" == "mac/" ]]; then
     continue
   fi
 
-  if [[ "$os_name" == "Darwin" && $linux_folders =~ (^| )"${folder%/}"($| ) ]]; then
+  if [[ "$os_name" == "Darwin" && "$folder" == "linux/" ]]; then
     continue
+  fi
     
   echo "stow $folder"
   stow --restow "${folder%/}"
