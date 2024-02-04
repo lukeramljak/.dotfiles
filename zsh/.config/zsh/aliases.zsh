@@ -7,6 +7,7 @@ alias reboot="sudo reboot"
 alias suspend="sudo pm-suspend"
 
 alias dots="cd $DOTFILES"
+alias dotsinstall="$DOTFILES/install"
 
 alias c="clear"
 alias q="exit"
