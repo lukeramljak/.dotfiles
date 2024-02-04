@@ -1,8 +1,16 @@
 #!/usr/bin/env zsh
 
+# only stow mac directory on mac
+os_name="$(uname -s)"
+
 pushd $DOTFILES
 for folder in */; do
+  if [[ "$os_name" == "Darwin" && "$folder" == "mac/" ]]; then
     echo "stow $folder"
     stow --restow "${folder%/}"
+  else
+    echo "stow $folder"
+    stow --restow "${folder%/}"
+  fi
 done
 popd
