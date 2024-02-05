@@ -138,7 +138,7 @@ bindsym $mod+r mode "resize"
 
 bar {
   position bottom
-  status_command while date +'%Y-%m-%d %I:%M:%S %p'; do sleep 1; done
+  status_command $HOME/.config/sway/scripts/bar.sh
 
   colors {
     statusline #ffffff
