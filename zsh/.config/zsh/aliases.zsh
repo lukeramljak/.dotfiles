@@ -4,7 +4,7 @@
 
 alias shutdown="sudo shutdown now"
 alias reboot="sudo reboot"
-alias suspend="sudo pm-suspend"
+alias suspend="sudo systemctl suspend"
 
 alias dots="cd $DOTFILES"
 alias dotsinstall="$DOTFILES/install"
