@@ -168,11 +168,10 @@ bindsym $mod+Space exec $menu
 
 # work
 bindsym $mod+Shift+w exec firefox -P work
-bindsym $mod+Shift+e exec microsoft-edge
+bindsym $mod+Shift+e exec microsoft-edge-beta --enable-webrtc-pipewire-capturer --ozone-platform-hint=auto
 
 # utitilies
 bindsym CTRL+Alt+l exec swaylock -c 000000
-bindsym $mod+Shift+n exec swaync-client -t -sw
 bindsym $mod+Shift+s exec flameshot gui --raw | wl-copy
 bindsym $mod+Shift+v exec cliphist list | tofi | cliphist decode | wl-copy
 bindsym $mod+Shift+c exec $HOME/git/hyprpicker/build/hyprpicker -a
@@ -202,7 +201,7 @@ workspace 10 output DP-2
 
 exec {
   nm-applet
-  swaync
+  mako
   flameshot
   gnome-keyring-daemon --start
   wl-paste --watch cliphist store
