@@ -13,7 +13,6 @@ alias c="clear"
 alias q="exit"
 alias cleanram="sudo sh -c 'sync; echo 3 > /proc/sys/vm/drop_caches'"
 alias trim_all="sudo fstrim -va"
-alias mkgrub="sudo grub-mkconfig -o /boot/grub/grub.cfg"
 alias mtar="tar -zcvf" # mtar <archive_compress>
 alias utar="tar -zxvf" # utar <archive_decompress> <file_list>
 alias z="zip -r" # z <archive_compress> <file_list>
@@ -40,6 +39,7 @@ alias tmuxk="tmux kill-session -t"
 alias tmuxa="tmux attach -t"
 alias tmuxl="tmux list-sessions"
 
+alias gcl="git clone"
 alias gst="git status"
 alias gss="git status -s"
 alias ga="git add"
