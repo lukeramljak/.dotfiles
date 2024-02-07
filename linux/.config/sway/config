@@ -166,13 +166,13 @@ bindsym $mod+Space exec $menu
 
 # work
 bindsym $mod+Shift+w exec firefox -P work
-bindsym $mod+Shift+e exec microsoft-edge-beta --enable-webrtc-pipewire-capturer --ozone-platform-hint=auto
+bindsym $mod+Shift+e exec microsoft-edge-stable --enable-webrtc-pipewire-capturer --ozone-platform-hint=auto
 
 # utitilies
 bindsym CTRL+Alt+l exec swaylock -c 000000
 bindsym $mod+Shift+s exec flameshot gui --raw | wl-copy
 bindsym $mod+Shift+v exec cliphist list | tofi | cliphist decode | wl-copy
-bindsym $mod+Shift+c exec $HOME/git/hyprpicker/build/hyprpicker -a
+bindsym $mod+Shift+c exec hyprpicker -a
 
 default_border pixel 2
 
@@ -198,13 +198,14 @@ workspace 9 output DP-2
 workspace 10 output DP-2
 
 exec {
-  nm-applet
+  nm-applet --indicator
   mako
   flameshot
   gnome-keyring-daemon --start
   wl-paste --watch cliphist store
   wlsunset -l 31.7 -L 115.9
   $HOME/.config/sway/scripts/swayidle.sh
+  systemctl --user restart pipewire
 }
 
 include /etc/sway/config.d/*
