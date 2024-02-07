@@ -9,13 +9,11 @@ output * bg ~/.wallpapers/wallhaven/wallhaven-vqeqkl.jpg fill
 output DP-1 {
   mode 3440x1440@143.975hz
   position 2560 360
-  render_bit_depth 10
 }
 
 output DP-2 {
   mode 2560x1440@144hz
   position 0 0
-  render_bit_depth 10
 }
 
 input * {
