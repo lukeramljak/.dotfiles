@@ -21,7 +21,20 @@
     "hyprland/workspaces": {
         "disable-scroll": true,
         //"all-outputs": true,
-        "on-click": "activate"
+        "on-click": "activate",
+      //   "format": "{icon}",
+      //   "format-icons": {
+      //     "1": "一",
+      //     "2": "二",
+      //     "3": "三",
+      //     "4": "四",
+      //     "5": "五",
+      //     "6": "六",
+      //     "7": "七",
+      //     "8": "八",
+      //     "9": "九",
+      //     "10": "十"
+      // }
     },
     "tray": {
         // "icon-size": 21,
@@ -47,12 +60,14 @@
     },
     "pulseaudio": {
         // "scroll-step": 1, // %, can be a float
+        "on-click": "exec pavucontrol -t 3",
+        "on-click-right": "$HOME/.config/waybar/scripts/toggle-output.sh",
         "format": "{icon} {volume}%",
         "format-muted": "󰖁",
 				"format-icons": {
 					"default": ["", "", "󰕾"]
-				},
-		},
+				}
+		}
 }
 
 // vim: ft=jsonc
