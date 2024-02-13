@@ -7,6 +7,9 @@ return {
 				css = true,
 				tailwind = true,
 			},
+			filetypes = {
+				"!cmp_menu",
+			},
 			buftypes = {
 				"*",
 				-- exclude prompt and popup buftypes from highlight
