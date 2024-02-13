@@ -1,0 +1,62 @@
+{
+  "layer": "top",
+  "height": 30,
+  "spacing": 4,
+  "modules-left": [
+    "hyprland/workspaces"
+  ],
+  "modules-center": [
+    "hyprland/window"
+  ],
+  "modules-right": [
+    "pulseaudio",
+    "clock",
+    "tray"
+  ],
+  "hyprland/window": {
+    "separate-outputs": true
+  },
+  "hyprland/workspaces": {
+    "disable-scroll": true,
+    "on-click": "activate"
+  },
+  "cpu": {
+    "interval": 10,
+    "format": "{}%",
+    "max-length": 10
+  },
+  "memory": {
+    "interval": 30,
+    "format": "{used:0.1f}GB/{total:0.1f}GB"
+  },
+  "tray": {
+    "spacing": 10
+  },
+  "disk": {
+    "format": "/ {percentage_used}%"
+  },
+  "clock": {
+    "format": "{:%Y-%m-%d %H:%M}",
+    "tooltip-format": "{:%A %B %d, %Y}"
+  },
+  "battery": {
+    "states": {
+        "good": 76,
+        "warning": 20
+    },
+    "format": "{icon}",
+    "format-charging": "󰂄",
+    "format-good": "󰁹",
+    "format-icons": [ "󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹" ],
+    "tooltip-format": "{capacity}% capacity"
+  },
+  "pulseaudio": {
+    "on-click": "exec pavucontrol -t 3",
+    "on-click-right": "$HOME/.config/waybar/scripts/toggle-output.sh",
+    "format": "{icon}  {volume}%",
+    "format-muted": "󰖁",
+    "format-icons": {
+      "default": ["", "", "󰕾"]
+    }
+  }
+}
