@@ -20,19 +20,19 @@ return {
 
 			-- set keybinds
 			opts.desc = "Show LSP references"
-			keymap.set("n", "gR", "<cmd>Telescope lsp_references<CR>", opts) -- show definition, references
+			keymap.set("n", "<leader>gR", "<cmd>Telescope lsp_references<CR>", opts) -- show definition, references
 
 			opts.desc = "Go to declaration"
-			keymap.set("n", "gD", vim.lsp.buf.declaration, opts) -- go to declaration
+			keymap.set("n", "<leader>gD", vim.lsp.buf.declaration, opts) -- go to declaration
 
 			opts.desc = "Show LSP definitions"
-			keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", opts) -- show lsp definitions
+			keymap.set("n", "<leader>gd", "<cmd>Telescope lsp_definitions<CR>", opts) -- show lsp definitions
 
 			opts.desc = "Show LSP implementations"
-			keymap.set("n", "gi", "<cmd>Telescope lsp_implementations<CR>", opts) -- show lsp implementations
+			keymap.set("n", "<leader>gi", "<cmd>Telescope lsp_implementations<CR>", opts) -- show lsp implementations
 
 			opts.desc = "Show LSP type definitions"
-			keymap.set("n", "gt", "<cmd>Telescope lsp_type_definitions<CR>", opts) -- show lsp type definitions
+			keymap.set("n", "<leader>gt", "<cmd>Telescope lsp_type_definitions<CR>", opts) -- show lsp type definitions
 
 			opts.desc = "See available code actions"
 			keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts) -- see available code actions, in visual mode will apply to selection
@@ -57,6 +57,43 @@ return {
 
 			opts.desc = "Restart LSP"
 			keymap.set("n", "<leader>rs", ":LspRestart<CR>", opts) -- mapping to restart lsp if necessary
+
+			if client.name == "tsserver" then
+				local ts_opts = { noremap = true, silent = true, buffer = bufnr }
+
+				-- Organize Imports
+				vim.keymap.set("n", "<leader>co", function()
+					vim.lsp.buf.code_action({
+						apply = true,
+						context = {
+							only = { "source.organizeImports.ts" },
+							diagnostics = {},
+						},
+					})
+				end, vim.tbl_extend("force", ts_opts, { desc = "Organize Imports" }))
+
+				-- Remove Unused Imports
+				vim.keymap.set("n", "<leader>cR", function()
+					vim.lsp.buf.code_action({
+						apply = true,
+						context = {
+							only = { "source.removeUnused.ts" },
+							diagnostics = {},
+						},
+					})
+				end, vim.tbl_extend("force", ts_opts, { desc = "Remove Unused Imports" }))
+
+				-- Adding missing imports
+				vim.keymap.set("n", "<leader>ci", function()
+					vim.lsp.buf.code_action({
+						apply = true,
+						context = {
+							only = { "source.addMissingImports.ts" },
+							diagnostics = {},
+						},
+					})
+				end, vim.tbl_extend("force", ts_opts, { desc = "Add Missing Imports" }))
+			end
 		end
 
 		-- used to enable autocompletion (assign to every lsp server config)
@@ -79,6 +116,11 @@ return {
 		lspconfig["tsserver"].setup({
 			capabilities = capabilities,
 			on_attach = on_attach,
+			settings = {
+				completions = {
+					completeFunctionCalls = true,
+				},
+			},
 		})
 
 		-- configure css server
