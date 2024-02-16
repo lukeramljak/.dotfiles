@@ -1,5 +1,7 @@
 local opt = vim.opt
 
+opt.mouse = "a"
+
 -- line numbers
 opt.relativenumber = true -- show relative line numbers
 opt.number = true -- shows absolute line number on cursor line (when relative number is on)
