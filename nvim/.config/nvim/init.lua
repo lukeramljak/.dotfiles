@@ -1,2 +1,2 @@
-require("luke.config")
-require("luke.lazy")
+-- bootstrap lazy.nvim, LazyVim and your plugins
+require("config.lazy")
