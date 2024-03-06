@@ -30,13 +30,13 @@
 @define-color rosewater #f5e0dc;
 
 * {
-  font-family: Cantarell, Symbols Nerd Font;
-  font-weight: bold;
+  font-family: Hack Nerd Font, Symbols Nerd Font;
+  font-weight: 500;
   font-size: 14px;
 }
 
 window#waybar {
-  background-color: @crust;
+  background-color: #000;
   color: @text;
   transition-property: background-color;
   transition-duration: 0.5s;

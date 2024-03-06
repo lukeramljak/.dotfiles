@@ -25,3 +25,5 @@ alias vim="nvim"
 alias tmuxk="tmux kill-session -t"
 alias tmuxa="tmux attach -t"
 alias tmuxl="tmux list-sessions"
+
+bindkey -s ^f "tmux-sessioniser\n"
