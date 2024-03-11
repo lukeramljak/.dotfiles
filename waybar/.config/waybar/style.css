@@ -142,9 +142,10 @@ button {
   color: @peach;
 }
 
-#pulseaudio {
+/* #pulseaudio {
   color: @mauve;
 }
+*/
 
 #pulseaudio.muted {
   color: @surface2;
