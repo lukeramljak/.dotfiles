@@ -12,7 +12,25 @@ return {
   --    require('Comment').setup({})
 
   -- "gc" to comment visual regions/lines
-  { 'numToStr/Comment.nvim', opts = {} },
+  {
+    'numToStr/Comment.nvim',
+    event = { 'BufReadPre', 'BufNewFile' },
+    dependencies = {
+      'JoosepAlviste/nvim-ts-context-commentstring',
+    },
+    config = function()
+      -- import comment plugin safely
+      local comment = require 'Comment'
+
+      local ts_context_commentstring = require 'ts_context_commentstring.integrations.comment_nvim'
+
+      -- enable comment
+      comment.setup {
+        -- for commenting tsx and jsx files
+        pre_hook = ts_context_commentstring.create_pre_hook(),
+      }
+    end,
+  },
 
   -- Here is a more advanced example where we pass configuration
   -- options to `gitsigns.nvim`. This is equivalent to the following lua:
@@ -466,6 +484,13 @@ return {
         'windwp/nvim-autopairs',
         event = 'InsertEnter',
         config = true,
+        opts = {
+          check_ts = true, -- enable treesitter
+          ts_config = {
+            lua = { 'string' }, -- don't add pairs in lua string treesitter nodes
+            javascript = { 'template_string' }, -- don't add pairs in javscript template_string treesitter nodes
+          },
+        },
       },
     },
     config = function()
