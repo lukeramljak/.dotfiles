@@ -2,18 +2,8 @@
 
 pushd $DOTFILES
 
-os_name="$(uname -s)"
-
-linux_folders=(hyprland mako rofi sway swaylock waybar)
-
 for folder in */; do
   folder_name=${folder%/}
-
-  if [[ "$os_name" == "Darwin" ]]; then
-    if [[ " ${linux_folders[*]} " =~ " ${folder_name} " ]] then
-      continue
-    fi
-  fi
 
   echo "stow $folder_name"
   stow --restow "$folder_name"
