@@ -392,7 +392,7 @@ return {
         'css-lsp',
         'tsserver',
         'tailwindcss-language-server',
-        'prettierd',
+        'prettier',
         'eslint_d',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
@@ -429,15 +429,15 @@ return {
       },
       formatters_by_ft = {
         lua = { 'stylua' },
-        javascript = { 'prettierd' },
-        typescript = { 'prettierd' },
-        javascriptreact = { 'prettierd' },
-        typescriptreact = { 'prettierd' },
-        svelte = { 'prettierd' },
-        css = { 'prettierd' },
-        html = { 'prettierd' },
-        json = { 'prettierd' },
-        yaml = { 'prettierd' },
+        javascript = { 'prettier' },
+        typescript = { 'prettier' },
+        javascriptreact = { 'prettier' },
+        typescriptreact = { 'prettier' },
+        svelte = { 'prettier' },
+        css = { 'prettier' },
+        html = { 'prettier' },
+        json = { 'prettier' },
+        yaml = { 'prettier' },
         -- Conform can also run multiple formatters sequentially
         -- python = { "isort", "black" },
         --
