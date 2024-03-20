@@ -333,7 +333,6 @@ return {
       require('typescript-tools').setup {}
 
       local servers = {
-        tsserver = { enabled = false },
         -- clangd = {},
         -- gopls = {},
         -- pyright = {},
@@ -407,6 +406,7 @@ return {
             server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
             require('lspconfig')[server_name].setup(server)
           end,
+          ['tsserver'] = function() end,
         },
       }
     end,
@@ -477,7 +477,7 @@ return {
       --    you can use this plugin to help you. It even has snippets
       --    for various frameworks/libraries/etc. but you will have to
       --    set up the ones that are useful for you.
-      -- 'rafamadriz/friendly-snippets',
+      'rafamadriz/friendly-snippets',
       { 'roobert/tailwindcss-colorizer-cmp.nvim', config = true },
 
       {
@@ -499,6 +499,7 @@ return {
       local luasnip = require 'luasnip'
       local cmp_autopairs = require 'nvim-autopairs.completion.cmp'
       luasnip.config.setup {}
+      require('luasnip.loaders.from_vscode').lazy_load()
 
       cmp.setup {
         snippet = {
@@ -507,6 +508,11 @@ return {
           end,
         },
         completion = { completeopt = 'menu,menuone,noinsert' },
+
+        window = {
+          completion = cmp.config.window.bordered(),
+          documentation = cmp.config.window.bordered(),
+        },
 
         -- For an understanding of why these mappings were
         -- chosen, you will need to read `:help ins-completion`

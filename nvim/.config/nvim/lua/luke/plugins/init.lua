@@ -18,6 +18,83 @@ return {
   },
 
   {
+    'nvim-neo-tree/neo-tree.nvim',
+    branch = 'v3.x',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'nvim-tree/nvim-web-devicons', -- not strictly required, but recommended
+      'MunifTanjim/nui.nvim',
+    },
+    keys = {
+      {
+        '<leader>fe',
+        function()
+          require('neo-tree.command').execute { toggle = true, dir = vim.loop.cwd() }
+        end,
+        desc = 'Explorer NeoTree (cwd)',
+      },
+      { '<leader>fE', '<leader>fe', desc = 'Explorer NeoTree (root dir)', remap = true },
+      { '<leader>E', '<leader>fE', desc = 'Explorer NeoTree (cwd)', remap = true },
+      {
+        '<leader>ge',
+        function()
+          require('neo-tree.command').execute { source = 'git_status', toggle = true }
+        end,
+        desc = 'Git explorer',
+      },
+      {
+        '<leader>be',
+        function()
+          require('neo-tree.command').execute { source = 'buffers', toggle = true }
+        end,
+        desc = 'Buffer explorer',
+      },
+    },
+    deactivate = function()
+      vim.cmd [[Neotree close]]
+    end,
+    init = function()
+      if vim.fn.argc(-1) == 1 then
+        local stat = vim.loop.fs_stat(vim.fn.argv(0))
+        if stat and stat.type == 'directory' then
+          require 'neo-tree'
+        end
+      end
+    end,
+
+    opts = {
+      sources = { 'filesystem', 'buffers', 'git_status', 'document_symbols' },
+      open_files_do_not_replace_types = { 'terminal', 'Trouble', 'trouble', 'qf', 'Outline' },
+      filesystem = {
+        bind_to_cwd = false,
+        follow_current_file = { enabled = true },
+        use_libuv_file_watcher = true,
+      },
+      window = {
+        mappings = {
+          ['<space>'] = 'none',
+          ['Y'] = {
+            function(state)
+              local node = state.tree:get_node()
+              local path = node:get_id()
+              vim.fn.setreg('+', path, 'c')
+            end,
+            desc = 'copy path to clipboard',
+          },
+        },
+      },
+      default_component_configs = {
+        indent = {
+          with_expanders = true, -- if nil and file nesting is enabled, will enable expanders
+          expander_collapsed = '',
+          expander_expanded = '',
+          expander_highlight = 'NeoTreeExpander',
+        },
+      },
+    },
+  },
+
+  {
     'NvChad/nvim-colorizer.lua',
     event = { 'BufReadPre', 'BufNewFile' },
     config = function()
@@ -69,50 +146,29 @@ return {
   },
 
   {
-    'nvim-tree/nvim-tree.lua',
-    dependencies = { 'nvim-tree/nvim-web-devicons' },
-    config = function()
-      local nvimtree = require 'nvim-tree'
-
-      -- recommended settings from nvim-tree documentation
-      vim.g.loaded_netrw = 1
-      vim.g.loaded_netrwPlugin = 1
-
-      nvimtree.setup {
-        view = {
-          width = 35,
-          relativenumber = true,
-        },
-
-        -- disable window_picker for
-        -- explorer to work well with
-        -- window splits
-        actions = {
-          open_file = {
-            window_picker = {
-              enable = false,
-            },
-          },
-        },
-        filters = {
-          custom = { '.DS_Store' },
-        },
-        git = {
-          ignore = false,
-        },
-      }
-
-      vim.keymap.set('n', '<leader>ee', '<cmd>NvimTreeToggle<CR>', { desc = 'Toggle file explorer' })
-      vim.keymap.set('n', '<leader>ef', '<cmd>NvimTreeFindFileToggle<CR>', { desc = 'Toggle file explorer on current file' })
-      vim.keymap.set('n', '<leader>ec', '<cmd>NvimTreeCollapse<CR>', { desc = 'Collapse file explorer' })
-      vim.keymap.set('n', '<leader>er', '<cmd>NvimTreeRefresh<CR>', { desc = 'Refresh file explorer' })
-    end,
-  },
-
-  {
     'pmizio/typescript-tools.nvim',
     dependencies = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
-    opts = {},
+    keys = {
+      {
+        '<leader>co',
+        '<cmd>:TSToolsOrganizeImports<CR>',
+        desc = 'Organise Imports',
+      },
+      {
+        '<leader>cR',
+        '<cmd>:TSToolsRemoveUnused<CR>',
+        desc = 'Remove Unused Imports',
+      },
+    },
+    opts = {
+      settings = {
+        expose_as_code_action = 'all',
+        jsx_close_tag = {
+          enable = true,
+          filetypes = { 'javascriptreact', 'typescriptreact' },
+        },
+      },
+    },
   },
 
   'tpope/vim-fugitive',

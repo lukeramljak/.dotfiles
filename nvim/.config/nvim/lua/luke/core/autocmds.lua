@@ -12,11 +12,11 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
-vim.api.nvim_create_autocmd('BufWritePre', {
-  group = vim.api.nvim_create_augroup('ts_import', { clear = true }),
-  pattern = '*.ts,*.tsx,*.jsx,*.js',
-  callback = function()
-    vim.cmd 'TSToolsAddMissingImports sync'
-    vim.cmd 'TSToolsOrganizeImports sync'
-  end,
-})
+-- vim.api.nvim_create_autocmd('BufWritePre', {
+--   group = vim.api.nvim_create_augroup('ts_import', { clear = true }),
+--   pattern = '*.ts,*.tsx,*.jsx,*.js',
+--   callback = function()
+--     vim.cmd 'TSToolsAddMissingImports sync'
+--     vim.cmd 'TSToolsOrganizeImports sync'
+--   end,
+-- })
