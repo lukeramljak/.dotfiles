@@ -1,7 +1,7 @@
 export PATH="$HOME/.local/bin:$PATH"
 export GPG_TTY="${TTY:-$(tty)}"
 
-export TERMINAL="foot"
+export TERMINAL="alacritty"
 export BROWSER="firefox"
 export VISUAL="nvim"
 export EDITOR="nvim"
