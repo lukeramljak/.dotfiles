@@ -24,10 +24,21 @@ configuration {
     font: "Hack Nerd Font 12";
 }
 
+/**
 * {
     background:     #1E1D2FFF;
     background-alt: #282839FF;
     foreground:     #D9E0EEFF;
+    selected:       #7AA2F7FF;
+    active:         #ABE9B3FF;
+    urgent:         #F28FADFF;
+}
+**/
+
+* {
+    background:     #111111;
+    background-alt: #222222;
+    foreground:     #ffffff;
     selected:       #7AA2F7FF;
     active:         #ABE9B3FF;
     urgent:         #F28FADFF;

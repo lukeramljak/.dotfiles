@@ -23,7 +23,7 @@
 # ]
 
 import = [
-    "~/.config/alacritty/catppuccin_mocha.toml"
+    # "~/.config/alacritty/catppuccin_mocha.toml"
 ]
 
 # live_config_reload = true | false

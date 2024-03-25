@@ -37,7 +37,7 @@
 
 window#waybar {
   background-color: #000;
-  color: @text;
+  color: #ffffff;
   transition-property: background-color;
   transition-duration: 0.5s;
 }
@@ -55,15 +55,6 @@ window#waybar.solo {
 }
 */
 
-window#waybar.termite {
-  background-color: #3f3f3f;
-}
-
-window#waybar.chromium {
-  background-color: #000000;
-  border: none;
-}
-
 button {
   /* Use box-shadow instead of border so the text isn't offset */
   box-shadow: inset 0 -3px transparent;
@@ -75,26 +66,26 @@ button {
 /* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
 
 #workspaces button:hover {
-  color: @blue;
+  color: #ffffff;
   box-shadow: inherit;
   text-shadow: inherit;
-  background: @crust;
-  border: @crust;
+  border: #333333;
 }
 
 #workspaces button {
-  padding: 0 5px;
-  color: @surface2;
-  margin: 4px 0 4px 6px;
+  padding: 0 3px;
+  color: #888888;
+  /* margin: 4px 0 4px 6px; */
   transition: color 200ms ease-in-out;
 }
 
 #workspaces button.selected {
-  color: @blue;
+  color: #ffffff;
 }
 
 #workspaces button.active {
-  color: @blue;
+  color: #ffffff;
+  background-color: #222222;
 }
 
 #workspaces button.urgent {
@@ -111,7 +102,6 @@ button {
 #network,
 #pulseaudio,
 #wireplumber,
-#custom-pacman,
 #custom-power,
 #tray,
 #mode,
@@ -119,28 +109,20 @@ button {
 #scratchpad,
 #mpd {
   padding: 0 9px;
-  color: @text;
+  color: #ffffff;
   border-radius: 15px;
   margin: 5px 0;
 }
 
-#window,
-#workspaces {
-  margin: 0 4px;
-}
+/* #window, */
+/* #workspaces { */
+/*   margin: 0 4px; */
+/* } */
 
 /* If workspaces is the leftmost module, reduce left margin */
-.modules-left>widget:first-child>#workspaces {
-  margin-left: 2px;
-}
-
-#clock {
-  color: @text;
-}
-
-#custom-pacman {
-  color: @peach;
-}
+/* .modules-left>widget:first-child>#workspaces { */
+/*   margin-left: 2px; */
+/* } */
 
 /* #pulseaudio {
   color: @mauve;
