@@ -21,6 +21,7 @@ alias dots="cd $DOTFILES"
 alias dotsinstall="$DOTFILES/install"
 
 alias vim="nvim"
+alias lg="lazygit"
 
 alias tmuxk="tmux kill-session -t"
 alias tmuxa="tmux attach -t"
