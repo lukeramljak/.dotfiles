@@ -1,5 +1,18 @@
 return {
   {
+    'Exafunction/codeium.nvim',
+    dependencies = {
+      'hrsh7th/nvim-cmp',
+      'nvim-lua/plenary.nvim',
+    },
+    config = function()
+      require('codeium').setup {
+        enable_chat = true,
+      }
+    end,
+  },
+
+  {
     'ThePrimeagen/harpoon',
     branch = 'harpoon2',
     dependencies = {

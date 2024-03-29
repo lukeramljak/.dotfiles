@@ -472,6 +472,7 @@ return {
       --  into multiple repos for maintenance purposes.
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-path',
+      'hrsh7th/cmp-buffer', -- source for text in buffer
 
       -- If you want to add a bunch of pre-configured snippets,
       --    you can use this plugin to help you. It even has snippets
@@ -479,6 +480,7 @@ return {
       --    set up the ones that are useful for you.
       'rafamadriz/friendly-snippets',
       { 'roobert/tailwindcss-colorizer-cmp.nvim', config = true },
+      'onsails/lspkind.nvim', -- vs-code like pictograms
 
       {
         'windwp/nvim-autopairs',
@@ -498,7 +500,10 @@ return {
       local cmp = require 'cmp'
       local luasnip = require 'luasnip'
       local cmp_autopairs = require 'nvim-autopairs.completion.cmp'
+      local lspkind = require 'lspkind'
+
       luasnip.config.setup {}
+
       require('luasnip.loaders.from_vscode').lazy_load()
 
       cmp.setup {
@@ -507,7 +512,7 @@ return {
             luasnip.lsp_expand(args.body)
           end,
         },
-        completion = { completeopt = 'menu,menuone,noinsert' },
+        completion = { completeopt = 'menu,menuone,preview,noinsert' },
 
         window = {
           completion = cmp.config.window.bordered(),
@@ -557,10 +562,27 @@ return {
           { name = 'nvim_lsp' },
           { name = 'luasnip' },
           { name = 'path' },
+          { name = 'buffer' },
+          { name = 'codeium' },
         },
 
         formatting = {
-          format = require('tailwindcss-colorizer-cmp').formatter,
+          format = lspkind.cmp_format {
+            mode = 'symbol_text', -- show only symbol annotations
+            maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
+            -- can also be a function to dynamically calculate max width such as
+            -- maxwidth = function() return math.floor(0.45 * vim.o.columns) end,
+            ellipsis_char = '...', -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
+            show_labelDetails = false, -- show labelDetails in menu. Disabled by default
+            symbol_map = { Codeium = '' },
+
+            -- The function below will be called before any actual modifications from lspkind
+            -- so that you can provide more controls on popup customization. (See [#30](https://github.com/onsails/lspkind-nvim/pull/30))
+            before = function(entry, vim_item)
+              vim_item = require('tailwindcss-colorizer-cmp').formatter(entry, vim_item)
+              return vim_item
+            end,
+          },
         },
 
         cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done()),
