@@ -1,0 +1,11 @@
+[user]
+  name = Luke Ramljak
+  email = lukeramljak@proton.me
+[core]
+  editor = nvim
+[credential]
+  helper = store
+[fetch]
+  prune = true
+[init]
+  defaultBranch = main
