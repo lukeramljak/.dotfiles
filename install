@@ -1,24 +1,13 @@
 #!/usr/bin/env zsh
 
-DOTFILES=$HOME/.dotfiles
+pushd $HOME/.dotfiles
 
-pushd $DOTFILES
+if [[ "$(uname)" == Linux ]]; then
+  stow --restow linux
+  echo "stow linux"
+fi
 
-os_name="$(uname -s)"
-
-linux_folders=(hyprland mako rofi sway swaylock waybar)
-
-for folder in */; do
-  folder_name=${folder%/}
-
-  if [[ "$os_name" == "Darwin" ]]; then
-    if [[ " ${linux_folders[*]} " =~ " ${folder_name} " ]] then
-      continue
-    fi
-  fi
-
-  echo "stow $folder_name"
-  stow --restow "$folder_name"
-done
+stow --restow common
+echo "stow common"
 
 popd
