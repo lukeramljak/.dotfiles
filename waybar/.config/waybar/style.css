@@ -69,7 +69,6 @@ button {
   color: #ffffff;
   box-shadow: inherit;
   text-shadow: inherit;
-  border: #333333;
 }
 
 #workspaces button {
@@ -83,6 +82,7 @@ button {
   color: #ffffff;
 }
 
+#workspaces button.focused,
 #workspaces button.active {
   color: #ffffff;
   background-color: #222222;

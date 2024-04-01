@@ -1,19 +1,21 @@
 set $mod Mod4
-set $term foot
-set $files thunar
-set $browser firefox
-set $menu tofi-drun | xargs swaymsg exec --
 
-output * bg ~/.wallpapers/wallhaven/wallhaven-vqeqkl.jpg fill
+                        #border backgr  text    indicator
+client.focused          #444444 #555555 #ffffff #dddddd
+client.focused_inactive #222222 #333333 #888888 #292d2e
+client.unfocused        #222222 #111111 #888888 #292d2e
+client.urgent           #2f343a #900000 #ffffff #900000
+
+output * bg $HOME/.wallpapers/wallhaven/wallhaven-2y2ymx.jpg fill
 
 output DP-1 {
   mode 3440x1440@143.975hz
-  position 2560 360
+  position 0 1440
 }
 
 output DP-2 {
   mode 2560x1440@144hz
-  position 0 0
+  position 433 0
 }
 
 input * {
@@ -22,8 +24,8 @@ input * {
   xkb_options caps:escape,altwin:swap_lalt_lwin
 }
 
-gaps inner 8
-gaps outer 8
+# gaps inner 8
+# gaps outer 8
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -76,7 +78,7 @@ bindsym $mod+Shift+space floating toggle
 bindsym $mod+a focus parent
 
 # focus the child container
-#bindsym $mod+d focus child
+bindsym $mod+d focus child
 
 # # switch to workspace
 bindsym $mod+1 workspace 1
@@ -105,7 +107,7 @@ bindsym $mod+Shift+0 move container to workspace 10
 # reload the configuration file
 bindsym $mod+Shift+r reload
 # exit sway (logs you out of your Wayland session)
-bindsym $mod+Shift+x exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+bindsym $mod+Shift+q exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
 
 # Sway has a "scratchpad", which is a bag of holding for windows.
 # You can send windows there and get them back later.
@@ -136,19 +138,34 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-bar {
-  position bottom
-  status_command $HOME/.config/sway/scripts/bar.sh
-
-  colors {
-    statusline #ffffff
-    background #000000
-  }
-}
+# bar {
+#   position bottom
+#   status_command while $HOME/.config/sway/scripts/bar.sh; do sleep 1; done
+#
+#   colors {
+#     statusline #ffffff
+#     background #000000
+#     separator #333333
+#
+#     focused_workspace  #222222 #333333 #ffffff
+#     active_workspace   #555555 #666666 #ffffff
+#     inactive_workspace #111111 #000000 #888888
+#     urgent_workspace   #ff0000 #880000 #ffffff
+#     binding_mode       #ff0000 #880000 #ffffff
+#   }
+#
+#   tray_output DP-1
+#   icon_theme Colloid-dark
+# }
 
 # ------------------------------------------
 # CUSTOM START
 # ------------------------------------------
+
+set $term alacritty
+set $files thunar
+set $browser firefox
+set $menu rofi -show drun
 
 # audio
 bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
@@ -170,18 +187,18 @@ bindsym $mod+Shift+e exec microsoft-edge-stable --enable-webrtc-pipewire-capture
 
 # utitilies
 bindsym CTRL+Alt+l exec swaylock -c 000000
-bindsym $mod+Shift+s exec flameshot gui --raw | wl-copy
-bindsym $mod+Shift+v exec cliphist list | tofi | cliphist decode | wl-copy
+bindsym $mod+Shift+s exec grim -g "$(slurp -b 00000080)" - | swappy -f -
+bindsym $mod+Shift+v exec cliphist list | rofi -dmenu | cliphist decode | wl-copy
 bindsym $mod+Shift+c exec hyprpicker -a
+bindsym $mod+Shift+b exec killall waybar && waybar
 
 default_border pixel 2
 
 for_window {
   [app_id="firefox"] inhibit_idle fullscreen
   [app_id="mpv"] inhibit_idle focus
-  [app_id="flameshot"] border pixel 0, floating enable, fullscreen disable, move absolute position 0 0
-	[title="Picture-in-Picture"] floating enable, sticky enable
-	[app_id="pavucontrol"] floating enable
+  [title="Picture-in-Picture"] floating enable, sticky enable
+  [app_id="pavucontrol"] floating enable
   [class=".*"] inhibit_idle fullscreen
   [app_id=".*"] inhibit_idle fullscreen
 }
@@ -191,21 +208,22 @@ workspace 2 output DP-1
 workspace 3 output DP-1
 workspace 4 output DP-1
 workspace 5 output DP-1
-workspace 6 output DP-1
-workspace 7 output DP-1
-workspace 8 output DP-1
+workspace 6 output DP-2
+workspace 7 output DP-2
+workspace 8 output DP-2
 workspace 9 output DP-2
 workspace 10 output DP-2
 
 exec {
   nm-applet --indicator
+  systemctl --user restart pipewire
+  /usr/lib/polkit-kde-authentication-agent-1
   mako
-  flameshot
-  gnome-keyring-daemon --start
   wl-paste --watch cliphist store
   wlsunset -l 31.7 -L 115.9
   $HOME/.config/sway/scripts/swayidle.sh
-  systemctl --user restart pipewire
+  gammastep -l 31.7:115.9
+  waybar
 }
 
 include /etc/sway/config.d/*

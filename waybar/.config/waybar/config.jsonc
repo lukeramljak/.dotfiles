@@ -3,9 +3,9 @@
   "position": "bottom",
   "height": 30,
   // "spacing": 4,
-  "modules-left": ["hyprland/workspaces"],
+  "modules-left": ["sway/workspaces", "hyprland/workspaces"],
   // "modules-center": ["hyprland/window"],
-  "modules-right": ["custom/weather", "custom/separator", "pulseaudio", "custom/separator", "clock", "custom/separator", "tray"],
+  "modules-right": ["pulseaudio", "custom/separator", "clock", "custom/separator", "tray"],
   "hyprland/window": {
     "separate-outputs": false,
   },
@@ -58,11 +58,4 @@
     "interval": "once",
     "tooltip": false
   },
-  "custom/weather": {
-    "exec": "${HOME}/.config/waybar/scripts/get_weather.sh Perth+Australia",
-    "return-type": "json",
-    "format": "{}",
-    "tooltip": true,
-    "interval": 3600
-}
 }
