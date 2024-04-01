@@ -1,5 +1,4 @@
 export PATH="$HOME/.local/bin:$PATH"
-export GPG_TTY="${TTY:-$(tty)}"
 
 export TERMINAL="alacritty"
 export BROWSER="firefox"
@@ -11,7 +10,6 @@ export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_STATE_HOME="$HOME/.local/state"
 export XDG_CONFIG_DIRS="/etc/xdg"
-export XDG_DATA_DIRS="/usr/local/share:/usr/share:/var/lib/flatpak/exports/share:$XDG_DATA_HOME/flatpak/exports/share"
 export XDG_DESKTOP_DIR="$HOME/Desktop"
 export XDG_DOWNLOAD_DIR="$HOME/Downloads"
 export XDG_TEMPLATES_DIR="$HOME/Templates"
@@ -26,7 +24,7 @@ export DOTFILES="$HOME/.dotfiles"
 # Homebrew
 export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$PATH"
 
-# Use coreutls on mac
+# Use coreutils on mac
 export PATH="/usr/local/opt/coreutils/libexec/gnubin:${PATH}"
 export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:${MANPATH}"
 
@@ -35,50 +33,5 @@ export PATH="$HOME/.cargo/bin:$PATH"
 
 fpath+="${ZSH_CUSTOM:-"$ZSH/custom"}/plugins/zsh-completions/src"
 
-# nvm
 export NVM_DIR="$HOME/.config/nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-
-# lazy load nvm to improve zsh startup time
-# lazy_load() {
-#   # echo "Lazy loading $1 ..."
-#
-#   local -a names
-#   if [[ -n "$ZSH_VERSION" ]]; then
-#     names=("${(@s: :)${1}}")
-#   else
-#     names=($1)
-#   fi
-#
-#   for name in "${names[@]}"; do
-#     if type "$name" &> /dev/null; then
-#       unalias "$name"
-#     fi
-#   done
-#
-#   if [[ -f "$2" ]]; then
-#     . "$2"
-#   else
-#     echo "Error: file $2 not found."
-#     return 1
-#   fi
-#
-#   shift 2
-#   "$@"
-# }
-#
-# group_lazy_load() {
-#   local script=$1
-#   shift
-#   for cmd in "$@"; do
-#     alias $cmd="lazy_load \"$*\" \"$script\" $cmd"
-#   done
-# }
-#
-# export NVM_DIR="$HOME/.config/nvm"
-# group_lazy_load "$HOME/.config/nvm/nvm.sh" nvm node npm yarn
-#
-# unset -f group_lazy_load
-
