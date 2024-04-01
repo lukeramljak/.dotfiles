@@ -5,13 +5,16 @@ return {
     cmd = 'Copilot',
     config = function()
       require('copilot').setup {
-        suggestion = {
-          auto_trigger = true,
-          keymap = {
-            accept = false,
-          },
-        },
+        suggestion = { enabled = false },
+        panel = { enabled = false },
       }
+    end,
+  },
+
+  {
+    'zbirenbaum/copilot-cmp',
+    config = function()
+      require('copilot_cmp').setup()
     end,
   },
 }

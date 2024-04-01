@@ -103,27 +103,36 @@ return {
               luasnip.expand_or_jump()
             end
           end, { 'i', 's' }),
+
           ['<C-h>'] = cmp.mapping(function()
             if luasnip.locally_jumpable(-1) then
               luasnip.jump(-1)
             end
           end, { 'i', 's' }),
         },
+
         sources = {
-          { name = 'nvim_lsp' },
-          { name = 'luasnip' },
-          { name = 'path' },
-          { name = 'buffer' },
+          { name = 'copilot', group_index = 2 },
+          { name = 'nvim_lsp', group_index = 2 },
+          { name = 'luasnip', group_index = 2 },
+          { name = 'path', group_index = 2 },
+          { name = 'buffer', group_index = 2 },
         },
 
         formatting = {
           format = lspkind.cmp_format {
-            mode = 'symbol_text', -- show only symbol annotations
+            mode = 'symbol_text',
             maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
             -- can also be a function to dynamically calculate max width such as
             -- maxwidth = function() return math.floor(0.45 * vim.o.columns) end,
             ellipsis_char = '...', -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
             show_labelDetails = false, -- show labelDetails in menu. Disabled by default
+
+            symbol_map = {
+              Copilot = '',
+            },
+
+            vim.api.nvim_set_hl(0, 'CmpItemKindCopilot', { fg = '#6CC644' }),
 
             -- The function below will be called before any actual modifications from lspkind
             -- so that you can provide more controls on popup customization. (See [#30](https://github.com/onsails/lspkind-nvim/pull/30))
@@ -132,6 +141,10 @@ return {
               return vim_item
             end,
           },
+        },
+
+        experimental = {
+          ghost_text = true,
         },
 
         cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done()),
