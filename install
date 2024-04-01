@@ -3,11 +3,11 @@
 pushd $HOME/.dotfiles
 
 if [[ "$(uname)" == Linux ]]; then
-  stow --restow linux
-  echo "stow linux"
+  stow --restow .
+  echo "stowed all folders"
 fi
 
 stow --restow common
-echo "stow common"
+echo "stowed common"
 
 popd
