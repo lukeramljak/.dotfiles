@@ -57,11 +57,6 @@ live_config_reload = true
 # program = "/bin/zsh"
 # args = ["-l"]
 
-[shell]
-program = "/bin/zsh"
-args = ["-l"]
-
-
 # ENV
 # All key-value pairs in the [env] section will be added as environment variables for any process spawned by Alacritty, including its shell. Some entries may override variables set by alacritty itself.
 # Example:
@@ -179,7 +174,7 @@ dynamic_padding = true
 decorations = "Full"
 opacity = 1.0
 blur = false 
-
+option_as_alt = "Both"
 
 # SCROLLING
 # This section documents the [scrolling] table of the configuration file.
