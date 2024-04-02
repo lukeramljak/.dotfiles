@@ -2,6 +2,8 @@
 
 pushd $HOME/.dotfiles
 
+git submodule update --init --recursive > /dev/null
+
 if [[ "$(uname)" == Linux ]]; then
   stow --restow linux common
   echo "stowed all folders"
