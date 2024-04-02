@@ -1,10 +1,10 @@
 set $mod Mod4
 
-                        #border backgr  text    indicator
-client.focused          #444444 #555555 #ffffff #dddddd
-client.focused_inactive #222222 #333333 #888888 #292d2e
-client.unfocused        #222222 #111111 #888888 #292d2e
-client.urgent           #2f343a #900000 #ffffff #900000
+#                         #border backgr  text    indicator
+# client.focused          #444444 #555555 #ffffff #dddddd
+# client.focused_inactive #222222 #333333 #888888 #292d2e
+# client.unfocused        #222222 #111111 #888888 #292d2e
+# client.urgent           #2f343a #900000 #ffffff #900000
 
 output * bg $HOME/.wallpapers/wallhaven/wallhaven-2y2ymx.jpg fill
 
@@ -215,13 +215,15 @@ workspace 9 output DP-2
 workspace 10 output DP-2
 
 exec {
+  swayidle -w \
+    timeout 600 'swaymsg "output * power off"' \
+    resume 'swaymsg "output * power on"'
   nm-applet --indicator
   systemctl --user restart pipewire
   /usr/lib/polkit-kde-authentication-agent-1
   mako
   wl-paste --watch cliphist store
   wlsunset -l 31.7 -L 115.9
-  $HOME/.config/sway/scripts/swayidle.sh
   gammastep -l 31.7:115.9
   waybar
 }
