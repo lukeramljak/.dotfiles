@@ -112,7 +112,7 @@ return {
         },
 
         sources = {
-          { name = 'copilot', group_index = 2 },
+          { name = 'codeium', group_index = 2 },
           { name = 'nvim_lsp', group_index = 2 },
           { name = 'luasnip', group_index = 2 },
           { name = 'path', group_index = 2 },
@@ -128,11 +128,7 @@ return {
             ellipsis_char = '...', -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
             show_labelDetails = false, -- show labelDetails in menu. Disabled by default
 
-            symbol_map = {
-              Copilot = '',
-            },
-
-            vim.api.nvim_set_hl(0, 'CmpItemKindCopilot', { fg = '#6CC644' }),
+            symbol_map = { Codeium = '' },
 
             -- The function below will be called before any actual modifications from lspkind
             -- so that you can provide more controls on popup customization. (See [#30](https://github.com/onsails/lspkind-nvim/pull/30))
@@ -148,14 +144,6 @@ return {
         },
 
         cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done()),
-
-        cmp.event:on('menu_opened', function()
-          vim.b.copilot_suggestion_hidden = true
-        end),
-
-        cmp.event:on('menu_closed', function()
-          vim.b.copilot_suggestion_hidden = false
-        end),
       }
     end,
   },
