@@ -10,9 +10,13 @@ source /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
+alias ..="cd .."
 alias reload-zsh="source ~/.zshrc"
 alias edit-zsh="nvim ~/.zshrc"
-alias ..="cd .."
+alias gco="git checkout -b"
+alias gl="git pull"
+alias gp="git push"
+alias gst="git status"
 
 # history setup
 HISTFILE=$HOME/.zhistory
