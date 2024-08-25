@@ -66,6 +66,12 @@ alias vim='nvim'
 alias c='clear'
 alias ..='cd ..'
 alias lg='lazygit'
+alias python='python3'
+alias bubu='brew update && brew upgrade'
+alias nrs='npm start'
+alias nrd='npm run dev'
+alias nrs='npm run server'
+alias nrt='npm run test'
 
 # Shell integrations
 eval "$(fzf --zsh)"
@@ -74,3 +80,11 @@ eval "$(zoxide init --cmd cd zsh)"
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+export PIP_REQUIRE_VIRTUALENV='true'
+
+# bun completions
+[ -s "/Users/lukeramljak/.bun/_bun" ] && source "/Users/lukeramljak/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
