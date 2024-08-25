@@ -11,7 +11,7 @@ if [ ! -d "$ZINIT_HOME" ]; then
 fi
 
 # Load oh-my-posh
-eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/zen.toml)"
+eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/tokyonight_storm.json)"
 
 # Skip oh-my-posh in Apple Terminal
 if [ "$TERM_PROGRAM" != "Apple_Terminal" ]; then
