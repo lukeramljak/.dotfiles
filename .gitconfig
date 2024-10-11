@@ -3,9 +3,15 @@
   email = 71169775+lukeramljak@users.noreply.github.com
 [core]
   editor = nvim
+  pager = delta
 [color]
   ui = true
 [credential]
   helper = store
 [init]
   defaultBranch = main
+[push]
+  default = current
+  autoSetupRemote = true
+[alias]
+  undo = reset --soft HEAD^
