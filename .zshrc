@@ -96,3 +96,4 @@ export PATH="$HOME/go/bin:$PATH"
 export PATH="$HOME/.local/scripts:$PATH"
 
 export GPG_TTY=$(tty)
+export XDG_CONFIG_HOME=$HOME/.config
