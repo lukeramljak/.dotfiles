@@ -39,6 +39,7 @@ bindkey -e
 bindkey '^p' history-search-backward
 bindkey '^n' history-search-forward
 bindkey '^[w' kill-region
+bindkey -s ^f "tmux-sessioniser\n"
 
 # History
 HISTSIZE=5000
@@ -88,3 +89,10 @@ export PIP_REQUIRE_VIRTUALENV='true'
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+
+# go
+export PATH="$HOME/go/bin:$PATH"
+
+export PATH="$HOME/.local/scripts:$PATH"
+
+export GPG_TTY=$(tty)
