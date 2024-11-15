@@ -1,6 +1,3 @@
 return {
-	{
-		"tpope/vim-sleuth",
-		event = "VeryLazy",
-	},
+  'tpope/vim-sleuth',
 }

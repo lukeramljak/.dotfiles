@@ -20,7 +20,13 @@ style = "Italic"
 
 [window]
 decorations = "buttonless"
+opacity = 0.8
+dynamic_padding = true
+blur = true
 
 [window.padding]
 x = 10
 y = 10
+
+[colors]
+transparent_background_colors = true
