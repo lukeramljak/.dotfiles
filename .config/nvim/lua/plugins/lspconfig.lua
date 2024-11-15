@@ -66,7 +66,7 @@ return {
         -- When you move your cursor, the highlights will be cleared (the second autocommand).
         local client = vim.lsp.get_client_by_id(event.data.client_id)
         if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
-          local highlight_augroup = vim.api.nvim_create_augroup('kickstart-lsp-highlight', { clear = false })
+          local highlight_augroup = vim.api.nvim_create_augroup('lsp-highlight', { clear = false })
           vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
             buffer = event.buf,
             group = highlight_augroup,
@@ -80,10 +80,10 @@ return {
           })
 
           vim.api.nvim_create_autocmd('LspDetach', {
-            group = vim.api.nvim_create_augroup('kickstart-lsp-detach', { clear = true }),
+            group = vim.api.nvim_create_augroup('lsp-detach', { clear = true }),
             callback = function(event2)
               vim.lsp.buf.clear_references()
-              vim.api.nvim_clear_autocmds { group = 'kickstart-lsp-highlight', buffer = event2.buf }
+              vim.api.nvim_clear_autocmds { group = 'lsp-highlight', buffer = event2.buf }
             end,
           })
         end
@@ -140,30 +140,44 @@ return {
       },
       vtsls = {
         settings = {
+          complete_function_calls = true,
+          vtsls = {
+            enableMoveToFileCodeAction = true,
+            autoUseWorkspaceTsdk = true,
+            experimental = {
+              completion = {
+                enableServerSideFuzzyMatch = true,
+              },
+            },
+          },
+          preferences = {
+            includeCompletionsForModuleExports = true,
+            includeCompletionsForImportStatements = true,
+            importModuleSpecifier = 'non-relative',
+          },
           typescript = {
-            preferences = {
-              includeCompletionsForModuleExports = true,
-              includeCompletionsForImportStatements = true,
-              importModuleSpecifier = 'non-relative',
+            updateImportsOnFileMove = { enabled = 'always' },
+            suggest = {
+              completeFunctionCalls = true,
+            },
+            inlayHints = {
+              enumMemberValues = { enabled = true },
+              functionLikeReturnTypes = { enabled = true },
+              parameterNames = { enabled = 'literals' },
+              parameterTypes = { enabled = true },
+              propertyDeclarationTypes = { enabled = true },
+              variableTypes = { enabled = false },
             },
           },
         },
       },
     }
 
-    require('mason').setup {
-      ui = {
-        icons = {
-          package_installed = '✓',
-          package_pending = '➜',
-          package_uninstalled = '✗',
-        },
-      },
-    }
+    require('mason').setup {}
 
     -- You can add other tools here that you want Mason to install
     -- for you, so that they are available from within Neovim.
-    local ensure_installed = vim.tbl_keys(servers or {
+    local ensure_installed = {
       'html',
       'cssls',
       'tailwindcss',
@@ -171,7 +185,9 @@ return {
       'emmet_ls',
       'vtsls',
       'gopls',
-    })
+    }
+
+    -- Add additional tools
     vim.list_extend(ensure_installed, {
       'prettier',
       'stylua',
