@@ -65,3 +65,11 @@ vim.opt.cursorline = true
 
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
+
+-- Hide ~ at the end of buffers
+vim.opt.fillchars = 'eob: '
+
+-- Disable inline diagnostics
+vim.diagnostic.config {
+  virtual_text = false,
+}
