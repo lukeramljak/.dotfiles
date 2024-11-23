@@ -150,12 +150,12 @@ return {
               },
             },
           },
-          preferences = {
-            includeCompletionsForModuleExports = true,
-            includeCompletionsForImportStatements = true,
-            importModuleSpecifier = 'non-relative',
-          },
           typescript = {
+            preferences = {
+              includeCompletionsForModuleExports = true,
+              includeCompletionsForImportStatements = true,
+              importModuleSpecifier = 'non-relative',
+            },
             updateImportsOnFileMove = { enabled = 'always' },
             suggest = {
               completeFunctionCalls = true,

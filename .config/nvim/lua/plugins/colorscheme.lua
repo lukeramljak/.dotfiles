@@ -41,13 +41,34 @@ return {
           which_key = true,
         },
       }
-
-      vim.cmd.colorscheme 'catppuccin'
     end,
   },
   {
-    'rose-pine/neovim',
-    name = 'rose-pine',
+    'vague2k/vague.nvim',
+    lazy = false,
     priority = 1000,
+    config = function()
+      require('vague').setup {
+        transparent = true,
+        style = {
+          strings = 'none',
+        },
+      }
+      vim.cmd.colorscheme 'vague'
+    end,
   },
+  -- {
+  --   'cdmill/neomodern.nvim',
+  --   lazy = false,
+  --   priority = 1000,
+  --   config = function()
+  --     require('neomodern').setup {
+  --       theme = 'roseprime',
+  --       plugin = {
+  --         telescope = 'borderless',
+  --       },
+  --     }
+  --     require('neomodern').load()
+  --   end,
+  -- },
 }
