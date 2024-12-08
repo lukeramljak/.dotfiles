@@ -15,3 +15,7 @@ map('o', 'N', "'nN'[v:searchforward]", { expr = true, desc = 'Prev Search Result
 -- better indenting
 map('v', '<', '<gv')
 map('v', '>', '>gv')
+
+-- navigate buffers
+map('n', '<S-h>', '<cmd>bprev<CR>', { noremap = true, silent = true, desc = 'Previous Buffer' })
+map('n', '<S-l>', '<cmd>bnext<CR>', { noremap = true, silent = true, desc = 'Next Buffer' })

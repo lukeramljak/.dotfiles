@@ -10,6 +10,7 @@ return {
     priority = 1000,
     config = function()
       require('catppuccin').setup {
+        background = { light = 'latte', dark = 'mocha' },
         no_italic = true,
         term_colors = true,
         transparent_background = false,
@@ -27,11 +28,6 @@ return {
           variables = {},
           properties = {},
         },
-        color_overrides = {
-          mocha = {
-            base = '#191928',
-          },
-        },
         integrations = {
           grug_far = true,
           telescope = {
@@ -41,6 +37,7 @@ return {
           which_key = true,
         },
       }
+      vim.cmd.colorscheme 'catppuccin-mocha'
     end,
   },
   {
@@ -54,21 +51,6 @@ return {
           strings = 'none',
         },
       }
-      vim.cmd.colorscheme 'vague'
     end,
   },
-  -- {
-  --   'cdmill/neomodern.nvim',
-  --   lazy = false,
-  --   priority = 1000,
-  --   config = function()
-  --     require('neomodern').setup {
-  --       theme = 'roseprime',
-  --       plugin = {
-  --         telescope = 'borderless',
-  --       },
-  --     }
-  --     require('neomodern').load()
-  --   end,
-  -- },
 }

@@ -17,27 +17,28 @@ autocmd('TextYankPost', {
 })
 
 -- Show diagnostics under cursor
-autocmd({ 'CursorHold' }, {
-  pattern = '*',
-  callback = function()
-    for _, winid in pairs(vim.api.nvim_tabpage_list_wins(0)) do
-      if vim.api.nvim_win_get_config(winid).zindex then
-        return
-      end
-    end
-    vim.diagnostic.open_float {
-      scope = 'cursor',
-      focusable = false,
-      close_events = {
-        'CursorMoved',
-        'CursorMovedI',
-        'BufHidden',
-        'InsertCharPre',
-        'WinLeave',
-      },
-    }
-  end,
-})
+-- Replaced by rachartier/tiny-inline-diagnostic.nvim
+-- autocmd({ 'CursorHold' }, {
+--   pattern = '*',
+--   callback = function()
+--     for _, winid in pairs(vim.api.nvim_tabpage_list_wins(0)) do
+--       if vim.api.nvim_win_get_config(winid).zindex then
+--         return
+--       end
+--     end
+--     vim.diagnostic.open_float {
+--       scope = 'cursor',
+--       focusable = false,
+--       close_events = {
+--         'CursorMoved',
+--         'CursorMovedI',
+--         'BufHidden',
+--         'InsertCharPre',
+--         'WinLeave',
+--       },
+--     }
+--   end,
+-- })
 
 -- Fix conceallevel for json files
 autocmd({ 'FileType' }, {

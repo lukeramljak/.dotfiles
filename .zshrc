@@ -40,6 +40,8 @@ bindkey '^p' history-search-backward
 bindkey '^n' history-search-forward
 bindkey '^[w' kill-region
 bindkey -s ^f "tmux-sessioniser\n"
+bindkey "^[[1;3C" forward-word
+bindkey "^[[1;3D" backward-word
 
 # History
 HISTSIZE=5000

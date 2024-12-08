@@ -3,15 +3,13 @@ return {
     'folke/which-key.nvim',
     event = 'VimEnter',
     opts = {
-      preset = 'modern',
       spec = {
         mode = { 'n', 'v' },
         { '<leader>b', group = 'buffer' },
         { '<leader>c', group = 'code' },
-        { '<leader>f', group = 'file/find' },
         { '<leader>g', group = 'git' },
-        { '<leader>h', group = 'hunks' },
         { '<leader>s', group = 'search' },
+        { '<leader>u', group = 'ui' },
         { '<leader>x', group = 'diagnostics' },
       },
     },
