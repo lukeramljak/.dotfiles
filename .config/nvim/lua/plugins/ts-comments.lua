@@ -1,5 +1,5 @@
 return {
-  'folke/ts-comments.nvim',
-  event = 'VeryLazy',
+  "folke/ts-comments.nvim",
+  event = "VeryLazy",
   opts = {},
 }

@@ -1,32 +1,33 @@
 return {
   {
-    'folke/which-key.nvim',
-    event = 'VimEnter',
+    "folke/which-key.nvim",
+    event = "VimEnter",
     opts = {
       spec = {
-        mode = { 'n', 'v' },
-        { '<leader>b', group = 'buffer' },
-        { '<leader>c', group = 'code' },
-        { '<leader>g', group = 'git' },
-        { '<leader>s', group = 'search' },
-        { '<leader>u', group = 'ui' },
-        { '<leader>x', group = 'diagnostics' },
+        mode = { "n", "v" },
+        { "<leader>a", group = "ai" },
+        { "<leader>b", group = "buffer" },
+        { "<leader>c", group = "code" },
+        { "<leader>f", group = "find" },
+        { "<leader>g", group = "git" },
+        { "<leader>u", group = "ui" },
+        { "<leader>x", group = "diagnostics" },
       },
     },
     keys = {
       {
-        '<leader>?',
+        "<leader>?",
         function()
-          require('which-key').show { global = false }
+          require("which-key").show({ global = false })
         end,
-        desc = 'Buffer Keymaps (which-key)',
+        desc = "Buffer Keymaps (which-key)",
       },
       {
-        '<c-w><space>',
+        "<c-w><space>",
         function()
-          require('which-key').show { keys = '<c-w>', loop = true }
+          require("which-key").show({ keys = "<c-w>", loop = true })
         end,
-        desc = 'Window Hydra Mode (which-key)',
+        desc = "Window Hydra Mode (which-key)",
       },
     },
   },

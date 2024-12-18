@@ -1,7 +1,7 @@
 return {
-  'folke/todo-comments.nvim',
-  cmd = { 'TodoTrouble', 'TodoTelescope' },
-  event = 'VimEnter',
+  "folke/todo-comments.nvim",
+  cmd = { "TodoTrouble", "TodoTelescope" },
+  event = "VimEnter",
   opts = {},
   -- stylua: ignore
   keys = {

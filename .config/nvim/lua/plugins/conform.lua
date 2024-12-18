@@ -1,7 +1,7 @@
 return {
-  'stevearc/conform.nvim',
-  event = { 'BufReadPre' },
-  cmd = { 'ConformInfo' },
+  "stevearc/conform.nvim",
+  event = { "BufReadPre" },
+  cmd = { "ConformInfo" },
   opts = {
     notify_on_error = false,
     format_on_save = function(bufnr)
@@ -11,9 +11,9 @@ return {
       local disable_filetypes = { c = true, cpp = true }
       local lsp_format_opt
       if disable_filetypes[vim.bo[bufnr].filetype] then
-        lsp_format_opt = 'never'
+        lsp_format_opt = "never"
       else
-        lsp_format_opt = 'fallback'
+        lsp_format_opt = "fallback"
       end
       return {
         timeout_ms = 5000,
@@ -21,18 +21,18 @@ return {
       }
     end,
     formatters_by_ft = {
-      javascript = { 'prettier' },
-      typescript = { 'prettier' },
-      javascriptreact = { 'prettier' },
-      typescriptreact = { 'prettier' },
-      css = { 'prettier' },
-      html = { 'prettier' },
-      json = { 'prettier' },
-      yaml = { 'prettier' },
-      markdown = { 'prettier' },
-      lua = { 'stylua' },
-      python = { 'isort', 'black' },
-      go = { 'goimports', 'gofumpt' },
+      javascript = { "prettier" },
+      typescript = { "prettier" },
+      javascriptreact = { "prettier" },
+      typescriptreact = { "prettier" },
+      css = { "prettier" },
+      html = { "prettier" },
+      json = { "prettier" },
+      yaml = { "prettier" },
+      markdown = { "prettier" },
+      lua = { "stylua" },
+      python = { "isort", "black" },
+      go = { "goimports", "gofumpt" },
     },
   },
 }

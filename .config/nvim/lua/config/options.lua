@@ -13,7 +13,7 @@ vim.o.hlsearch = false
 vim.g.have_nerd_font = true
 
 -- Enable mouse mode, can be useful for resizing splits for example!
-opt.mouse = 'a'
+opt.mouse = "a"
 
 -- Don't show the mode, since it's already in the status line
 opt.showmode = false
@@ -23,8 +23,11 @@ opt.showmode = false
 --  Remove this option if you want your OS clipboard to remain independent.
 --  See `:help 'clipboard'`
 vim.schedule(function()
-  opt.clipboard = 'unnamedplus'
+	opt.clipboard = "unnamedplus"
 end)
+
+-- Use spaces instead of tabs
+opt.expandtab = true
 
 -- Enable break indent
 opt.breakindent = true
@@ -40,7 +43,7 @@ opt.ignorecase = true
 opt.smartcase = true
 
 -- Keep signcolumn on by default
-opt.signcolumn = 'yes'
+opt.signcolumn = "yes"
 
 -- Decrease update time
 opt.updatetime = 200
@@ -57,10 +60,10 @@ opt.splitbelow = true
 --  See `:help 'list'`
 --  and `:help 'listchars'`
 opt.list = true
-opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 
 -- Preview substitutions live, as you type!
-opt.inccommand = 'split'
+opt.inccommand = "split"
 
 -- Show which line your cursor is on
 opt.cursorline = true
@@ -69,7 +72,7 @@ opt.cursorline = true
 opt.scrolloff = 10
 
 -- Hide ~ at the end of buffers
-opt.fillchars = 'eob: '
+opt.fillchars = "eob: "
 
 -- Number of spaces tabs count for
 opt.tabstop = 2
@@ -84,14 +87,14 @@ opt.smartindent = true
 opt.termguicolors = true
 
 -- Disable inline diagnostics
-vim.diagnostic.config { virtual_text = false }
+vim.diagnostic.config({ virtual_text = false })
 
-if vim.fn.has 'nvim-0.10' == 1 then
-  opt.smoothscroll = true
-  opt.foldexpr = "v:lua.require'lazyvim.util'.ui.foldexpr()"
-  opt.foldmethod = 'expr'
-  opt.foldtext = ''
+if vim.fn.has("nvim-0.10") == 1 then
+	opt.smoothscroll = true
+	opt.foldexpr = "v:lua.require'lazyvim.util'.ui.foldexpr()"
+	opt.foldmethod = "expr"
+	opt.foldtext = ""
 else
-  opt.foldmethod = 'indent'
-  opt.foldtext = "v:lua.require'lazyvim.util'.ui.foldtext()"
+	opt.foldmethod = "indent"
+	opt.foldtext = "v:lua.require'lazyvim.util'.ui.foldtext()"
 end

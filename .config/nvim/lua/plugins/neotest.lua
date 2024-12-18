@@ -1,23 +1,23 @@
 return {
-  'nvim-neotest/neotest',
+  "nvim-neotest/neotest",
   dependencies = {
-    'nvim-neotest/nvim-nio',
-    'nvim-lua/plenary.nvim',
-    'antoinemadec/FixCursorHold.nvim',
-    'nvim-treesitter/nvim-treesitter',
-    'marilari88/neotest-vitest',
+    "nvim-neotest/nvim-nio",
+    "nvim-lua/plenary.nvim",
+    "antoinemadec/FixCursorHold.nvim",
+    "nvim-treesitter/nvim-treesitter",
+    "marilari88/neotest-vitest",
   },
   config = function()
-    require('neotest').setup {
+    require("neotest").setup({
       adapters = {
-        require 'neotest-vitest' {
+        require("neotest-vitest")({
           -- Filter directories when searching for test files. Useful in large projects (see Filter directories notes).
           filter_dir = function(name, rel_path, root)
-            return name ~= 'node_modules'
+            return name ~= "node_modules"
           end,
-        },
+        }),
       },
-    }
+    })
   end,
   -- stylua: ignore
   keys = {
