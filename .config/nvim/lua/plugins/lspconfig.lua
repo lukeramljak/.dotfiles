@@ -84,13 +84,6 @@ return {
     },
   },
   config = function(_, opts)
-    local map = function(keys, func, desc, mode)
-      mode = mode or "n"
-      vim.keymap.set(mode, keys, func, { desc = "LSP: " .. desc })
-    end
-
-    map("gd", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinition")
-
     -- Change the Diagnostic symbols in the sign column (gutter)
     local x = vim.diagnostic.severity
     vim.diagnostic.config({
