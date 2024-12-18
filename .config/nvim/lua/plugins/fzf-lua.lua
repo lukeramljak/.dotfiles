@@ -84,5 +84,12 @@ return {
     { "<leader>sq", "<cmd>FzfLua quickfix<cr>", desc = "Quickfix List" },
     { "<leader>ss", "<cmd>FzfLua lsp_document_symbols<cr>", desc = "Goto Symbol" },
     { "<leader>sS", "<cmd>FzfLua lsp_live_workspace_symbols<cr>", desc = "Goto Symbol (Workspace)" },
+    {
+      "<leader>fn",
+      function()
+        require("fzf-lua").files({ cwd = vim.fn.stdpath("config") })
+      end,
+      desc = "Find Neovim Files",
+    },
   },
 }
