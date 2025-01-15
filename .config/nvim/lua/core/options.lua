@@ -1,5 +1,6 @@
 local opt = vim.opt
 
+
 -- Make line numbers default
 opt.number = true
 
@@ -86,9 +87,6 @@ opt.smartindent = true
 -- True color support
 opt.termguicolors = true
 
--- Disable inline diagnostics
-vim.diagnostic.config({ virtual_text = false })
-
 if vim.fn.has("nvim-0.10") == 1 then
   opt.smoothscroll = true
   opt.foldexpr = "v:lua.require'lazyvim.util'.ui.foldexpr()"
@@ -98,3 +96,20 @@ else
   opt.foldmethod = "indent"
   opt.foldtext = "v:lua.require'lazyvim.util'.ui.foldtext()"
 end
+
+-- Change the Diagnostic symbols in the sign column (gutter)
+local x = vim.diagnostic.severity
+vim.diagnostic.config {
+  signs = { text = { [x.ERROR] = '󰅙', [x.WARN] = '', [x.INFO] = '󰋼', [x.HINT] = '󰌵' } },
+  underline = true,
+  float = { border = 'single' },
+}
+
+vim.api.nvim_create_user_command('LspInfo', function()
+  vim.cmd('checkhealth vim.lsp')
+end, { desc = 'Run LSP health check' })
+
+vim.api.nvim_create_user_command('LspRestart', function()
+  vim.lsp.stop_client(vim.lsp.get_clients())
+  vim.cmd('edit')
+end, { desc = 'Restart LSP' })
