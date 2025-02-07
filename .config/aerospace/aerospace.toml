@@ -15,7 +15,7 @@ after-login-command = []
 after-startup-command = []
 
 # Start AeroSpace at login
-start-at-login = true
+start-at-login = false
 
 # Normalizations. See: https://nikitabobko.github.io/AeroSpace/guide#normalization
 enable-normalization-flatten-containers = true
@@ -90,7 +90,19 @@ outer.right =      8
 
 # You can uncomment this line to open up terminal with alt + enter shortcut
 # See: https://nikitabobko.github.io/AeroSpace/commands#exec-and-forget
-alt-enter = 'exec-and-forget open -n /Applications/wezterm.app'
+alt-enter = '''exec-and-forget osascript -e '
+if application "Ghostty" is running then
+    tell application "System Events"
+      tell process "Ghostty"
+        click menu item "New Window" of menu "File" of menu bar 1
+      end tell
+    end tell
+else
+    tell application "Ghostty"
+        activate
+    end tell
+end if'
+'''
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#layout
 alt-slash = 'layout tiles horizontal vertical'
