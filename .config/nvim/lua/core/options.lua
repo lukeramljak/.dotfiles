@@ -96,24 +96,3 @@ else
   opt.foldmethod = "indent"
   opt.foldtext = "v:lua.require'lazyvim.util'.ui.foldtext()"
 end
-
--- Change the Diagnostic symbols in the sign column (gutter)
-local x = vim.diagnostic.severity
-vim.diagnostic.config {
-  signs = { text = { [x.ERROR] = '󰅙', [x.WARN] = '', [x.INFO] = '󰋼', [x.HINT] = '󰌵' } },
-  underline = true,
-  float = { border = 'single' },
-}
-
-vim.api.nvim_create_user_command('LspInfo', function()
-  vim.cmd('checkhealth vim.lsp')
-end, { desc = 'Run LSP health check' })
-
-vim.api.nvim_create_user_command('LspRestart', function()
-  vim.lsp.stop_client(vim.lsp.get_clients())
-  vim.cmd('edit')
-end, { desc = 'Restart LSP' })
-
-vim.diagnostic.config({
-  virtual_lines = true,
-})
