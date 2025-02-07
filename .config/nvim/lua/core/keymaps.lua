@@ -18,3 +18,8 @@ map("v", ">", ">gv")
 -- navigate buffers
 map("n", "<S-h>", "<cmd>bprev<CR>", { noremap = true, silent = true, desc = "Previous Buffer" })
 map("n", "<S-l>", "<cmd>bnext<CR>", { noremap = true, silent = true, desc = "Next Buffer" })
+
+map("n", "<c-h>", "<cmd>wincmd h<CR>", { noremap = true, silent = true, desc = "Move to Left Window" })
+map("n", "<c-j>", "<cmd>wincmd j<CR>", { noremap = true, silent = true, desc = "Move to Down Window" })
+map("n", "<c-k>", "<cmd>wincmd k<CR>", { noremap = true, silent = true, desc = "Move to Up Window" })
+map("n", "<c-l>", "<cmd>wincmd l<CR>", { noremap = true, silent = true, desc = "Move to Right Window" })
