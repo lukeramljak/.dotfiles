@@ -28,7 +28,7 @@ return {
       yaml = { "prettier" },
       markdown = { "prettier" },
       lua = { "stylua" },
-      python = { "ruff" },
+      python = { "ruff_format" },
       go = { "goimports", "gofumpt" },
     },
   },
