@@ -6,10 +6,10 @@ return {
     event = "InsertEnter",
     opts = {
       suggestion = {
+        accept = false,
         enabled = true,
         auto_trigger = true,
         keymap = {
-          accept = "<Tab>",
           next = "<M-]>",
           prev = "<M-[>",
         },
