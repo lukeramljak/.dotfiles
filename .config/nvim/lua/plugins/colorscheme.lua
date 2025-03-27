@@ -12,9 +12,13 @@ return {
     config = function()
       require("catppuccin").setup({
         integrations = {
+          blink_cmp = true,
           cmp = true,
           grug_far = true,
-          mini = true,
+          mini = {
+            enabled = true,
+            indentscope_color = "",
+          },
           native_lsp = {
             enabled = true,
             underlines = {
