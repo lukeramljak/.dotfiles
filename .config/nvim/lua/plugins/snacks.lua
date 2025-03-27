@@ -1,13 +1,21 @@
+---@module 'snacks'
+
 return {
   "folke/snacks.nvim",
   priority = 1000,
   lazy = false,
-  ---@module 'snacks'
   ---@type snacks.Config
   opts = {
     bigfile = { enabled = true },
     dashboard = { enabled = true },
-    indent = { enabled = true },
+    explorer = { enabled = true },
+    indent = {
+      enabled = true,
+      animate = {
+        enabled = false,
+      },
+    },
+    input = { enabled = true },
     notifier = {
       enabled = true,
       timeout = 3000,
@@ -24,24 +32,22 @@ return {
       },
     },
   },
-  -- stylua: ignore
+  -- stylua: ignore start
   keys = {
-    { "<leader>.",       function() Snacks.scratch() end,                                        desc = "Toggle Scratch Buffer" },
-    { "<leader>S",       function() Snacks.scratch.select() end,                                 desc = "Select Scratch Buffer" },
-    { "<leader>n",       function() Snacks.notifier.show_history() end,                          desc = "Notification History" },
-    { "<leader>bd",      function() Snacks.bufdelete() end,                                      desc = "Delete Buffer" },
-    { "<leader>bD",      function() Snacks.bufdelete.all() end,                                  desc = "Delete all buffers" },
-    { "<leader>cR",      function() Snacks.rename.rename_file() end,                             desc = "Rename File" },
-    { "<leader>gB",      function() Snacks.gitbrowse() end,                                      desc = "Git Browse" },
-    { "<leader>gb",      function() Snacks.git.blame_line() end,                                 desc = "Git Blame Line" },
-    { "<leader>gf",      function() Snacks.lazygit.log_file() end,                               desc = "Lazygit Current File History" },
-    { "<leader>gg",      function() Snacks.lazygit() end,                                        desc = "Lazygit" },
-    { "<leader>gl",      function() Snacks.lazygit.log() end,                                    desc = "Lazygit Log (cwd)" },
-    { "<leader>un",      function() Snacks.notifier.hide() end,                                  desc = "Dismiss All Notifications" },
+    -- Top Pickers & Explorer
+    { "<leader><space>", function() Snacks.picker.smart() end,                                   desc = "Smart Find Files" },
     { "<leader>,",       function() Snacks.picker.buffers() end,                                 desc = "Buffers" },
     { "<leader>/",       function() Snacks.picker.grep() end,                                    desc = "Grep" },
     { "<leader>:",       function() Snacks.picker.command_history() end,                         desc = "Command History" },
-    { "<leader><space>", function() Snacks.picker.files() end,                                   desc = "Find Files" },
+    { "<leader>n",       function() Snacks.picker.notifications() end,                           desc = "Notification History" },
+    { "<leader>e",       function() Snacks.explorer() end,                                       desc = "File Explorer" },
+    { "<leader>.",       function() Snacks.scratch() end,                                        desc = "Toggle Scratch Buffer" },
+    { "<leader>S",       function() Snacks.scratch.select() end,                                 desc = "Select Scratch Buffer" },
+    { "<leader>n",       function() Snacks.notifier.show_history() end,                          desc = "Notification History" },
+    -- buffers
+    { "<leader>bd",      function() Snacks.bufdelete() end,                                      desc = "Delete Buffer" },
+    { "<leader>bD",      function() Snacks.bufdelete.all() end,                                  desc = "Delete all buffers" },
+    { "<leader>cR",      function() Snacks.rename.rename_file() end,                             desc = "Rename File" },
     -- find
     { "<leader>fb",      function() Snacks.picker.buffers() end,                                 desc = "Buffers" },
     { "<leader>fc",      function() Snacks.picker.files({ cwd = vim.fn.stdpath("config") }) end, desc = "Find Config File" },
@@ -49,6 +55,12 @@ return {
     { "<leader>fg",      function() Snacks.picker.git_files() end,                               desc = "Find Git Files" },
     { "<leader>fr",      function() Snacks.picker.recent() end,                                  desc = "Recent" },
     -- git
+    { "<leader>gB",      function() Snacks.gitbrowse() end,                                      desc = "Git Browse" },
+    { "<leader>gb",      function() Snacks.git.blame_line() end,                                 desc = "Git Blame Line" },
+    { "<leader>gf",      function() Snacks.lazygit.log_file() end,                               desc = "Lazygit Current File History" },
+    { "<leader>gg",      function() Snacks.lazygit() end,                                        desc = "Lazygit" },
+    { "<leader>gl",      function() Snacks.lazygit.log() end,                                    desc = "Lazygit Log (cwd)" },
+    { "<leader>un",      function() Snacks.notifier.hide() end,                                  desc = "Dismiss All Notifications" },
     { "<leader>gc",      function() Snacks.picker.git_log() end,                                 desc = "Git Log" },
     { "<leader>gs",      function() Snacks.picker.git_status() end,                              desc = "Git Status" },
     -- grep
@@ -88,6 +100,7 @@ return {
     -- zen
     { "<leader>z",       function() Snacks.zen() end,                                            desc = "Toggle Zen Mode" },
     { "<leader>Z",       function() Snacks.zen.zoom() end,                                       desc = "Toggle Zoom" },
+    -- stylua: ignore end
     {
       "<leader>N",
       desc = "Neovim News",

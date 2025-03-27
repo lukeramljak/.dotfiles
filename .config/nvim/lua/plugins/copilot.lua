@@ -14,6 +14,7 @@ return {
           prev = "<M-[>",
         },
       },
+      copilot_model = "gpt-4o-copilot",
       panel = { enabled = false },
       filetypes = {
         markdown = true,
