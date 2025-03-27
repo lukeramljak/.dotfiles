@@ -1,6 +1,5 @@
 local opt = vim.opt
 
-
 -- Make line numbers default
 opt.number = true
 
@@ -87,12 +86,16 @@ opt.smartindent = true
 -- True color support
 opt.termguicolors = true
 
-if vim.fn.has("nvim-0.10") == 1 then
-  opt.smoothscroll = true
-  opt.foldexpr = "v:lua.require'lazyvim.util'.ui.foldexpr()"
-  opt.foldmethod = "expr"
-  opt.foldtext = ""
-else
-  opt.foldmethod = "indent"
-  opt.foldtext = "v:lua.require'lazyvim.util'.ui.foldtext()"
-end
+vim.o.winborder = "rounded"
+
+-- Change the Diagnostic symbols in the sign column (gutter)
+local x = vim.diagnostic.severity
+vim.diagnostic.config({
+  signs = { text = { [x.ERROR] = "󰅙", [x.WARN] = "", [x.INFO] = "󰋼", [x.HINT] = "󰌵" } },
+  underline = true,
+  float = { border = "single" },
+})
+
+vim.diagnostic.config({
+  virtual_lines = true,
+})
