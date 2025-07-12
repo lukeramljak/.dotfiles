@@ -7,7 +7,6 @@ return {
   ---@type snacks.Config
   opts = {
     bigfile = { enabled = true },
-    dashboard = { enabled = true },
     explorer = { enabled = true },
     indent = {
       enabled = true,
@@ -25,7 +24,6 @@ return {
     scope = { enabled = true },
     statuscolumn = { enabled = true },
     words = { enabled = true },
-    zen = { enabled = true },
     styles = {
       notification = {
         wo = { wrap = true }, -- Wrap notifications
@@ -94,9 +92,6 @@ return {
     -- misc
     { "]]",              function() Snacks.words.jump(vim.v.count1) end,                         desc = "Next Reference",              mode = { "n", "t" } },
     { "[[",              function() Snacks.words.jump(-vim.v.count1) end,                        desc = "Prev Reference",              mode = { "n", "t" } },
-    -- zen
-    { "<leader>z",       function() Snacks.zen() end,                                            desc = "Toggle Zen Mode" },
-    { "<leader>Z",       function() Snacks.zen.zoom() end,                                       desc = "Toggle Zoom" },
     -- stylua: ignore end
     {
       "<leader>N",
