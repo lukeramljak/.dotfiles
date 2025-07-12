@@ -99,5 +99,3 @@ vim.diagnostic.config({
 vim.diagnostic.config({
   virtual_lines = true,
 })
-
-vim.deprecate = function() end

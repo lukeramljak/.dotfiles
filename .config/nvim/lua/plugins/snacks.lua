@@ -91,9 +91,6 @@ return {
     { "gri",             function() Snacks.picker.lsp_implementations() end,                     desc = "Goto Implementation" },
     { "gy",              function() Snacks.picker.lsp_type_definitions() end,                    desc = "Goto T[y]pe Definition" },
     { "<leader>ss",      function() Snacks.picker.lsp_symbols() end,                             desc = "LSP Symbols" },
-    -- terminal
-    { "<c-/>",           function() Snacks.terminal() end,                                       desc = "Toggle Terminal" },
-    { "<c-_>",           function() Snacks.terminal() end,                                       desc = "which_key_ignore" },
     -- misc
     { "]]",              function() Snacks.words.jump(vim.v.count1) end,                         desc = "Next Reference",              mode = { "n", "t" } },
     { "[[",              function() Snacks.words.jump(-vim.v.count1) end,                        desc = "Prev Reference",              mode = { "n", "t" } },

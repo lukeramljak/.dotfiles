@@ -1,10 +1,7 @@
 return {
-  {
-    "christoomey/vim-tmux-navigator",
-    enabled = false
-  },
+  { "christoomey/vim-tmux-navigator" },
   {
     "j-hui/fidget.nvim",
-    opts = {}
+    opts = {},
   },
 }

@@ -23,13 +23,3 @@ map("n", "<c-h>", "<cmd>wincmd h<CR>", { noremap = true, silent = true, desc = "
 map("n", "<c-j>", "<cmd>wincmd j<CR>", { noremap = true, silent = true, desc = "Move to Down Window" })
 map("n", "<c-k>", "<cmd>wincmd k<CR>", { noremap = true, silent = true, desc = "Move to Up Window" })
 map("n", "<c-l>", "<cmd>wincmd l<CR>", { noremap = true, silent = true, desc = "Move to Right Window" })
-
-vim.keymap.set("i", "<Tab>", function()
-  if require("copilot.suggestion").is_visible() then
-    require("copilot.suggestion").accept()
-  else
-    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Tab>", true, false, true), "n", false)
-  end
-end, {
-  silent = true,
-})
