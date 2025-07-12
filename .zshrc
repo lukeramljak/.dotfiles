@@ -11,7 +11,7 @@ if [ ! -d "$ZINIT_HOME" ]; then
 fi
 
 # Load oh-my-posh
-eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/tokyonight_storm.json)"
+eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/robbyrussell.json)"
 
 # Skip oh-my-posh in Apple Terminal
 if [ "$TERM_PROGRAM" != "Apple_Terminal" ]; then
@@ -75,6 +75,12 @@ alias nrs='npm start'
 alias nrd='npm run dev'
 alias nrs='npm run server'
 alias nrt='npm run test'
+alias work="timer 60m && terminal-notifier -message 'Pomodoro'\
+        -title 'Work Timer is up! Take a Break 😊'\
+        -sound Crystal"
+alias rest="timer 10m && terminal-notifier -message 'Pomodoro'\
+        -title 'Break is over! Get back to work 😬'\
+        -sound Crystal"
 
 # Shell integrations
 eval "$(fzf --zsh)"
@@ -100,5 +106,12 @@ export PATH="$HOME/.local/scripts:$PATH"
 export GPG_TTY=$(tty)
 export XDG_CONFIG_HOME=$HOME/.config
 
-# Added by LM Studio CLI (lms)
-export PATH="$PATH:/Users/lukeramljak/.lmstudio/bin"
+# pnpm
+export PNPM_HOME="/Users/lukeramljak/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+
+export GITHUB_TOKEN=$(gh auth token)
