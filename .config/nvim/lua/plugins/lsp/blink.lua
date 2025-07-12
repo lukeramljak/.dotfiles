@@ -1,13 +1,13 @@
 return {
   "saghen/blink.cmp",
-  version = "1.*",
+  version = "*",
   dependencies = { "giuxtaposition/blink-cmp-copilot" },
   ---@module 'blink.cmp'
   ---@type blink.cmp.Config
   opts = {
     keymap = { preset = "enter" },
     sources = {
-      default = { "lazydev", "lsp", "path", "buffer", "copilot" },
+      default = { "lazydev", "lsp", "path", "snippets", "buffer", "copilot" },
       providers = {
         copilot = {
           name = "copilot",
@@ -24,5 +24,4 @@ return {
       },
     },
   },
-  opts_extend = { "sources.default" },
 }

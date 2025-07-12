@@ -41,8 +41,8 @@ return {
       ensure_installed = {
         "gofumpt",
         "goimports",
-        "prettier", -- prettier formatter
-        "stylua", -- lua formatter
+        "prettierd",
+        "stylua",
         "eslint_d",
         "markdownlint-cli2",
         "markdown-toc",
