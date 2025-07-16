@@ -86,16 +86,5 @@ opt.smartindent = true
 -- True color support
 opt.termguicolors = true
 
-vim.o.winborder = "rounded"
-
--- Change the Diagnostic symbols in the sign column (gutter)
-local x = vim.diagnostic.severity
-vim.diagnostic.config({
-  signs = { text = { [x.ERROR] = "󰅙", [x.WARN] = "", [x.INFO] = "󰋼", [x.HINT] = "󰌵" } },
-  underline = true,
-  float = { border = "single" },
-})
-
-vim.diagnostic.config({
-  virtual_lines = true,
-})
+-- Set the default border for all floating windows
+opt.winborder = "rounded"
