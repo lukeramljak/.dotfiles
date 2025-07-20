@@ -88,3 +88,5 @@ opt.termguicolors = true
 
 -- Set the default border for all floating windows
 opt.winborder = "rounded"
+
+vim.g.copilot_enabled = false
