@@ -2,6 +2,7 @@ return {
   {
     "folke/tokyonight.nvim",
     name = "tokyonight",
+    enabled = false,
     priority = 1000,
     opts = {
       transparent = true,
@@ -10,6 +11,7 @@ return {
   {
     "catppuccin/nvim",
     name = "catppuccin",
+    enabled = false,
     priority = 1000,
     opts = {
       transparent_background = true,
@@ -61,7 +63,7 @@ return {
   {
     "vague2k/vague.nvim",
     lazy = false,
-    enabled = true,
+    enabled = false,
     priority = 1000,
     opts = {
       transparent = true,
