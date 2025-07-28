@@ -1,7 +1,6 @@
 return {
   "saghen/blink.cmp",
   version = "*",
-  dependencies = { "rafamadriz/friendly-snippets", "giuxtaposition/blink-cmp-copilot" },
   ---@module 'blink.cmp'
   ---@type blink.cmp.Config
   opts = {
@@ -24,16 +23,9 @@ return {
         show_on_insert_on_trigger_character = false,
       },
     },
-    keymap = { preset = "enter" },
     sources = {
-      default = { "lazydev", "lsp", "path", "snippets", "buffer", "copilot" },
+      default = { "lazydev", "lsp", "path", "snippets", "buffer" },
       providers = {
-        copilot = {
-          name = "copilot",
-          module = "blink-cmp-copilot",
-          score_offset = 100,
-          async = true,
-        },
         lazydev = {
           name = "LazyDev",
           module = "lazydev.integrations.blink",
