@@ -23,3 +23,26 @@ map("n", "<c-h>", "<cmd>wincmd h<CR>", { noremap = true, silent = true, desc = "
 map("n", "<c-j>", "<cmd>wincmd j<CR>", { noremap = true, silent = true, desc = "Move to Down Window" })
 map("n", "<c-k>", "<cmd>wincmd k<CR>", { noremap = true, silent = true, desc = "Move to Up Window" })
 map("n", "<c-l>", "<cmd>wincmd l<CR>", { noremap = true, silent = true, desc = "Move to Right Window" })
+
+map("n", "<leader>gg", function()
+  vim.cmd("botright split")
+  vim.cmd("resize " .. math.floor(vim.o.lines * 0.8))
+
+  local buf = vim.api.nvim_create_buf(false, true)
+  local win = vim.api.nvim_get_current_win()
+  vim.api.nvim_win_set_buf(win, buf)
+
+  -- Run lazygit in the terminal
+  vim.fn.jobstart("lazygit", {
+    term = true,
+    on_exit = function()
+      -- Close the window when lazygit exits
+      if vim.api.nvim_win_is_valid(win) then
+        vim.api.nvim_win_close(win, true)
+      end
+    end,
+  })
+
+  -- Start terminal mode
+  vim.cmd("startinsert")
+end, { desc = "Open lazygit" })
