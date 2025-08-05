@@ -1,42 +1,14 @@
 return {
   {
-    "folke/tokyonight.nvim",
-    name = "tokyonight",
-    enabled = false,
-    priority = 1000,
-    opts = {
-      transparent = true,
-    },
-  },
-  {
     "catppuccin/nvim",
     name = "catppuccin",
-    enabled = false,
     priority = 1000,
+    config = function()
+      vim.cmd.colorscheme("catppuccin-mocha")
+    end,
     opts = {
-      transparent_background = true,
+      auto_integrations = true,
       no_italic = true,
-      integrations = {
-        blink_cmp = true,
-        cmp = true,
-        grug_far = true,
-        mini = {
-          enabled = true,
-          indentscope_color = "",
-        },
-        native_lsp = {
-          enabled = true,
-          underlines = {
-            errors = { "undercurl" },
-            hints = { "undercurl" },
-            warnings = { "undercurl" },
-            information = { "undercurl" },
-          },
-        },
-        notify = true,
-        snacks = true,
-        which_key = true,
-      },
     },
   },
   {
@@ -44,21 +16,7 @@ return {
     name = "github-theme",
     lazy = false,
     priority = 1000,
-    config = function()
-      require("github-theme").setup({
-        groups = {
-          all = {
-            Whitespace = { link = "Comment" },
-            IncSearch = { bg = "palette.cyan" },
-          },
-          github_dark_default = {
-            SnacksIndent = { fg = "#262a2e", nocombine = true },
-            SnacksIndentScope = { fg = "#383a3d", nocombine = true },
-          },
-        },
-      })
-      vim.cmd("colorscheme github_dark_default")
-    end,
+    opts = {},
   },
   {
     "vague2k/vague.nvim",
