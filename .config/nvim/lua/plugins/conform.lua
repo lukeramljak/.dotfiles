@@ -1,7 +1,5 @@
-return {
-  "stevearc/conform.nvim",
-  event = { "BufReadPre", "BufNewFile" },
-  config = function()
+vim.pack.add({"https://github.com/stevearc/conform.nvim"})
+
     require("conform").setup({
       formatters_by_ft = {
         go = { "goimports", "gofumpt" },
@@ -43,5 +41,3 @@ return {
     end, {
       desc = "Re-enable autoformat-on-save",
     })
-  end,
-}

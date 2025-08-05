@@ -1,11 +1,6 @@
-return {
-  "stevearc/oil.nvim",
-  ---@module 'oil'
-  ---@type oil.SetupOpts
-  opts = {},
-  keys = {
-    { "-", "<cmd>Oil<cr>", desc = "Open Oil" },
-    { "<leader>e", "<cmd>Oil<cr>", desc = "Open Oil" },
-  },
-  lazy = false,
-}
+vim.pack.add({"https://github.com/stevearc/oil.nvim"})
+
+require("oil").setup()
+
+vim.keymap.set("n", "<leader>e", "<cmd>Oil<cr>")
+vim.keymap.set("n", "-", "<cmd>Oil<cr>")

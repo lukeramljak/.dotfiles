@@ -1,33 +1,12 @@
-return {
-  {
-    "catppuccin/nvim",
-    name = "catppuccin",
-    priority = 1000,
-    config = function()
-      vim.cmd.colorscheme("catppuccin-mocha")
-    end,
-    opts = {
+vim.pack.add({
+  { src = "https://github.com/catppuccin/nvim" },
+  { src = "https://github.com/projekt0n/github-nvim-theme" },
+  { src = "https://github.com/vague2k/vague.nvim" }
+})
+
+require("catppuccin").setup({
       auto_integrations = true,
       no_italic = true,
-    },
-  },
-  {
-    "projekt0n/github-nvim-theme",
-    name = "github-theme",
-    lazy = false,
-    priority = 1000,
-    opts = {},
-  },
-  {
-    "vague2k/vague.nvim",
-    lazy = false,
-    enabled = false,
-    priority = 1000,
-    opts = {
-      transparent = true,
-      style = {
-        strings = "none",
-      },
-    },
-  },
-}
+})
+
+vim.cmd[[colorscheme catppuccin-mocha]]
