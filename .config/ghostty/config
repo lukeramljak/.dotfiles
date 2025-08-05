@@ -7,4 +7,4 @@ adjust-cell-height = 10
 
 macos-option-as-alt = true
 
-theme = Github Dark
+theme = catppuccin-mocha
