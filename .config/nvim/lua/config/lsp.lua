@@ -1,4 +1,4 @@
-vim.lsp.enable({ "gopls", "lua_ls", "tailwindcss", "vtsls" })
+vim.lsp.enable({ "eslint", "gopls", "lua_ls", "tailwindcss", "vtsls" })
 
 vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(ev)
