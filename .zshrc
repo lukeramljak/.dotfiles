@@ -11,7 +11,7 @@ if [ ! -d "$ZINIT_HOME" ]; then
 fi
 
 # Load oh-my-posh
-eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/robbyrussell.json)"
+eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/tokyonight_storm.json)"
 
 # Skip oh-my-posh in Apple Terminal
 if [ "$TERM_PROGRAM" != "Apple_Terminal" ]; then
@@ -115,3 +115,12 @@ esac
 # pnpm end
 
 export GITHUB_TOKEN=$(gh auth token)
+eval "$(gh copilot alias -- zsh)"
+
+# mobile dev
+export PATH="/opt/homebrew/opt/openjdk@17/bin:$PATH"
+export JAVA_HOME="/opt/homebrew/opt/openjdk@17"
+export ANDROID_HOME=~/Library/Android/sdk
+
+# export JAVA_HOME="$HOME/Downloads/jdk-15.0.2.jdk/Contents/Home"
+# export PATH="$JAVA_HOME/bin:$PATH"
