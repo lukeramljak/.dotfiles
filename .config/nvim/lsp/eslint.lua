@@ -58,6 +58,7 @@ end
 
 local lsp = vim.lsp
 
+---@type vim.lsp.Config
 return {
   cmd = { "vscode-eslint-language-server", "--stdio" },
   filetypes = {
