@@ -1,6 +1,7 @@
 vim.o.number = true
 vim.o.relativenumber = true
 vim.o.clipboard = "unnamedplus"
+vim.o.cursorline = true
 vim.o.undofile = true
 vim.o.swapfile = false
 vim.o.ignorecase = true
@@ -24,6 +25,9 @@ vim.g.maplocalleader = " "
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<cr>")
 vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic quickfix list" })
 
+vim.keymap.set("v", "<", "<gv")
+vim.keymap.set("v", ">", ">gv")
+
 vim.keymap.set("n", "<S-h>", "<cmd>bprev<cr>", { noremap = true, silent = true, desc = "Previous Buffer" })
 vim.keymap.set("n", "<S-l>", "<cmd>bnext<cr>", { noremap = true, silent = true, desc = "Next Buffer" })
 vim.keymap.set("n", "<leader>bd", "<cmd>bd<cr>", { noremap = true, silent = true, desc = "Delete Buffer" })
@@ -32,23 +36,6 @@ vim.keymap.set("n", "<c-h>", "<cmd>wincmd h<cr>", { noremap = true, silent = tru
 vim.keymap.set("n", "<c-j>", "<cmd>wincmd j<cr>", { noremap = true, silent = true, desc = "Move to Down Window" })
 vim.keymap.set("n", "<c-k>", "<cmd>wincmd k<cr>", { noremap = true, silent = true, desc = "Move to Up Window" })
 vim.keymap.set("n", "<c-l>", "<cmd>wincmd l<cr>", { noremap = true, silent = true, desc = "Move to Right Window" })
-
-vim.keymap.set("n", "<leader>gg", function()
-  vim.cmd.split()
-  vim.cmd.resize(vim.o.lines)
-  vim.cmd.startinsert()
-
-  local buf = vim.api.nvim_create_buf(false, true)
-  local win = vim.api.nvim_get_current_win()
-  vim.api.nvim_win_set_buf(win, buf)
-
-  vim.fn.jobstart("lazygit", {
-    term = true,
-    on_exit = function()
-      vim.api.nvim_win_close(win, true)
-    end,
-  })
-end, { desc = "Open lazygit" })
 
 vim.api.nvim_create_autocmd("TextYankPost", {
   desc = "Highlight when yanking text",
@@ -102,6 +89,7 @@ vim.diagnostic.config({
 
 vim.pack.add({
   { src = "https://github.com/stevearc/conform.nvim" },
+  { src = "https://github.com/kdheepak/lazygit.nvim" },
   { src = "https://github.com/projekt0n/github-nvim-theme" },
   { src = "https://github.com/mason-org/mason.nvim" },
   { src = "https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim" },
@@ -111,8 +99,7 @@ vim.pack.add({
   { src = "https://github.com/nvim-treesitter/nvim-treesitter-context" },
 })
 
-require("catppuccin").setup()
-vim.cmd([[colorscheme catppuccin]])
+vim.cmd("colorscheme catppuccin")
 
 require("conform").setup({
   formatters_by_ft = {
@@ -121,11 +108,17 @@ require("conform").setup({
     json = { "prettierd" },
     lua = { "stylua" },
   },
-  format_on_save = {
-    timeout_ms = 500,
-    lsp_format = "fallback",
-  },
+  format_on_save = function(bufnr)
+    local disable_filetypes = { c = true, cpp = true, javascript = true }
+    if disable_filetypes[vim.bo[bufnr].filetype] then
+      return nil
+    else
+      return { timeout_ms = 500, lsp_format = "fallback" }
+    end
+  end,
 })
+
+vim.keymap.set("n", "<leader>gg", "<cmd>LazyGit<cr>", { desc = "Lazygit" })
 
 require("mason").setup()
 require("mason-tool-installer").setup({
@@ -143,10 +136,13 @@ require("mason-tool-installer").setup({
 
 require("mini.ai").setup()
 require("mini.diff").setup({ view = { style = "sign" } })
+require("mini.extra").setup()
 
-require("mini.files").setup()
-vim.keymap.set("n", "<leader>e", "<cmd>lua MiniFiles.open()<cr>")
-vim.keymap.set("n", "-", "<cmd>lua MiniFiles.open()<cr>")
+local files = require("mini.files")
+files.setup()
+vim.keymap.set("n", "<leader>e", function()
+  files.open(vim.api.nvim_buf_get_name(0), true)
+end)
 
 require("mini.hipatterns").setup({
   highlighters = {
@@ -178,7 +174,15 @@ vim.keymap.set("n", "<leader>ff", "<cmd>Pick files<cr>")
 vim.keymap.set("n", "<leader>fh", "<cmd>Pick help<cr>")
 vim.keymap.set("n", "<leader>/", "<cmd>Pick grep_live<cr>")
 
+vim.keymap.set("n", "grd", function()
+  MiniExtra.pickers.lsp({ scope = "definition" })
+end)
+vim.keymap.set("n", "grr", function()
+  MiniExtra.pickers.lsp({ scope = "references" })
+end)
+
 require("mini.statusline").setup()
+require("mini.tabline").setup()
 
 require("nvim-treesitter.configs").setup({
   ensure_installed = { "go", "json", "lua", "markdown", "tsx", "typescript" },
