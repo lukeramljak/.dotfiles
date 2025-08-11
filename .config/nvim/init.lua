@@ -45,7 +45,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
   end,
 })
 
-vim.lsp.enable({ "eslint", "gopls", "golangci_lint_ls", "lua_ls", "tailwindcss", "vtsls" })
+vim.lsp.enable({ "eslint", "gopls", "lua_ls", "tailwindcss", "vtsls" })
 
 vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(ev)
@@ -87,9 +87,40 @@ vim.diagnostic.config({
   },
 })
 
+vim.keymap.set("n", "<leader>gg", function()
+  local max_height = vim.api.nvim_win_get_height(0)
+  local max_width = vim.api.nvim_win_get_width(0)
+
+  local height = math.floor(max_height * 0.8)
+  local width = math.floor(max_width * 0.8)
+
+  local buf = vim.api.nvim_create_buf(false, true)
+  vim.api.nvim_open_win(buf, true, {
+    relative = "editor",
+    height = height,
+    width = width,
+    col = (max_width - width) / 2,
+    row = (max_height - height) / 2,
+  })
+
+  vim.cmd.term("lazygit")
+  vim.cmd.startinsert()
+
+  vim.api.nvim_create_autocmd("TermClose", {
+    buffer = buf,
+    once = true,
+    callback = function()
+      vim.schedule(function()
+        if vim.api.nvim_buf_is_valid(buf) then
+          vim.api.nvim_buf_delete(buf, { force = true })
+        end
+      end)
+    end,
+  })
+end)
+
 vim.pack.add({
   { src = "https://github.com/stevearc/conform.nvim" },
-  { src = "https://github.com/kdheepak/lazygit.nvim" },
   { src = "https://github.com/projekt0n/github-nvim-theme" },
   { src = "https://github.com/mason-org/mason.nvim" },
   { src = "https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim" },
@@ -103,6 +134,7 @@ vim.cmd("colorscheme catppuccin")
 
 require("conform").setup({
   formatters_by_ft = {
+    go = { "goimports", "gofmt" },
     typescript = { "prettierd" },
     typescriptreact = { "prettierd" },
     json = { "prettierd" },
@@ -118,13 +150,10 @@ require("conform").setup({
   end,
 })
 
-vim.keymap.set("n", "<leader>gg", "<cmd>LazyGit<cr>", { desc = "Lazygit" })
-
 require("mason").setup()
 require("mason-tool-installer").setup({
   ensure_installed = {
     "eslint-lsp",
-    "golangci-lint-langserver",
     "gopls",
     "lua-language-server",
     "prettierd",
@@ -173,13 +202,8 @@ vim.keymap.set("n", "<leader>fb", "<cmd>Pick buffers<cr>")
 vim.keymap.set("n", "<leader>ff", "<cmd>Pick files<cr>")
 vim.keymap.set("n", "<leader>fh", "<cmd>Pick help<cr>")
 vim.keymap.set("n", "<leader>/", "<cmd>Pick grep_live<cr>")
-
-vim.keymap.set("n", "grd", function()
-  MiniExtra.pickers.lsp({ scope = "definition" })
-end)
-vim.keymap.set("n", "grr", function()
-  MiniExtra.pickers.lsp({ scope = "references" })
-end)
+vim.keymap.set("n", "grd", "<cmd>Pick lsp scope='definition'<cr>")
+vim.keymap.set("n", "grr", "<cmd>Pick lsp scope='references'<cr>")
 
 require("mini.statusline").setup()
 require("mini.tabline").setup()
