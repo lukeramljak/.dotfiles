@@ -202,7 +202,7 @@ vim.keymap.set("n", "<leader>fb", "<cmd>Pick buffers<cr>")
 vim.keymap.set("n", "<leader>ff", "<cmd>Pick files<cr>")
 vim.keymap.set("n", "<leader>fh", "<cmd>Pick help<cr>")
 vim.keymap.set("n", "<leader>/", "<cmd>Pick grep_live<cr>")
-vim.keymap.set("n", "grd", "<cmd>Pick lsp scope='definition'<cr>")
+vim.keymap.set("n", "gd", "<cmd>Pick lsp scope='definition'<cr>")
 vim.keymap.set("n", "grr", "<cmd>Pick lsp scope='references'<cr>")
 
 require("mini.statusline").setup()
@@ -218,7 +218,13 @@ require("nvim-treesitter.configs").setup({
 require("treesitter-context").setup({ max_lines = 3 })
 
 vim.api.nvim_create_autocmd("PackChanged", {
-  callback = function()
-    vim.cmd("TSUpdate")
+  group = vim.api.nvim_create_augroup("treesitter-updated", { clear = true }),
+  ---@param event {data: {kind: "install" | "update" | "delete", path: string, spec: vim.pack.Spec}}
+  callback = function(event)
+    if event.data.spec.name == "nvim-treesitter" and event.data.kind == "update" then
+      vim.schedule(function()
+        vim.cmd("TSUpdate")
+      end)
+    end
   end,
 })
