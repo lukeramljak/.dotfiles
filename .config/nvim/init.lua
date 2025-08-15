@@ -130,7 +130,7 @@ vim.pack.add({
   { src = "https://github.com/nvim-treesitter/nvim-treesitter-context" },
 })
 
-vim.cmd("colorscheme catppuccin")
+vim.cmd("colorscheme github_dark_default")
 
 require("conform").setup({
   formatters_by_ft = {
@@ -164,7 +164,7 @@ require("mason-tool-installer").setup({
 })
 
 require("mini.ai").setup()
-require("mini.diff").setup({ view = { style = "sign" } })
+require("mini.diff").setup()
 require("mini.extra").setup()
 
 local files = require("mini.files")
