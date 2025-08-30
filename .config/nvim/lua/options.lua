@@ -19,12 +19,7 @@ vim.o.termguicolors = true
 vim.o.updatetime = 50
 vim.o.winborder = "rounded"
 vim.o.colorcolumn = "80"
-
-vim.g.netrw_liststyle = 1
-vim.g.netrw_browse_split = 0
-vim.g.netrw_banner = 0
-vim.g.netrw_winsize = 25
+vim.o.completeopt = "menuone,noselect,fuzzy,nosort"
 
 vim.cmd("colorscheme github_dark_default")
-
 vim.notify = require("mini.notify").make_notify()

@@ -1,3 +1,17 @@
+---@brief
+---
+--- https://github.com/yioneko/vtsls
+---
+--- `vtsls` can be installed with npm:
+--- ```sh
+--- npm install -g @vtsls/language-server
+--- ```
+---
+--- To configure a TypeScript project, add a
+--- [`tsconfig.json`](https://www.typescriptlang.org/docs/handbook/tsconfig-json.html)
+--- or [`jsconfig.json`](https://code.visualstudio.com/docs/languages/jsconfig) to
+--- the root of your project.
+
 ---@type vim.lsp.Config
 return {
 	cmd = { "vtsls", "--stdio" },

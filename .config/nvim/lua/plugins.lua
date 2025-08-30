@@ -1,18 +1,16 @@
-vim.g.mapleader = " "
-vim.g.localmapleader = " "
-
 vim.pack.add({
-	{ src = "https://github.com/stevearc/conform.nvim" },
-	{ src = "https://github.com/projekt0n/github-nvim-theme" },
-	{ src = "https://github.com/mason-org/mason.nvim" },
-	{ src = "https://github.com/echasnovski/mini.nvim" },
+	"https://github.com/stevearc/conform.nvim",
+	"https://github.com/projekt0n/github-nvim-theme",
+	"https://github.com/ibhagwan/fzf-lua",
+	"https://github.com/nvim-mini/mini.nvim",
+	"https://github.com/nvim-treesitter/nvim-treesitter-context",
+	"https://github.com/tpope/vim-fugitive",
 	{ src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "master" },
-	{ src = "https://github.com/nvim-treesitter/nvim-treesitter-context" },
-	{ src = "https://github.com/tpope/vim-fugitive" },
 }, { load = true })
 
 require("conform").setup({
 	formatters_by_ft = {
+		go = { "gofmt", "goimports" },
 		json = { "prettierd" },
 		lua = { "stylua" },
 		typescript = { "prettierd" },
@@ -27,15 +25,23 @@ require("conform").setup({
 		end
 	end,
 })
-require("mason").setup()
+
+require("fzf-lua").setup({
+	keymap = {
+		fzf = {
+			["ctrl-q"] = "select-all+accept",
+		},
+	},
+})
+
 require("mini.ai").setup()
+require("mini.completion").setup()
 require("mini.diff").setup()
 require("mini.icons").setup()
 require("mini.notify").setup()
-require("mini.pairs").setup()
-require("mini.pick").setup()
 require("mini.statusline").setup()
 require("mini.tabline").setup()
+
 require("nvim-treesitter.configs").setup({
 	ensure_installed = { "go", "json", "lua", "markdown", "tsx", "typescript" },
 	auto_install = true,
