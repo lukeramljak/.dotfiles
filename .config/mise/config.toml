@@ -1,0 +1,9 @@
+[tools]
+lua-language-server = "latest"
+node = "latest"
+"npm:@fsouza/prettierd" = "latest"
+"npm:@github/copilot-language-server" = "latest"
+"npm:@tailwindcss/language-server" = "latest"
+"npm:@vtsls/language-server" = "latest"
+"npm:eslint_d" = "latest"
+"npm:vscode-langservers-extracted" = "latest"
