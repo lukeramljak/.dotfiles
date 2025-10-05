@@ -1,31 +1,16 @@
-theme = GitHub-Dark-Default
+theme = Catppuccin Mocha
 
 font-size = 13
 font-family = BerkeleyMono Nerd Font
 window-title-font-family = BerkeleyMono Nerd Font
-font-thicken = false
-font-thicken-strength = 1
+font-thicken = true
+font-thicken-strength = 128
 
 adjust-cell-height = 10
-adjust-underline-position = 6
-adjust-underline-thickness = 40%
-adjust-cursor-thickness = 150%
 
 macos-option-as-alt = true
 macos-window-shadow = false
 
-mouse-hide-while-typing = true
-
-unfocused-split-opacity = 0.4
-
 confirm-close-surface = false
-
-cursor-color = F8F8F2
-cursor-style-blink = false
-cursor-text = 000000
-shell-integration-features = no-cursor
-
-unfocused-split-opacity = 0.4
-split-divider-color = A7DFEF
 
 # vim: set ft=conf
