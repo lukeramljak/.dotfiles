@@ -1,9 +1,14 @@
 [tools]
+dprint = "latest"
 lua-language-server = "latest"
 node = "latest"
-"npm:@fsouza/prettierd" = "latest"
-"npm:@github/copilot-language-server" = "latest"
+"npm:prettier" = "latest"
 "npm:@tailwindcss/language-server" = "latest"
 "npm:@vtsls/language-server" = "latest"
-"npm:eslint_d" = "latest"
 "npm:vscode-langservers-extracted" = "latest"
+"npm:svelte-language-server" = "latest"
+"npm:@typescript/native-preview" = "latest"
+stylua = "latest"
+
+[settings]
+idiomatic_version_file_enable_tools = ["node"]
