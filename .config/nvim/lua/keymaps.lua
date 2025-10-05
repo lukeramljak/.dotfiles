@@ -39,9 +39,9 @@ vim.keymap.set("n", "[q", vim.cmd.cprev, { desc = "Previous Quickfix" })
 vim.keymap.set("n", "]q", vim.cmd.cnext, { desc = "Next Quickfix" })
 
 -- Git
-vim.keymap.set("n", "<leader>gs", "<cmd>G<CR>")
-vim.keymap.set("n", "<leader>gb", "<cmd>G blame<CR>")
-vim.keymap.set("n", "<leader>gp", "<cmd>G push<CR>")
+vim.keymap.set("n", "<leader>gg", function()
+  require("term").open("lazygit")
+end, { desc = "Open lazygit in floating terminal" })
 
 -- Package manager
 vim.keymap.set("n", "<leader>pu", "<cmd>lua vim.pack.update()<cr>")
