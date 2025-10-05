@@ -1,14 +1,33 @@
 {
   "plugins": {
-    "catppuccin": [],
-    "conform.nvim": [],
-    "indent-blankline.nvim": [],
-    "mini.nvim": [],
+    "catppuccin": {
+      "rev": "e79d09f",
+      "src": "https://github.com/catppuccin/nvim"
+    },
+    "conform.nvim": {
+      "rev": "9d859cb",
+      "src": "https://github.com/stevearc/conform.nvim"
+    },
+    "indent-blankline.nvim": {
+      "rev": "005b560",
+      "src": "https://github.com/lukas-reineke/indent-blankline.nvim"
+    },
+    "mini.nvim": {
+      "rev": "79654ef",
+      "src": "https://github.com/nvim-mini/mini.nvim"
+    },
     "nvim-treesitter": {
+      "rev": "42fc28ba",
+      "src": "https://github.com/nvim-treesitter/nvim-treesitter",
       "version": "'master'"
     },
-    "nvim-treesitter-context": [],
-    "vim-fugitive": [],
-    "vim-tmux-navigator": []
+    "nvim-treesitter-context": {
+      "rev": "41847d3",
+      "src": "https://github.com/nvim-treesitter/nvim-treesitter-context"
+    },
+    "vim-tmux-navigator": {
+      "rev": "c45243d",
+      "src": "https://github.com/christoomey/vim-tmux-navigator"
+    }
   }
 }

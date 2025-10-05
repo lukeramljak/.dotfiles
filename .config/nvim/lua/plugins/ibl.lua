@@ -1,5 +1,3 @@
-vim.pack.add({ "https://github.com/lukas-reineke/indent-blankline.nvim" })
-
 local misc_icons = require("icons").misc
 
 require("ibl").setup({
