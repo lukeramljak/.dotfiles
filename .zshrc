@@ -11,11 +11,8 @@ if [ ! -d "$ZINIT_HOME" ]; then
 fi
 
 # Load oh-my-posh
-eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/tokyonight_storm.json)"
-
-# Skip oh-my-posh in Apple Terminal
 if [ "$TERM_PROGRAM" != "Apple_Terminal" ]; then
-  eval "$(oh-my-posh init zsh)"
+  eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/tokyonight_storm.json)"
 fi
 
 # Source/Load zinit
@@ -116,3 +113,8 @@ esac
 export GITHUB_TOKEN=$(gh auth token)
 eval "$(gh copilot alias -- zsh)"
 
+# mobile dev
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home
+export ANDROID_HOME=$HOME/Library/Android/sdk
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/platform-tools
