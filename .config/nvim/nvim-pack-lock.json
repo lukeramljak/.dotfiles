@@ -1,0 +1,14 @@
+{
+  "plugins": {
+    "catppuccin": [],
+    "conform.nvim": [],
+    "indent-blankline.nvim": [],
+    "mini.nvim": [],
+    "nvim-treesitter": {
+      "version": "'master'"
+    },
+    "nvim-treesitter-context": [],
+    "vim-fugitive": [],
+    "vim-tmux-navigator": []
+  }
+}

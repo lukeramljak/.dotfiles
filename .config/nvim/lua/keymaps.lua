@@ -31,24 +31,58 @@ vim.keymap.set("n", "<c-l>", "<cmd>wincmd l<cr>", { desc = "Move to Right Window
 vim.keymap.set("n", "<leader>_", "<cmd>split<cr>")
 vim.keymap.set("n", "<leader>|", "<cmd>vsplit<cr>")
 
+-- quickfix list
+vim.keymap.set("n", "<leader>xq", function()
+  local success, err = pcall(vim.fn.getqflist({ winid = 0 }).winid ~= 0 and vim.cmd.cclose or vim.cmd.copen)
+  if not success and err then
+    vim.notify(err, vim.log.levels.ERROR)
+  end
+end, { desc = "Quickfix List" })
+
+vim.keymap.set("n", "[q", vim.cmd.cprev, { desc = "Previous Quickfix" })
+vim.keymap.set("n", "]q", vim.cmd.cnext, { desc = "Next Quickfix" })
+
 -- LSP
-vim.keymap.set("n", "gd", "<cmd>FzfLua lsp_definitions<cr>", { noremap = true, silent = true })
+vim.keymap.set("n", "gd", function()
+  MiniExtra.pickers.lsp({ scope = "definition" })
+end)
 
 -- Picker
-vim.keymap.set("n", "<leader>ff", "<cmd>FzfLua files<cr>")
-vim.keymap.set("n", "<leader>fh", "<cmd>FzfLua helptags<cr>")
-vim.keymap.set("n", "<leader>fk", "<cmd>FzfLua keymaps<cr>")
-vim.keymap.set("n", "<leader>/", "<cmd>FzfLua live_grep<cr>")
+vim.keymap.set("n", "<leader>ff", function()
+  MiniPick.builtin.files()
+end, { desc = "Find files" })
+vim.keymap.set("n", "<leader>/", function()
+  MiniPick.builtin.grep_live()
+end, { desc = "Live grep" })
+vim.keymap.set("n", "<leader>fd", function()
+  MiniExtra.pickers.diagnostic()
+end, { desc = "Find diagnostics" })
+vim.keymap.set("n", "<leader>fh", function()
+  MiniPick.builtin.help()
+end, { desc = "Find help" })
+vim.keymap.set("n", "<leader>fk", function()
+  MiniExtra.pickers.keymaps()
+end, { desc = "Find keymaps" })
+vim.keymap.set("n", "<leader>fs", function()
+  MiniExtra.pickers.lsp({ scope = "document_symbol" })
+end, { desc = "Find document symbols" })
+vim.keymap.set("n", "<leader>fS", function()
+  MiniExtra.pickers.lsp({ scope = "workspace_symbol" })
+end, { desc = "Find workspace symbols" })
+vim.keymap.set("n", "<leader>gw", function()
+  MiniPick.builtin.grep({ pattern = vim.fn.expand("<cword>") })
+end, { desc = "Grep current word" })
 
 -- Files
 vim.keymap.set("n", "<leader>e", function()
-	require("mini.files").open(vim.api.nvim_buf_get_name(0), true)
-end, { desc = "Open mini.files in directory of current file" })
+  MiniFiles.open(vim.api.nvim_buf_get_name(0))
+  MiniFiles.reveal_cwd()
+end, { desc = "Open Mini Files" })
 
 -- Git
-vim.keymap.set("n", "<leader>gs", "<cmd>Git<CR>")
-vim.keymap.set("n", "<leader>gb", "<cmd>Git blame<CR>")
-vim.keymap.set("n", "<leader>gp", "<cmd>Git push<CR>")
+vim.keymap.set("n", "<leader>gs", "<cmd>G<CR>")
+vim.keymap.set("n", "<leader>gb", "<cmd>G blame<CR>")
+vim.keymap.set("n", "<leader>gp", "<cmd>G push<CR>")
 
 -- Package manager
 vim.keymap.set("n", "<leader>pu", "<cmd>lua vim.pack.update()<cr>")
