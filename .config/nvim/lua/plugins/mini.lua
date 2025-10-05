@@ -7,16 +7,11 @@ require("mini.diff").setup()
 require("mini.extra").setup()
 require("mini.files").setup({
   mappings = {
+    show_help = "?",
     go_in_plus = "<cr>",
-    synchronize = "<c-s>",
+    go_out_plus = "<tab>",
   },
-  windows = {
-    max_number = 3,
-    preview = true,
-    width_nofocus = math.floor((vim.o.columns - 5) * 0.25), -- 25% of screen minus border+padding
-    width_focus = math.floor((vim.o.columns - 5) * 0.25), -- 25% of screen minus border+padding
-    width_preview = math.floor((vim.o.columns - 3) * 0.5), -- 50% of screen minus border+padding,
-  },
+  windows = { width_nofocus = 25 },
 })
 require("mini.git").setup()
 require("mini.icons").setup()
@@ -51,7 +46,7 @@ require("mini.tabline").setup()
 vim.notify = MiniNotify.make_notify()
 
 vim.keymap.set("n", "<leader>bd", function()
-  MiniBufremove.delete()
+  MiniBufremove.delete(0, false)
 end, { desc = "Delete buffer" })
 
 vim.keymap.set("n", "gd", function()
