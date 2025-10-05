@@ -4,7 +4,7 @@ vim.g.localmapleader = " "
 require("autocmds")
 require("keymaps")
 require("lsp")
-require("options")
+require("settings")
 require("plugins.colorscheme")
 require("plugins.conform")
 require("plugins.ibl")
