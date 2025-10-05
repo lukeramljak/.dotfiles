@@ -2,9 +2,7 @@ local arrows = require("icons").arrows
 
 vim.o.autowrite = true
 vim.o.clipboard = "unnamedplus"
-vim.o.colorcolumn = "80"
-vim.o.completeopt = "menu,menuone,noselect"
-vim.o.cursorline = true
+vim.o.completeopt = "menuone,noselect,noinsert"
 vim.o.expandtab = true
 vim.o.foldexpr = "v:lua.vim.lsp.foldexpr()"
 vim.o.foldcolumn = "1"
