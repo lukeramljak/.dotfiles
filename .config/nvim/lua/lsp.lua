@@ -1,7 +1,5 @@
 local diagnostic_icons = require("icons").diagnostics
 
-vim.lsp.enable({ "cssls", "eslint", "gopls", "html", "lua_ls", "svelte", "tailwindcss", "tsgo" })
-
 vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(ev)
     local client = vim.lsp.get_client_by_id(ev.data.client_id)
@@ -61,4 +59,18 @@ vim.diagnostic.config({
       return diagnostic_message[diagnostic.severity]
     end,
   },
+})
+
+-- Set up LSP servers
+vim.api.nvim_create_autocmd({ "BufReadPre", "BufNewFile" }, {
+  once = true,
+  callback = function()
+    local server_configs = vim
+      .iter(vim.api.nvim_get_runtime_file("lsp/*.lua", true))
+      :map(function(file)
+        return vim.fn.fnamemodify(file, ":t:r")
+      end)
+      :totable()
+    vim.lsp.enable(server_configs)
+  end,
 })
