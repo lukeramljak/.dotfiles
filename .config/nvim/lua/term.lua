@@ -58,6 +58,7 @@ local function setup_termclose_autocmd(buf)
       vim.schedule(function()
         if vim.api.nvim_buf_is_valid(buf) then
           vim.api.nvim_buf_delete(buf, { force = true })
+          vim.cmd("silent! :checktime")
         end
       end)
     end,
