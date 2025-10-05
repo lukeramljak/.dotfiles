@@ -16,7 +16,6 @@ vim.keymap.set("n", "N", "Nzzzv", { desc = "Previous result" })
 -- Buffers
 vim.keymap.set("n", "<S-h>", "<cmd>bprev<cr>", { desc = "Previous Buffer", remap = true })
 vim.keymap.set("n", "<S-l>", "<cmd>bnext<cr>", { desc = "Next Buffer", remap = true })
-vim.keymap.set("n", "<leader>bd", "<cmd>bd<cr>", { desc = "Delete Buffer", remap = true })
 
 -- Moving between windows
 vim.keymap.set("n", "<c-h>", "<cmd>wincmd h<cr>", { desc = "Move to Left Window", remap = true })

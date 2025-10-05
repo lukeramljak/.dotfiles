@@ -1,6 +1,7 @@
 vim.pack.add({ "https://github.com/nvim-mini/mini.nvim" })
 
 require("mini.ai").setup()
+require("mini.bufremove").setup()
 require("mini.completion").setup()
 require("mini.diff").setup()
 require("mini.extra").setup()
@@ -48,6 +49,10 @@ require("mini.statusline").setup()
 require("mini.tabline").setup()
 
 vim.notify = MiniNotify.make_notify()
+
+vim.keymap.set("n", "<leader>bd", function()
+  MiniBufremove.delete()
+end, { desc = "Delete buffer" })
 
 vim.keymap.set("n", "gd", function()
   MiniExtra.pickers.lsp({ scope = "definition" })
