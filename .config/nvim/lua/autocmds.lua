@@ -1,8 +1,12 @@
-vim.api.nvim_create_autocmd("TextYankPost", {
-  group = vim.api.nvim_create_augroup("lukeramljak/yank_highlight", { clear = true }),
-  desc = "Highlight on yank",
+vim.api.nvim_create_autocmd("LspAttach", {
+  group = vim.api.nvim_create_augroup("lukeramljak/tailwind_performance", {}),
   callback = function()
-    vim.hl.on_yank()
+    for _, client in pairs((vim.lsp.get_clients({}))) do
+      if client.name == "tailwindcss" then
+        client.server_capabilities.completionProvider.triggerCharacters =
+          { '"', "'", "`", ".", "(", "[", "!", "/", ":" }
+      end
+    end
   end,
 })
 
@@ -13,5 +17,13 @@ vim.api.nvim_create_autocmd("VimResized", {
     local current_tab = vim.fn.tabpagenr()
     vim.cmd("tabdo wincmd =")
     vim.cmd("tabnext " .. current_tab)
+  end,
+})
+
+vim.api.nvim_create_autocmd("TextYankPost", {
+  group = vim.api.nvim_create_augroup("lukeramljak/yank_highlight", { clear = true }),
+  desc = "Highlight on yank",
+  callback = function()
+    vim.hl.on_yank()
   end,
 })
