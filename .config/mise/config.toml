@@ -7,6 +7,7 @@ node = "latest"
 "npm:@vtsls/language-server" = "latest"
 "npm:vscode-langservers-extracted" = "latest"
 "npm:svelte-language-server" = "latest"
+"npm:typescript-svelte-plugin" = "latest"
 stylua = "latest"
 
 [settings]
