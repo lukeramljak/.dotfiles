@@ -1,11 +1,11 @@
 {
   "plugins": {
     "catppuccin": {
-      "rev": "e79d09f",
+      "rev": "af58927",
       "src": "https://github.com/catppuccin/nvim"
     },
     "conform.nvim": {
-      "rev": "9d859cb",
+      "rev": "fbcb4fa",
       "src": "https://github.com/stevearc/conform.nvim"
     },
     "indent-blankline.nvim": {
@@ -13,7 +13,7 @@
       "src": "https://github.com/lukas-reineke/indent-blankline.nvim"
     },
     "mini.nvim": {
-      "rev": "79654ef",
+      "rev": "57c1611",
       "src": "https://github.com/nvim-mini/mini.nvim"
     },
     "nvim-treesitter": {
