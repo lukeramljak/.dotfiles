@@ -28,8 +28,9 @@ vim.o.inccommand = "split"
 -- Wrap long lines at words
 vim.o.linebreak = true
 
--- Rounded borders for floating windows
+-- Rounded borders for floating and popup windows
 vim.o.winborder = "rounded"
+vim.o.pumborder = "rounded"
 
 -- Sync clipboard between the OS and Neovim
 vim.o.clipboard = "unnamedplus"
