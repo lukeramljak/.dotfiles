@@ -1,4 +1,8 @@
 require("catppuccin").setup({
+  transparent_background = true,
+  float = {
+    transparent = true,
+  },
   no_italic = true,
   integrations = {
     indent_blankline = {
