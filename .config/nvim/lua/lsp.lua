@@ -1,5 +1,66 @@
 local diagnostic_icons = require("icons").diagnostics
 
+vim.lsp.enable({
+  "biome",
+  "cssls",
+  "dprint",
+  "eslint",
+  "gopls",
+  "html",
+  "lua_ls",
+  "svelte",
+  "tailwindcss",
+  "vtsls",
+})
+
+vim.lsp.config("cssls", {
+  settings = {
+    css = { validate = true, lint = { unknownAtRules = "ignore" } },
+  },
+})
+
+vim.lsp.config("vtsls", {
+  settings = {
+    complete_function_calls = true,
+    vtsls = {
+      enableMoveToFileCodeAction = true,
+      autoUseWorkspaceTsdk = true,
+      experimental = {
+        maxInlayHintLength = 30,
+        completion = {
+          enableServerSideFuzzyMatch = true,
+        },
+      },
+      typescript = {
+        updateImportsOnFileMove = { enabled = "always" },
+        suggest = {
+          completeFunctionCalls = true,
+        },
+        inlayHints = {
+          enumMemberValues = { enabled = true },
+          functionLikeReturnTypes = { enabled = true },
+          parameterNames = { enabled = "literals" },
+          parameterTypes = { enabled = true },
+          propertyDeclarationTypes = { enabled = true },
+          variableTypes = { enabled = false },
+        },
+        preferences = {
+          importModuleSpecifier = "non-relative",
+        },
+      },
+      tsserver = {
+        globalPlugins = {
+          {
+            name = "typescript-svelte-plugin",
+            location = "~/.local/share/mise/installs/npm-typescript-svelte-plugin/latest/lib/node_modules/typescript-svelte-plugin",
+            enableForWorkspaceTypeScriptVersions = true,
+          },
+        },
+      },
+    },
+  },
+})
+
 vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(ev)
     local client = vim.lsp.get_client_by_id(ev.data.client_id)
@@ -39,26 +100,7 @@ vim.diagnostic.config({
   severity_sort = true,
   underline = { severity = vim.diagnostic.severity.ERROR },
   signs = false,
-  virtual_text = {
-    spacing = 2,
-    format = function(diagnostic)
-      -- Use shorter, nicer names for some sources:
-      local special_sources = {
-        ["Lua Diagnostics."] = "lua",
-        ["Lua Syntax Check."] = "lua",
-      }
-
-      local message = diagnostic_icons[vim.diagnostic.severity[diagnostic.severity]]
-      if diagnostic.source then
-        message = string.format("%s %s", message, special_sources[diagnostic.source] or diagnostic.source)
-      end
-      if diagnostic.code then
-        message = string.format("%s[%s]", message, diagnostic.code)
-      end
-
-      return message .. " "
-    end,
-  },
+  virtual_text = { spacing = 2 },
   float = {
     source = "if_many",
     -- Show severity icons as prefixes
@@ -68,18 +110,4 @@ vim.diagnostic.config({
       return prefix, "Diagnostic" .. level:gsub("^%l", string.upper)
     end,
   },
-})
-
--- Set up LSP servers
-vim.api.nvim_create_autocmd({ "BufReadPre", "BufNewFile" }, {
-  once = true,
-  callback = function()
-    local server_configs = vim
-      .iter(vim.api.nvim_get_runtime_file("lsp/*.lua", true))
-      :map(function(file)
-        return vim.fn.fnamemodify(file, ":t:r")
-      end)
-      :totable()
-    vim.lsp.enable(server_configs)
-  end,
 })

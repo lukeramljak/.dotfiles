@@ -6,6 +6,7 @@ vim.pack.add({
   gh("stevearc/conform.nvim"),
   gh("lukas-reineke/indent-blankline.nvim"),
   gh("nvim-mini/mini.nvim"),
+  gh("neovim/nvim-lspconfig"),
   gh("christoomey/vim-tmux-navigator"),
   gh("nvim-treesitter/nvim-treesitter-context"),
   { src = gh("catppuccin/nvim"), name = "catppuccin" },

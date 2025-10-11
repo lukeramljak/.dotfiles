@@ -16,6 +16,10 @@
       "rev": "57c1611",
       "src": "https://github.com/nvim-mini/mini.nvim"
     },
+    "nvim-lspconfig": {
+      "rev": "3a274c3",
+      "src": "https://github.com/neovim/nvim-lspconfig"
+    },
     "nvim-treesitter": {
       "rev": "42fc28ba",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter",
