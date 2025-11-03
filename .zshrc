@@ -113,6 +113,10 @@ esac
 export GITHUB_TOKEN=$(gh auth token)
 eval "$(gh copilot alias -- zsh)"
 
+# set nvim as the default editor
+export EDITOR="$(which nvim)"
+export VISUAL="$EDITOR"
+
 # mobile dev
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home
 export ANDROID_HOME=$HOME/Library/Android/sdk
