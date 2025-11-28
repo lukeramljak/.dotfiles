@@ -23,7 +23,7 @@ hydrate() {
 if [[ $# -eq 1 ]]; then
     selected=$1
 else
-    selected=$(fd . ~/dev/personal ~/dev/work ~/dev/work/odin/apps --min-depth 1 --max-depth 1 --type d | fzf)
+    selected=$(fd . ~/dev --min-depth 1 --max-depth 1 --type d | fzf)
 fi
 
 if [[ -z $selected ]]; then
