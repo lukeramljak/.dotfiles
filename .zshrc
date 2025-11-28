@@ -29,7 +29,7 @@ zinit snippet OMZP::git
 zinit snippet OMZP::command-not-found
 
 # Load completions
-autoload -Uz compinit && compinit
+autoload -Uz compinit && compinit -u
 
 # Keybindings
 bindkey -e
