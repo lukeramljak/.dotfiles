@@ -10,6 +10,7 @@ vim.lsp.enable({
   "lua_ls",
   "svelte",
   "tailwindcss",
+  -- "tsgo",
   "vtsls",
 })
 
@@ -59,41 +60,6 @@ vim.lsp.config("vtsls", {
       },
     },
   },
-})
-
-vim.api.nvim_create_autocmd("LspAttach", {
-  callback = function(ev)
-    local client = vim.lsp.get_client_by_id(ev.data.client_id)
-    local bufnr = ev.buf
-    local methods = vim.lsp.protocol.Methods
-
-    if not client then
-      return
-    end
-
-    if client:supports_method(methods.textDocument_formatting) then
-      vim.keymap.set("n", "<leader>lf", function()
-        vim.lsp.buf.format({ async = true })
-      end, { buffer = bufnr, desc = "Format current buffer" })
-    end
-
-    if client:supports_method(methods.textDocument_documentHighlight) then
-      local under_cursor_highlights_group =
-        vim.api.nvim_create_augroup("lukeramljak/cursor_highlights", { clear = false })
-      vim.api.nvim_create_autocmd({ "CursorHold", "InsertLeave" }, {
-        group = under_cursor_highlights_group,
-        desc = "Highlight references under the cursor",
-        buffer = bufnr,
-        callback = vim.lsp.buf.document_highlight,
-      })
-      vim.api.nvim_create_autocmd({ "CursorMoved", "InsertEnter", "BufLeave" }, {
-        group = under_cursor_highlights_group,
-        desc = "Clear highlight references",
-        buffer = bufnr,
-        callback = vim.lsp.buf.clear_references,
-      })
-    end
-  end,
 })
 
 vim.diagnostic.config({

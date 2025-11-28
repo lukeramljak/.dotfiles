@@ -3,10 +3,13 @@ local function gh(url)
 end
 
 vim.pack.add({
+  gh("saghen/blink.indent"),
   gh("stevearc/conform.nvim"),
-  gh("lukas-reineke/indent-blankline.nvim"),
+  gh("lewis6991/gitsigns.nvim"),
   gh("nvim-mini/mini.nvim"),
   gh("neovim/nvim-lspconfig"),
+  gh("stevearc/oil.nvim"),
+  gh("folke/snacks.nvim"),
   gh("christoomey/vim-tmux-navigator"),
   gh("nvim-treesitter/nvim-treesitter-context"),
   { src = gh("catppuccin/nvim"), name = "catppuccin" },

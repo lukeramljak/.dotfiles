@@ -1,23 +1,35 @@
 {
   "plugins": {
+    "blink.indent": {
+      "rev": "6455b04",
+      "src": "https://github.com/saghen/blink.indent"
+    },
     "catppuccin": {
-      "rev": "af58927",
+      "rev": "234fc04",
       "src": "https://github.com/catppuccin/nvim"
     },
     "conform.nvim": {
-      "rev": "fbcb4fa",
+      "rev": "cde4da5",
       "src": "https://github.com/stevearc/conform.nvim"
+    },
+    "fyler.nvim": {
+      "rev": "d6b855c",
+      "src": "https://github.com/A7Lavinraj/fyler.nvim"
+    },
+    "gitsigns.nvim": {
+      "rev": "cdafc32",
+      "src": "https://github.com/lewis6991/gitsigns.nvim"
     },
     "indent-blankline.nvim": {
       "rev": "005b560",
       "src": "https://github.com/lukas-reineke/indent-blankline.nvim"
     },
     "mini.nvim": {
-      "rev": "57c1611",
+      "rev": "68d4478",
       "src": "https://github.com/nvim-mini/mini.nvim"
     },
     "nvim-lspconfig": {
-      "rev": "3a274c3",
+      "rev": "2010fc6",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
     "nvim-treesitter": {
@@ -26,8 +38,16 @@
       "version": "'master'"
     },
     "nvim-treesitter-context": {
-      "rev": "41847d3",
+      "rev": "ec308c7",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter-context"
+    },
+    "oil.nvim": {
+      "rev": "7e1cd77",
+      "src": "https://github.com/stevearc/oil.nvim"
+    },
+    "snacks.nvim": {
+      "rev": "eee204d",
+      "src": "https://github.com/folke/snacks.nvim"
     },
     "vim-tmux-navigator": {
       "rev": "c45243d",

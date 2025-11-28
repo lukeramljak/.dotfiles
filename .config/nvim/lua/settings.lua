@@ -8,8 +8,8 @@ vim.o.tabstop = 2
 vim.o.smartindent = true
 
 -- Show whitespace
-vim.o.list = true
-vim.opt.listchars = { space = "⋅", trail = "⋅", tab = "  ↦" }
+vim.o.list = false
+-- vim.opt.listchars = { space = "⋅", trail = "⋅", tab = "  ↦" }
 
 -- Line numbers
 vim.o.number = true
@@ -60,6 +60,9 @@ vim.o.splitright = true
 
 -- Disable swapfile
 vim.o.swapfile = false
+
+-- Show cursorline
+vim.o.cursorline = true
 
 -- Folding
 vim.o.foldexpr = "v:lua.vim.lsp.foldexpr()"

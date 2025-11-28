@@ -27,6 +27,9 @@ vim.keymap.set("n", "<c-l>", "<cmd>wincmd l<cr>", { desc = "Move to Right Window
 vim.keymap.set("n", "<leader>_", "<cmd>split<cr>")
 vim.keymap.set("n", "<leader>|", "<cmd>vsplit<cr>")
 
+-- Bulk replace string under cursor
+vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { silent = false })
+
 -- quickfix list
 vim.keymap.set("n", "<leader>xq", function()
   local success, err = pcall(vim.fn.getqflist({ winid = 0 }).winid ~= 0 and vim.cmd.cclose or vim.cmd.copen)
