@@ -101,6 +101,7 @@ export PATH="$HOME/.local/scripts:$PATH"
 
 export GPG_TTY=$(tty)
 export XDG_CONFIG_HOME=$HOME/.config
+export XDG_DATA_HOME=$HOME/.local/share
 
 # pnpm
 export PNPM_HOME="/Users/lukeramljak/Library/pnpm"
@@ -109,6 +110,9 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
+
+# cargo
+export PATH="$HOME/.cargo/bin:$PATH"
 
 export GITHUB_TOKEN=$(gh auth token)
 eval "$(gh copilot alias -- zsh)"
