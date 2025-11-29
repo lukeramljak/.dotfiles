@@ -1,15 +1,3 @@
-vim.api.nvim_create_autocmd("LspAttach", {
-  group = vim.api.nvim_create_augroup("lukeramljak/tailwind_performance", {}),
-  callback = function()
-    for _, client in pairs((vim.lsp.get_clients({}))) do
-      if client.name == "tailwindcss" then
-        client.server_capabilities.completionProvider.triggerCharacters =
-          { '"', "'", "`", ".", "(", "[", "!", "/", ":" }
-      end
-    end
-  end,
-})
-
 vim.api.nvim_create_autocmd("VimResized", {
   group = vim.api.nvim_create_augroup("lukeramljak/resize_splits", { clear = true }),
   desc = "Resize splits on window resize",
@@ -79,30 +67,5 @@ vim.api.nvim_create_autocmd({ "WinLeave", "BufLeave" }, {
   group = "lukeramljak/active_cursorline",
   callback = function()
     vim.opt_local.cursorline = false
-  end,
-})
-
--- highlight when stopping cursor
-vim.api.nvim_create_autocmd("CursorMoved", {
-  group = vim.api.nvim_create_augroup("lukeramljak/cursor_highlights", { clear = true }),
-  desc = "Highlight references under cursor",
-  callback = function()
-    -- Only run if the cursor is not in insert mode
-    if vim.fn.mode() ~= "i" then
-      local clients = vim.lsp.get_clients({ bufnr = 0 })
-      local supports_highlight = false
-      for _, client in ipairs(clients) do
-        if client.server_capabilities.documentHighlightProvider then
-          supports_highlight = true
-          break
-        end
-      end
-
-      -- Proceed only if an LSP is active AND supports the feature
-      if supports_highlight then
-        vim.lsp.buf.clear_references()
-        vim.lsp.buf.document_highlight()
-      end
-    end
   end,
 })

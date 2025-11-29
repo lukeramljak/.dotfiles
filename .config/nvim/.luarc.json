@@ -11,6 +11,24 @@
     "library": [
       "$VIMRUNTIME/lua",
       "${3rd}/luv/library",
+      "lua/icons.lua",
+      "lua/lightbulb.lua",
+      "lua/term.lua",
+      "$XDG_DATA_HOME/nvim/site/pack/core/opt/blink.cmp/lua",
+      "$XDG_DATA_HOME/nvim/site/pack/core/opt/blink.indent/lua",
+      "$XDG_DATA_HOME/nvim/site/pack/core/opt/catppuccin/lua/catppuccin",
+      "$XDG_DATA_HOME/nvim/site/pack/core/opt/conform.nvim/lua",
+      "$XDG_DATA_HOME/nvim/site/pack/core/opt/diffview.nvim/lua",
+      "$XDG_DATA_HOME/nvim/site/pack/core/opt/fzf-lua/lua",
+      "$XDG_DATA_HOME/nvim/site/pack/core/opt/gitsigns.nvim/lua",
+      "$XDG_DATA_HOME/nvim/site/pack/core/opt/grug-far.nvim/lua",
+      "$XDG_DATA_HOME/nvim/site/pack/core/opt/markview.nvim/lua",
+      "$XDG_DATA_HOME/nvim/site/pack/core/opt/mini.nvim/lua",
+      "$XDG_DATA_HOME/nvim/site/pack/core/opt/nvim-treesitter/lua",
+      "$XDG_DATA_HOME/nvim/site/pack/core/opt/nvim-treesitter-context/lua",
+      "$XDG_DATA_HOME/nvim/site/pack/core/opt/nvim-autopairs/lua",
+      "$XDG_DATA_HOME/nvim/site/pack/core/opt/nvim-ts-autotag/lua",
+      "$XDG_DATA_HOME/nvim/site/pack/core/opt/quicker.nvim/lua"
     ]
   },
 }

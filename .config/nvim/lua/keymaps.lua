@@ -24,22 +24,8 @@ vim.keymap.set("n", "<c-k>", "<cmd>wincmd k<cr>", { desc = "Move to Up Window", 
 vim.keymap.set("n", "<c-l>", "<cmd>wincmd l<cr>", { desc = "Move to Right Window", remap = true })
 
 -- Splits
-vim.keymap.set("n", "<leader>_", "<cmd>split<cr>")
-vim.keymap.set("n", "<leader>|", "<cmd>vsplit<cr>")
-
--- Bulk replace string under cursor
-vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { silent = false })
-
--- quickfix list
-vim.keymap.set("n", "<leader>xq", function()
-  local success, err = pcall(vim.fn.getqflist({ winid = 0 }).winid ~= 0 and vim.cmd.cclose or vim.cmd.copen)
-  if not success and err then
-    vim.notify(err, vim.log.levels.ERROR)
-  end
-end, { desc = "Quickfix List" })
-
-vim.keymap.set("n", "[q", vim.cmd.cprev, { desc = "Previous Quickfix" })
-vim.keymap.set("n", "]q", vim.cmd.cnext, { desc = "Next Quickfix" })
+vim.keymap.set("n", "<leader>_", "<cmd>split<cr>", { desc = "Horizontal split" })
+vim.keymap.set("n", "<leader>|", "<cmd>vsplit<cr>", { desc = "Vertical split" })
 
 -- Git
 vim.keymap.set("n", "<leader>gg", function()
@@ -47,10 +33,14 @@ vim.keymap.set("n", "<leader>gg", function()
 end, { desc = "Open lazygit in floating terminal" })
 
 -- Package manager
-vim.keymap.set("n", "<leader>pu", "<cmd>lua vim.pack.update()<cr>")
-
--- Diagnostics
-vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic quickfix list" })
+vim.keymap.set("n", "<leader>pu", "<cmd>lua vim.pack.update()<cr>", { desc = "Update plugins" })
 
 -- Misc
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<cr>")
+vim.keymap.set("n", "<leader>r", "<cmd>restart<cr>", { desc = "Restart neovim" })
+vim.keymap.set(
+  "n",
+  "<leader>s",
+  [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
+  { desc = "Bulk replace string under cursor", silent = false }
+)

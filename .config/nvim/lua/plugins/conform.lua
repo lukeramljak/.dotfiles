@@ -20,5 +20,6 @@ require("conform").setup({
   formatters = {
     -- Require a configuration file to format.
     biome = { require_cwd = true },
+    prettier = { require_cwd = true },
   },
 })
