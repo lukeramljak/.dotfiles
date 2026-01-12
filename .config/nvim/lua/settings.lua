@@ -31,6 +31,9 @@ vim.o.inccommand = "split"
 -- Wrap long lines at words
 vim.o.linebreak = true
 
+-- Disable line wrapping
+vim.o.wrap = false
+
 -- Rounded borders for floating and popup windows
 vim.o.winborder = "rounded"
 vim.o.pumborder = "rounded"

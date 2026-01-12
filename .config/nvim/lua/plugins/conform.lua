@@ -3,7 +3,7 @@ require("conform").setup({
   notify_no_formatters = false,
   formatters_by_ft = {
     css = { "biome" },
-    go = { "gopls" },
+    go = { "gofmt", "goimports" },
     javascript = { "biome", "prettier" },
     json = { "biome", "prettier" },
     jsonc = { "biome", "prettier" },
