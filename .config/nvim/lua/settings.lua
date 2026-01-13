@@ -1,7 +1,7 @@
 local arrows = require("icons").arrows
 
 vim.g.mapleader = " "
-vim.g.localmapleader = " "
+vim.g.maplocalleader = " "
 
 -- Indentation
 vim.o.expandtab = true
