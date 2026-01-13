@@ -1,7 +1,6 @@
-
 . "$HOME/.cargo/env"
 
-[ -s "/Users/lukeramljak/.bun/_bun" ] && source "/Users/lukeramljak/.bun/_bun"
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
@@ -18,7 +17,7 @@ export XDG_CONFIG_HOME=$HOME/.config
 export XDG_DATA_HOME=$HOME/.local/share
 
 # pnpm
-export PNPM_HOME="/Users/lukeramljak/Library/pnpm"
+export PNPM_HOME="$HOME/Library/pnpm"
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
