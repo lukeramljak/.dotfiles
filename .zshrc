@@ -10,3 +10,5 @@ setopt hist_ignore_dups
 if ! ps -p $PPID | grep -q fish; then
   fish
 fi
+
+. "$HOME/.local/share/../bin/env"
