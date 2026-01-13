@@ -207,6 +207,46 @@ vim.lsp.config("cssls", {
   },
 })
 
+vim.lsp.config("tailwindcss", {
+  settings = {
+    tailwindCSS = {
+      classAttributes = {
+        "class",
+        "className",
+        "headerClassName",
+        "contentContainerClassName",
+        "columnWrapperClassName",
+        "endFillColorClassName",
+        "imageClassName",
+        "tintColorClassName",
+        "ios_backgroundColorClassName",
+        "thumbColorClassName",
+        "trackColorOnClassName",
+        "trackColorOffClassName",
+        "selectionColorClassName",
+        "cursorColorClassName",
+        "underlineColorAndroidClassName",
+        "placeholderTextColorClassName",
+        "selectionHandleColorClassName",
+        "colorsClassName",
+        "progressBackgroundColorClassName",
+        "titleColorClassName",
+        "underlayColorClassName",
+        "colorClassName",
+        "drawerBackgroundColorClassName",
+        "statusBarBackgroundColorClassName",
+        "backdropColorClassName",
+        "backgroundColorClassName",
+        "ListFooterComponentClassName",
+        "ListHeaderComponentClassName",
+      },
+      classFunctions = {
+        "useResolveClassNames",
+      },
+    },
+  },
+})
+
 vim.lsp.config("vtsls", {
   settings = {
     complete_function_calls = true,
