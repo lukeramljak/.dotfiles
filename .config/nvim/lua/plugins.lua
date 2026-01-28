@@ -14,7 +14,6 @@ vim.pack.add({
   gh("nvim-mini/mini.nvim"),
   gh("MunifTanjim/nui.nvim"),
   gh("windwp/nvim-autopairs"),
-  gh("neovim/nvim-lspconfig"),
   gh("nvim-treesitter/nvim-treesitter-context"),
   gh("windwp/nvim-ts-autotag"),
   gh("stevearc/quicker.nvim"),

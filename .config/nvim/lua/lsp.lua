@@ -15,6 +15,36 @@ function M.action(action)
   })
 end
 
+--- Appends `new_names` to `root_files` if `field` is found in any such file in any ancestor of `fname`.
+---
+--- NOTE: this does a "breadth-first" search, so is broken for multi-project workspaces:
+--- https://github.com/neovim/nvim-lspconfig/issues/3818#issuecomment-2848836794
+---
+--- @param root_files string[] List of root-marker files to append to.
+--- @param new_names string[] Potential root-marker filenames (e.g. `{ 'package.json', 'package.json5' }`) to inspect for the given `field`.
+--- @param field string Field to search for in the given `new_names` files.
+--- @param fname string Full path of the current buffer name to start searching upwards from.
+function M.root_markers_with_field(root_files, new_names, field, fname)
+  local path = vim.fn.fnamemodify(fname, ":h")
+  local found = vim.fs.find(new_names, { path = path, upward = true, type = "file" })
+
+  for _, f in ipairs(found or {}) do
+    -- Match the given `field`.
+    for line in io.lines(f) do
+      if line:find(field) then
+        root_files[#root_files + 1] = vim.fs.basename(f)
+        break
+      end
+    end
+  end
+
+  return root_files
+end
+
+function M.insert_package_json(root_files, field, fname)
+  return M.root_markers_with_field(root_files, { "package.json", "package.json5" }, field, fname)
+end
+
 --- Sets up LSP keymaps and autocommands for the given buffer.
 ---@param client vim.lsp.Client
 ---@param bufnr integer
@@ -140,154 +170,11 @@ local function on_attach(client, bufnr)
     })
   end
 
-  -- Add "Fix all" command for eslint
-  if client.name == "eslint" then
-    vim.keymap.set("n", "<leader>cl", function()
-      if not client then
-        return
-      end
-
-      client:request("workspace/executeCommand", {
-        command = client.name == "eslint" and "eslint.applyAllFixes",
-        arguments = {
-          {
-            uri = vim.uri_from_bufnr(bufnr),
-            version = vim.lsp.util.buf_versions[bufnr],
-          },
-        },
-      }, nil, bufnr)
-    end, {
-      desc = string.format("Fix all eslint errors"),
-      buffer = bufnr,
-    })
-  end
-
   -- Improve tailwind performance
   if client.name == "tailwindcss" then
     client.server_capabilities.completionProvider.triggerCharacters = { '"', "'", "`", ".", "(", "[", "!", "/", ":" }
   end
-
-  if client.name == "tsgo" or client.name == "vtsls" then
-    keymap("<leader>co", function()
-      M.action("source.organizeImports")
-    end, "Organize imports")
-
-    keymap("<leader>cM", function()
-      M.action("source.addMissingImports.ts")
-    end, "Add missing imports")
-
-    keymap("<leader>cu", function()
-      M.action("source.removeUnused.ts")
-    end, "Remove unused imports")
-
-    keymap("<leader>cD", function()
-      M.action("source.fixAll.ts")
-    end, "Fix all diagnostics")
-  end
 end
-
-vim.lsp.enable({
-  "biome",
-  "cssls",
-  "dprint",
-  "eslint",
-  "gopls",
-  "html",
-  "jsonls",
-  "lua_ls",
-  "svelte",
-  "tailwindcss",
-  -- "tsgo",
-  "vtsls",
-})
-
-vim.lsp.config("cssls", {
-  settings = {
-    css = { validate = true, lint = { unknownAtRules = "ignore" } },
-  },
-})
-
-vim.lsp.config("tailwindcss", {
-  settings = {
-    tailwindCSS = {
-      classAttributes = {
-        "class",
-        "className",
-        "headerClassName",
-        "contentContainerClassName",
-        "columnWrapperClassName",
-        "endFillColorClassName",
-        "imageClassName",
-        "tintColorClassName",
-        "ios_backgroundColorClassName",
-        "thumbColorClassName",
-        "trackColorOnClassName",
-        "trackColorOffClassName",
-        "selectionColorClassName",
-        "cursorColorClassName",
-        "underlineColorAndroidClassName",
-        "placeholderTextColorClassName",
-        "selectionHandleColorClassName",
-        "colorsClassName",
-        "progressBackgroundColorClassName",
-        "titleColorClassName",
-        "underlayColorClassName",
-        "colorClassName",
-        "drawerBackgroundColorClassName",
-        "statusBarBackgroundColorClassName",
-        "backdropColorClassName",
-        "backgroundColorClassName",
-        "ListFooterComponentClassName",
-        "ListHeaderComponentClassName",
-      },
-      classFunctions = {
-        "useResolveClassNames",
-      },
-    },
-  },
-})
-
-vim.lsp.config("vtsls", {
-  settings = {
-    complete_function_calls = true,
-    vtsls = {
-      enableMoveToFileCodeAction = true,
-      autoUseWorkspaceTsdk = true,
-      experimental = {
-        maxInlayHintLength = 30,
-        completion = {
-          enableServerSideFuzzyMatch = true,
-        },
-      },
-      typescript = {
-        updateImportsOnFileMove = { enabled = "always" },
-        suggest = {
-          completeFunctionCalls = true,
-        },
-        inlayHints = {
-          enumMemberValues = { enabled = true },
-          functionLikeReturnTypes = { enabled = true },
-          parameterNames = { enabled = "literals" },
-          parameterTypes = { enabled = true },
-          propertyDeclarationTypes = { enabled = true },
-          variableTypes = { enabled = false },
-        },
-      },
-      preferences = {
-        importModuleSpecifier = "non-relative",
-      },
-      tsserver = {
-        globalPlugins = {
-          {
-            name = "typescript-svelte-plugin",
-            location = "~/.local/share/mise/installs/npm-typescript-svelte-plugin/latest/lib/node_modules/typescript-svelte-plugin",
-            enableForWorkspaceTypeScriptVersions = true,
-          },
-        },
-      },
-    },
-  },
-})
 
 vim.diagnostic.config({
   severity_sort = true,
@@ -349,11 +236,20 @@ vim.api.nvim_create_autocmd("LspAttach", {
   end,
 })
 
+-- Set up LSPs
 vim.api.nvim_create_autocmd({ "BufReadPre", "BufNewFile" }, {
   once = true,
   callback = function()
     -- Extend neovim's client capabilities with the completion ones
     vim.lsp.config("*", { capabilities = require("blink.cmp").get_lsp_capabilities(nil, true) })
+
+    local servers = vim
+      .iter(vim.api.nvim_get_runtime_file("lsp/*.lua", true))
+      :map(function(file)
+        return vim.fn.fnamemodify(file, ":t:r")
+      end)
+      :totable()
+    vim.lsp.enable(servers)
   end,
 })
 
