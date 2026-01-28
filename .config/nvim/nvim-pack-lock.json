@@ -24,10 +24,6 @@
       "rev": "4516612fe98ff56ae0415a259ff6361a89419b0a",
       "src": "https://github.com/sindrets/diffview.nvim"
     },
-    "fyler.nvim": {
-      "rev": "5ef9d97b9292cee169ef0cfb865996f15ee9577a",
-      "src": "https://github.com/A7Lavinraj/fyler.nvim"
-    },
     "fzf-lua": {
       "rev": "83fa6ff3ff05f02a3fc3f93707b1aa7004831645",
       "src": "https://github.com/ibhagwan/fzf-lua"
@@ -81,17 +77,9 @@
       "rev": "db15f2e0df2f5db916e511e3fffb682ef2f6354f",
       "src": "https://github.com/windwp/nvim-ts-autotag"
     },
-    "oil.nvim": {
-      "rev": "fbbb2a98721da86f46b06994fd3b4833b04c6e9b",
-      "src": "https://github.com/stevearc/oil.nvim"
-    },
     "quicker.nvim": {
       "rev": "fc041830fa7cf093786b0d5990d99cf3c7b0c129",
       "src": "https://github.com/stevearc/quicker.nvim"
-    },
-    "snacks.nvim": {
-      "rev": "fe7cfe9800a182274d0f868a74b7263b8c0c020b",
-      "src": "https://github.com/folke/snacks.nvim"
     },
     "teide.nvim": {
       "rev": "95041d1d78e786bd88be64bca3e1771f7b6236df",
