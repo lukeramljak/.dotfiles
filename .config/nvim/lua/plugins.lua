@@ -16,6 +16,7 @@ vim.pack.add({
   gh("windwp/nvim-autopairs"),
   gh("nvim-treesitter/nvim-treesitter-context"),
   gh("windwp/nvim-ts-autotag"),
+  gh("yioneko/nvim-vtsls"),
   gh("stevearc/quicker.nvim"),
   gh("vague-theme/vague.nvim"),
   { src = gh("catppuccin/nvim"), name = "catppuccin" },
