@@ -37,7 +37,6 @@ vim.keymap.set("n", "<leader>pu", "<cmd>lua vim.pack.update()<cr>", { desc = "Up
 
 -- Misc
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<cr>")
-vim.keymap.set("n", "<leader>r", "<cmd>restart<cr>", { desc = "Restart neovim" })
 vim.keymap.set(
   "n",
   "<leader>s",
