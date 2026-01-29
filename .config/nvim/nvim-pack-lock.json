@@ -20,12 +20,8 @@
       "rev": "c2526f1cde528a66e086ab1668e996d162c75f4f",
       "src": "https://github.com/stevearc/conform.nvim"
     },
-    "diffview.nvim": {
-      "rev": "4516612fe98ff56ae0415a259ff6361a89419b0a",
-      "src": "https://github.com/sindrets/diffview.nvim"
-    },
     "fzf-lua": {
-      "rev": "83fa6ff3ff05f02a3fc3f93707b1aa7004831645",
+      "rev": "94e2ae01cbc76ba4aa61e2c7b38fe7f25159fc29",
       "src": "https://github.com/ibhagwan/fzf-lua"
     },
     "gitsigns.nvim": {
@@ -35,14 +31,6 @@
     "grug-far.nvim": {
       "rev": "1f7a722a9b9f0206a345377c13e62542f484398a",
       "src": "https://github.com/MagicDuck/grug-far.nvim"
-    },
-    "indent-blankline.nvim": {
-      "rev": "005b56001b2cb30bfa61b7986bc50657816ba4ba",
-      "src": "https://github.com/lukas-reineke/indent-blankline.nvim"
-    },
-    "koda.nvim": {
-      "rev": "56c170f56ea4587cdb8ef2c42e1c7ca824723f62",
-      "src": "https://github.com/oskarnurm/koda.nvim"
     },
     "markview.nvim": {
       "rev": "c81ce9ed129387fc5fdec91abe9818a1b0e6fcac",
@@ -57,12 +45,8 @@
       "src": "https://github.com/MunifTanjim/nui.nvim"
     },
     "nvim-autopairs": {
-      "rev": "fbbd7a49f7a82eb1f7f04651b624ab976ed941d6",
+      "rev": "007047febaa3681a8d2f3dd5126fdb9c6e81f393",
       "src": "https://github.com/windwp/nvim-autopairs"
-    },
-    "nvim-lspconfig": {
-      "rev": "ff9c0af8f9b2097fdd2695058db7e04c193908aa",
-      "src": "https://github.com/neovim/nvim-lspconfig"
     },
     "nvim-treesitter": {
       "rev": "42fc28ba918343ebfd5565147a42a26580579482",
@@ -85,17 +69,9 @@
       "rev": "fc041830fa7cf093786b0d5990d99cf3c7b0c129",
       "src": "https://github.com/stevearc/quicker.nvim"
     },
-    "teide.nvim": {
-      "rev": "95041d1d78e786bd88be64bca3e1771f7b6236df",
-      "src": "https://github.com/serhez/teide.nvim"
-    },
     "vague.nvim": {
       "rev": "30d2239ecf8adab9bc0d07d42e7a07283879dab6",
       "src": "https://github.com/vague-theme/vague.nvim"
-    },
-    "vim-tmux-navigator": {
-      "rev": "e41c431a0c7b7388ae7ba341f01a0d217eb3a432",
-      "src": "https://github.com/christoomey/vim-tmux-navigator"
     }
   }
 }
