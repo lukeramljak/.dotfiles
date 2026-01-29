@@ -38,4 +38,4 @@ export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 
 # opencode
-export PATH=/Users/lukeramljak/.opencode/bin:$PATH
+export PATH="$HOME/.opencode/bin:$PATH"
