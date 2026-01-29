@@ -91,6 +91,8 @@ return {
       },
       classFunctions = {
         "useResolveClassNames",
+        "cn",
+        "clsx",
       },
       includeLanguages = {
         eelixir = "html-eex",
