@@ -79,7 +79,7 @@ local function on_attach(client, bufnr)
   end
 
   -- Don't check for the capability here to allow dynamic registration of the request
-  vim.lsp.document_color.enable(true, bufnr)
+  vim.lsp.document_color.enable(true, { bufnr = bufnr })
   if client:supports_method("textDocument/documentColor") then
     keymap("grc", function()
       vim.lsp.document_color.color_presentation()
