@@ -7,6 +7,6 @@
 --   no_italic = true,
 -- })
 --
--- vim.cmd.colorscheme("catppuccin-mocha")
+vim.cmd.colorscheme("catppuccin-mocha")
 
-vim.cmd.colorscheme("vague")
+-- vim.cmd.colorscheme("vague")
