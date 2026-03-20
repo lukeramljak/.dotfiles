@@ -2,6 +2,7 @@ local misc_icons = require("icons").misc
 
 require("blink.cmp").setup({
   keymap = {
+    ["<C-Space>"] = { "show", "show_documentation", "hide_documentation" },
     ["<CR>"] = { "accept", "fallback" },
     ["<C-\\>"] = { "hide", "fallback" },
     ["<C-n>"] = { "select_next", "show" },
