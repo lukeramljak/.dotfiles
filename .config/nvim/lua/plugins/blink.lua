@@ -2,7 +2,6 @@ local misc_icons = require("icons").misc
 
 require("blink.cmp").setup({
   keymap = {
-    ["<C-Space>"] = { "show", "show_documentation", "hide_documentation" },
     ["<CR>"] = { "accept", "fallback" },
     ["<C-\\>"] = { "hide", "fallback" },
     ["<C-n>"] = { "select_next", "show" },
@@ -41,4 +40,20 @@ require("blink.indent").setup({
     char = misc_icons.vertical_bar,
     highlights = { "BlinkIndent" },
   },
+})
+
+vim.api.nvim_create_autocmd("PackChanged", {
+  pattern = "blink.cmp",
+  group = vim.api.nvim_create_augroup("lukeramljak/blink_updated", { clear = true }),
+  ---@param event {data: {kind: "install" | "update" | "delete", path: string, spec: vim.pack.Spec}}
+  callback = function(event)
+    if event.data.kind == "update" then
+      -- Recommended way to access plugin files inside `PackChanged` event
+      -- vim.cmd [[packadd blink.cmp]]
+      vim.cmd.packadd({ args = { event.data.spec.name }, bang = false })
+      -- Build the plugin from source
+      -- vim.cmd [[BlinkCmp build]]
+      require("blink.cmp.fuzzy.build").build()
+    end
+  end,
 })
