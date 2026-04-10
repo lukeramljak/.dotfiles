@@ -85,3 +85,6 @@ vim.opt.fillchars = {
 }
 
 vim.o.cmdheight = 0
+
+-- Specify what’s saved in a session. Needs options to work properly
+vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,options"
