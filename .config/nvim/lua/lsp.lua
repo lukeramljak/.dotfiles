@@ -174,6 +174,16 @@ local function on_attach(client, bufnr)
   if client.name == "tailwindcss" then
     client.server_capabilities.completionProvider.triggerCharacters = { '"', "'", "`", ".", "(", "[", "!", "/", ":" }
   end
+
+  -- Workaround for gopls not supporting semanticTokensProvider
+  if client.name == "gopls" and not client.server_capabilities.semanticTokensProvider then
+    local semantic = client.config.capabilities.textDocument.semanticTokens
+    client.server_capabilities.semanticTokensProvider = {
+      full = true,
+      legend = { tokenModifiers = semantic.tokenModifiers, tokenTypes = semantic.tokenTypes },
+      range = true,
+    }
+  end
 end
 
 vim.diagnostic.config({
