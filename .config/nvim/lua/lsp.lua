@@ -4,6 +4,8 @@ local M = {}
 
 vim.g.inlay_hints = false
 
+vim.lsp.codelens.enable(true)
+
 ---@param action lsp.CodeActionKind | string
 function M.action(action)
   vim.lsp.buf.code_action({

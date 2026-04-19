@@ -7,6 +7,15 @@ local jsts_settings = {
     parameterNames = { enabled = "literals" },
     variableTypes = { enabled = true },
   },
+  referencesCodeLens = {
+    enabled = true,
+    showOnAllFunctions = true,
+  },
+  implementationsCodeLens = {
+    enabled = true,
+    showOnInterfaceMethods = true,
+    showOnAllClassMethods = true,
+  },
 }
 
 ---@type vim.lsp.Config
