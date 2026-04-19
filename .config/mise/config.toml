@@ -1,5 +1,8 @@
 [tools]
 dprint = "latest"
+gofumpt = "latest"
+golangci-lint = "latest"
+golangci-lint-langserver = "latest"
 lua-language-server = "latest"
 node = "latest"
 "npm:prettier" = "latest"
