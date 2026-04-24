@@ -71,6 +71,23 @@ local function create_window()
 
   setup_resize_autocmd(float_win)
   setup_termclose_autocmd(buf)
+
+  vim.api.nvim_create_autocmd("BufEnter", {
+    buffer = buf,
+    callback = function()
+      if vim.api.nvim_buf_is_valid(buf) then
+        vim.cmd.startinsert()
+      end
+    end,
+  })
+
+  vim.api.nvim_create_autocmd("FocusGained", {
+    callback = function()
+      if vim.api.nvim_buf_is_valid(buf) and vim.api.nvim_get_current_buf() == buf then
+        vim.cmd.startinsert()
+      end
+    end,
+  })
 end
 
 ---@param cmd string
