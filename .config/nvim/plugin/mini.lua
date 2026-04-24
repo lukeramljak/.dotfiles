@@ -70,6 +70,7 @@ require("mini.files").setup({
 })
 require("mini.icons").setup()
 require("mini.notify").setup()
+require("mini.splitjoin").setup()
 require("mini.statusline").setup()
 require("mini.tabline").setup()
 
