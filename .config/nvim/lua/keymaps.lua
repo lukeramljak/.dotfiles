@@ -7,12 +7,6 @@ vim.keymap.set("v", "J", ":m '>+1<cr>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<cr>gv=gv")
 vim.keymap.set("n", "J", "mzJ`z")
 
--- Keeping the cursor centered
-vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Scroll downwards" })
-vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Scroll upwards" })
-vim.keymap.set("n", "n", "nzzzv", { desc = "Next result" })
-vim.keymap.set("n", "N", "Nzzzv", { desc = "Previous result" })
-
 -- Buffers
 vim.keymap.set("n", "<S-h>", "<cmd>bprev<cr>", { desc = "Previous Buffer", remap = true })
 vim.keymap.set("n", "<S-l>", "<cmd>bnext<cr>", { desc = "Next Buffer", remap = true })

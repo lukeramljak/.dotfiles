@@ -57,8 +57,9 @@ vim.o.pumheight = 15
 vim.o.undofile = true
 vim.o.undolevels = 10000
 
--- Minimum number of lines to keep above and below cursor when scrolling
-vim.o.scrolloff = 4
+-- Keep cursor centered
+vim.o.scrolloff = 99
+vim.o.scrolloffpad = 1
 
 -- Splits
 vim.o.splitbelow = true
