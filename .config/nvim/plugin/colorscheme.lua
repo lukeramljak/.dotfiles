@@ -1,12 +1,9 @@
--- require("catppuccin").setup({
---   transparent_background = true,
---   float = {
---     transparent = true,
---     solid = false,
---   },
---   no_italic = true,
--- })
---
-vim.cmd.colorscheme("catppuccin-mocha")
+require("catppuccin").setup({
+  float = {
+    transparent = true,
+    solid = false,
+  },
+  no_italic = true,
+})
 
--- vim.cmd.colorscheme("vague")
+vim.cmd.colorscheme("catppuccin-mocha")
