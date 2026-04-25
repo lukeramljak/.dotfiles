@@ -9,6 +9,8 @@ require("conform").setup({
     jsonc = { "biome", "prettier" },
     lua = { "stylua" },
     markdown = { "biome", "prettier" },
+    fish = { "fish_indent" },
+    sh = { "shfmt" },
     svelte = { "biome", "prettier" },
     typescript = { "biome", "prettier" },
     typescriptreact = { "biome", "prettier" },
