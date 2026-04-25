@@ -50,8 +50,8 @@ vim.o.timeoutlen = 500
 vim.o.ttimeoutlen = 10
 
 -- Completion
-vim.o.completeopt = "menuone,noselect,noinsert"
-vim.o.pumheight = 15
+vim.o.completeopt = "menuone,noselect,fuzzy,nosort"
+vim.o.pumheight = 7
 
 -- Save undo history
 vim.o.undofile = true

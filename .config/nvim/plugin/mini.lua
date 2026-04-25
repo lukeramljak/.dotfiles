@@ -1,5 +1,6 @@
 require("mini.ai").setup()
 require("mini.bufremove").setup()
+require("mini.completion").setup()
 local miniclue = require("mini.clue")
 miniclue.setup({
   triggers = {
@@ -61,6 +62,7 @@ miniclue.setup({
     end,
   },
 })
+require("mini.extra").setup()
 require("mini.files").setup({
   mappings = {
     show_help = "?",
@@ -70,11 +72,13 @@ require("mini.files").setup({
 })
 require("mini.icons").setup()
 require("mini.notify").setup()
+require("mini.pick").setup()
 require("mini.splitjoin").setup()
 require("mini.statusline").setup()
 require("mini.tabline").setup()
 
 vim.notify = MiniNotify.make_notify()
+vim.ui.select = MiniPick.ui_select
 
 vim.keymap.set("n", "<leader>bd", function()
   MiniBufremove.delete(0, false)
@@ -120,3 +124,27 @@ vim.api.nvim_create_autocmd("User", {
     end
   end,
 })
+
+local choose_single_item = function()
+  local items = MiniPick.get_picker_items()
+  if items == nil or #items ~= 1 then
+    return
+  end
+  local choose = MiniPick.get_picker_opts().source.choose or MiniPick.default_choose
+  MiniPick.stop()
+  choose(items[1])
+end
+
+-- This makes it possible to have `:Pick lsp_definition` command
+MiniPick.registry.lsp_definition = function()
+  vim.api.nvim_create_autocmd("User", { pattern = "MiniPickStart", once = true, callback = choose_single_item })
+  MiniExtra.pickers.lsp({ scope = "definition" })
+end
+
+vim.keymap.set("n", "<leader>fB", MiniPick.builtin.buffers, { desc = "Buffers" })
+vim.keymap.set("n", "<leader>fd", MiniExtra.pickers.diagnostic, { desc = "Document diagnostics" })
+vim.keymap.set("n", "<leader>ff", MiniPick.builtin.files, { desc = "Find files" })
+vim.keymap.set("n", "<leader>fg", MiniPick.builtin.grep_live, { desc = "Live grep" })
+vim.keymap.set("n", "<leader>/", MiniPick.builtin.grep_live, { desc = "Live grep" })
+vim.keymap.set("n", "<leader>fh", MiniPick.builtin.help, { desc = "Help" })
+vim.keymap.set("n", "<leader>fr", MiniExtra.pickers.oldfiles, { desc = "Recently opened files" })

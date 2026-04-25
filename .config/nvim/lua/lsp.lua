@@ -87,33 +87,41 @@ local function on_attach(client, bufnr)
   end
 
   if client:supports_method("textDocument/references") then
-    keymap("grr", "<cmd>FzfLua lsp_references<cr>", "vim.lsp.buf.references()")
+    keymap("grr", function()
+      MiniExtra.pickers.lsp({ scope = "references" })
+    end, "vim.lsp.buf.references()")
   end
 
   if client:supports_method("textDocument/typeDefinition") then
-    keymap("gy", "<cmd>FzfLua lsp_typedefs<cr>", "Go to type definition")
+    keymap("gy", function()
+      MiniExtra.pickers.lsp({ scope = "type_definition" })
+    end, "Go to type definition")
   end
 
   if client:supports_method("textDocument/documentSymbol") then
-    keymap("<leader>fs", "<cmd>FzfLua lsp_document_symbols<cr>", "Document symbols")
+    keymap("<leader>fs", function()
+      MiniExtra.pickers.lsp({ scope = "document_symbol" })
+    end, "Document symbols")
+  end
+
+  if client:supports_method("workspace/symbol") then
+    keymap("<leader>fS", function()
+      MiniExtra.pickers.lsp({ scope = "workspace_symbol_live" })
+    end, "Workspace symbols")
+  end
+
+  if client:supports_method("textDocument/declaration") then
+    keymap("gD", function()
+      MiniExtra.pickers.lsp({ scope = "declaration" })
+    end, "Go to declaration")
   end
 
   if client:supports_method("textDocument/definition") then
-    keymap("gd", function()
-      require("fzf-lua").lsp_definitions({ jump1 = true })
-    end, "Go to definition")
-    keymap("gD", function()
-      require("fzf-lua").lsp_definitions({ jump1 = false })
-    end, "Peek definition")
+    keymap("gd", "<cmd>Pick lsp_definition<cr>", "Go to definition")
   end
 
   if client:supports_method("textDocument/signatureHelp") then
     keymap("<C-k>", function()
-      -- Close the completion menu first (if open)
-      if require("blink.cmp.completion.windows.menu").win:is_open() then
-        require("blink.cmp").hide()
-      end
-
       vim.lsp.buf.signature_help()
     end, "Signature help", "i")
   end
@@ -250,9 +258,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
 vim.api.nvim_create_autocmd({ "BufReadPre", "BufNewFile" }, {
   once = true,
   callback = function()
-    -- Extend neovim's client capabilities with the completion ones
-    vim.lsp.config("*", { capabilities = require("blink.cmp").get_lsp_capabilities(nil, true) })
-
     local servers = vim
       .iter(vim.api.nvim_get_runtime_file("lsp/*.lua", true))
       :map(function(file)

@@ -30,5 +30,5 @@
       "$XDG_DATA_HOME/nvim/site/pack/core/opt/nvim-ts-autotag/lua",
       "$XDG_DATA_HOME/nvim/site/pack/core/opt/quicker.nvim/lua"
     ]
-  },
+  }
 }
