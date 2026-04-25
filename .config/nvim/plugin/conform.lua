@@ -18,7 +18,7 @@ require("conform").setup({
     -- For filetypes without a formatter:
     ["_"] = { "trim_whitespace", "trim_newlines" },
   },
-  format_after_save = { timeout_ms = 500, lsp_format = "fallback" },
+  format_on_save = { timeout_ms = 3000, async = false, quiet = false, lsp_format = "fallback" },
   formatters = {
     -- Require a configuration file to format.
     biome = { require_cwd = true },
