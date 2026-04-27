@@ -1,6 +1,7 @@
 local parsers = {
   "css",
   "go",
+  "javascript",
   "json",
   "html",
   "lua",
