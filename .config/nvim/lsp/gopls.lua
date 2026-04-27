@@ -29,6 +29,7 @@ return {
       },
       analyses = {
         nilness = true,
+        ST1000 = false,
         unusedparams = true,
         unusedwrite = true,
         useany = true,
