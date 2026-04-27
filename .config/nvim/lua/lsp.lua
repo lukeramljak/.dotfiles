@@ -47,6 +47,21 @@ function M.insert_package_json(root_files, field, fname)
   return M.root_markers_with_field(root_files, { "package.json", "package.json5" }, field, fname)
 end
 
+---Resolves a command to its local node_modules/.bin version if available,
+---falling back to the global command otherwise.
+---@param cmd string The command name to resolve (e.g. "vscode-langservers-extracted")
+---@param config vim.lsp.ClientConfig LSP client config, used to determine root_dir
+---@return string cmd The resolved command path
+function M.resolve_node_modules_cmd(cmd, config)
+  if (config or {}).root_dir then
+    local local_cmd = vim.fs.joinpath(config.root_dir, "node_modules/.bin", cmd)
+    if vim.fn.executable(local_cmd) == 1 then
+      return local_cmd
+    end
+  end
+  return cmd
+end
+
 --- Sets up LSP keymaps and autocommands for the given buffer.
 ---@param client vim.lsp.Client
 ---@param bufnr integer

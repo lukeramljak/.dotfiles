@@ -20,7 +20,10 @@ local eslint_config_files = {
 
 ---@type vim.lsp.Config
 return {
-  cmd = { "vscode-eslint-language-server", "--stdio" },
+  cmd = function(dispatchers, config)
+    local cmd = util.resolve_node_modules_cmd("vscode-eslint-language-server", config)
+    return vim.lsp.rpc.start({ cmd, "--stdio" }, dispatchers)
+  end,
   filetypes = {
     "javascript",
     "javascriptreact",

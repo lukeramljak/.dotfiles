@@ -5,11 +5,7 @@ local util = require("lsp")
 ---@type vim.lsp.Config
 return {
   cmd = function(dispatchers, config)
-    local cmd = "biome"
-    local local_cmd = (config or {}).root_dir and config.root_dir .. "/node_modules/.bin/biome"
-    if local_cmd and vim.fn.executable(local_cmd) == 1 then
-      cmd = local_cmd
-    end
+    local cmd = util.resolve_node_modules_cmd("biome", config)
     return vim.lsp.rpc.start({ cmd, "lsp-proxy" }, dispatchers)
   end,
   filetypes = {
@@ -40,9 +36,11 @@ return {
       "bun.lock",
       "deno.lock",
     }
+    -- Set a lower priority to avoid spawning multiple servers on monorepos
+    local biome_config_files = { "biome.json", "biome.jsonc" }
     -- Give the root markers equal priority by wrapping them in a table
-    root_markers = vim.fn.has("nvim-0.11.3") == 1 and { root_markers, { ".git" } }
-      or vim.list_extend(root_markers, { ".git" })
+    root_markers = vim.fn.has("nvim-0.11.3") == 1 and { root_markers, biome_config_files, { ".git" } }
+      or vim.list_extend(root_markers, vim.list_extend(biome_config_files, { ".git" }))
 
     -- We fallback to the current working directory if no project root is found
     local project_root = vim.fs.root(bufnr, root_markers) or vim.fn.getcwd()
@@ -50,7 +48,6 @@ return {
     -- We know that the buffer is using Biome if it has a config file
     -- in its directory tree.
     local filename = vim.api.nvim_buf_get_name(bufnr)
-    local biome_config_files = { "biome.json", "biome.jsonc" }
     biome_config_files = util.insert_package_json(biome_config_files, "biomejs", filename)
     local is_buffer_using_biome = vim.fs.find(biome_config_files, {
       path = filename,

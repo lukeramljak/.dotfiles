@@ -4,7 +4,10 @@ local util = require("lsp")
 
 ---@type vim.lsp.Config
 return {
-  cmd = { "tailwindcss-language-server", "--stdio" },
+  cmd = function(dispatchers, config)
+    local cmd = util.resolve_node_modules_cmd("tailwindcss-language-server", config)
+    return vim.lsp.rpc.start({ cmd, "--stdio" }, dispatchers)
+  end,
   -- filetypes copied and adjusted from tailwindcss-intellisense
   filetypes = {
     -- html
@@ -105,15 +108,9 @@ return {
     },
   },
   before_init = function(_, config)
-    if not config.settings then
-      config.settings = {}
-    end
-    if not config.settings.editor then
-      config.settings.editor = {}
-    end
-    if not config.settings.editor.tabSize then
-      config.settings.editor.tabSize = vim.lsp.util.get_effective_tabstop()
-    end
+    config.settings = vim.tbl_deep_extend("keep", config.settings, {
+      editor = { tabSize = vim.lsp.util.get_effective_tabstop() },
+    })
   end,
   workspace_required = true,
   root_dir = function(bufnr, on_dir)
