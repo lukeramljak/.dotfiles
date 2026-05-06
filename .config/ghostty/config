@@ -13,4 +13,7 @@ macos-window-shadow = false
 
 confirm-close-surface = false
 
+macos-icon = custom
+macos-custom-icon = ~/.config/ghostty/catppuccin-mocha.icns
+
 # vim: set ft=conf
