@@ -47,6 +47,11 @@ return {
       return
     end
 
+    -- Only activate in Svelte projects; tsgo handles everything else.
+    if not vim.fs.root(bufnr, { "svelte.config.js", "svelte.config.ts" }) then
+      return
+    end
+
     -- We fallback to the current working directory if no project root is found
     local project_root = vim.fs.root(bufnr, root_markers) or vim.fn.getcwd()
 
