@@ -12,6 +12,7 @@ node = "latest"
 "npm:svelte-language-server" = "latest"
 "npm:@typescript/native-preview" = "latest"
 "npm:typescript-svelte-plugin" = "latest"
+"npm:yaml-language-server" = "latest"
 shfmt = "latest"
 stylua = "latest"
 
