@@ -39,3 +39,5 @@ export PATH=$PATH:$ANDROID_HOME/platform-tools
 
 # opencode
 export PATH="$HOME/.opencode/bin:$PATH"
+
+export RIPGREP_CONFIG_PATH=$HOME/.config/ripgrep/config

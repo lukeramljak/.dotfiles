@@ -1,0 +1,5 @@
+# search hidden files and directories
+--hidden
+
+# do not search .git
+--glob=!.git/
