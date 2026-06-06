@@ -10,10 +10,15 @@ require() {
 # fish PPA for latest version
 sudo apt-add-repository -y ppa:fish-shell/release-4
 
+if ! require task; then
+  echo "Installing taskfile repository"
+  curl -1sLf 'https://dl.cloudsmith.io/public/task/task/setup.deb.sh' | sudo -E bash
+fi
+
 # apt packages
 echo "Installing apt packages..."
 sudo apt update
-sudo apt install -y stow zsh fzf ripgrep lazygit make ninja-build gettext cmake curl build-essential git git-delta tmux fish
+sudo apt install -y stow zsh fzf ripgrep lazygit make ninja-build gettext cmake curl build-essential git git-delta tmux fish task
 
 if ! require zoxide; then
   echo "Installing zoxide..."
