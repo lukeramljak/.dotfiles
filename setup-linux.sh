@@ -7,10 +7,13 @@ require() {
   return 1
 }
 
+# fish PPA for latest version
+sudo apt-add-repository -y ppa:fish-shell/release-4
+
 # apt packages
 echo "Installing apt packages..."
 sudo apt update
-sudo apt install -y stow zsh fzf ripgrep lazygit make ninja-build gettext cmake curl build-essential git git-delta tmux
+sudo apt install -y stow zsh fzf ripgrep lazygit make ninja-build gettext cmake curl build-essential git git-delta tmux fish
 
 # Rust
 if ! require cargo; then
