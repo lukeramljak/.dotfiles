@@ -1,2 +1,7 @@
 setup.sh
+setup-mac.sh
+setup-linux.sh
 .DS_Store
+.git
+.gitignore
+README.md

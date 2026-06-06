@@ -9,6 +9,4 @@ setopt hist_ignore_dups
 
 ps -p $PPID | grep -q fish || exec fish
 
-. "$HOME/.local/share/../bin/env"
-
 eval "$(mise activate zsh)"
