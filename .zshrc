@@ -7,8 +7,8 @@ setopt SHARE_HISTORY
 # Ignore duplicated commands history list
 setopt hist_ignore_dups
 
-if ! ps -p $PPID | grep -q fish; then
-  fish
-fi
+ps -p $PPID | grep -q fish || exec fish
 
 . "$HOME/.local/share/../bin/env"
+
+eval "$(mise activate zsh)"
