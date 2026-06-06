@@ -11,8 +11,6 @@ adjust-cell-height = 10
 macos-option-as-alt = true
 macos-window-shadow = false
 
-confirm-close-surface = false
-
 macos-icon = custom
 macos-custom-icon = ~/.config/ghostty/catppuccin-mocha.icns
 
