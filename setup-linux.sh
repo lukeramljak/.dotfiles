@@ -97,6 +97,13 @@ if ! require pnpm; then
   rm /tmp/pnpm-install.sh
 fi
 
+# docker
+if ! require docker; then
+  echo "Installing Docker..."
+  curl -fsSL https://get.docker.com | sh
+  sudo usermod -aG docker $USER
+fi
+
 # dotfiles
 echo "Installing dotfiles..."
 rm -f "$HOME/.zshrc"

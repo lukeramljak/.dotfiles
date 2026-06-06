@@ -27,7 +27,7 @@ brew install jandedobbeleer/oh-my-posh/oh-my-posh
 
 # GUI applications
 echo "Installing GUI applications..."
-brew install alt-tab betterdisplay bitwarden dbeaver-community discord firefox ghostty handbrake insomnia obsidian raycast rectangle shottr visual-studio-code zed
+brew install alt-tab betterdisplay bitwarden dbeaver-community discord firefox ghostty handbrake insomnia obsidian orbstack raycast rectangle shottr visual-studio-code zed
 
 # fonts
 echo "Installing fonts..."
