@@ -44,8 +44,11 @@ fzf --fish | source
 
 if test (hostname) = devbox
     oh-my-posh init fish --config $HOME/.config/ohmyposh/robbyrussell.json | source
+    abbr -a bye "sudo systemctl suspend"
 else
     oh-my-posh init fish --config $HOME/.config/ohmyposh/tokyonight_storm.json | source
+    abbr -a wake "wakeonlan 18:C0:4D:8F:A9:8B"
+    abbr -a devbox-sleep "ssh devbox 'sudo systemctl suspend'"
 end
 
 mise activate fish | source
