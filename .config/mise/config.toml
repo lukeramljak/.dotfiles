@@ -2,6 +2,7 @@
 ast-grep = "latest"
 biome = "latest"
 dprint = "latest"
+go = "latest"
 gofumpt = "latest"
 golangci-lint = "latest"
 golangci-lint-langserver = "latest"
