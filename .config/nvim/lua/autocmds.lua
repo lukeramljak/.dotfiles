@@ -12,7 +12,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
   group = vim.api.nvim_create_augroup("lukeramljak/yank_highlight", { clear = true }),
   desc = "Highlight on yank",
   callback = function()
-    vim.hl.on_yank()
+    vim.hl.hl_op()
     local copy_to_unnamedplus = require("vim.ui.clipboard.osc52").copy("+")
     copy_to_unnamedplus(vim.v.event.regcontents)
     local copy_to_unnamed = require("vim.ui.clipboard.osc52").copy("*")
