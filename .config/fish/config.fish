@@ -38,6 +38,8 @@ set fish_cursor_default block
 set fish_cursor_insert line
 set fish_cursor_replace_one underscore
 
+fish_config theme choose catppuccin-mocha --color-theme=dark
+
 fzf --fish | source
 
 if test (hostname) = devbox
