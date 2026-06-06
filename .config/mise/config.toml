@@ -1,4 +1,6 @@
 [tools]
+ast-grep = "latest"
+biome = "latest"
 dprint = "latest"
 gofumpt = "latest"
 golangci-lint = "latest"
