@@ -2,7 +2,7 @@ if not status is-interactive
     return 0
 end
 
-if test -n "$GHOSTTY_RESOURCES_DIR"
+if test -n "$GHOSTTY_RESOURCES_DIR" -a -f "$GHOSTTY_RESOURCES_DIR/shell-integration/fish/vendor_conf.d/ghostty-shell-integration.fish"
     source $GHOSTTY_RESOURCES_DIR/shell-integration/fish/vendor_conf.d/ghostty-shell-integration.fish
 end
 
@@ -40,4 +40,10 @@ set fish_cursor_replace_one underscore
 
 fzf --fish | source
 
-oh-my-posh init fish --config $HOME/.config/ohmyposh/tokyonight_storm.json | source
+if test (hostname) = devbox
+    oh-my-posh init fish --config $HOME/.config/ohmyposh/robbyrussell.json | source
+else
+    oh-my-posh init fish --config $HOME/.config/ohmyposh/tokyonight_storm.json | source
+end
+
+mise activate fish | source
