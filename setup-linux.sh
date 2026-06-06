@@ -15,6 +15,11 @@ echo "Installing apt packages..."
 sudo apt update
 sudo apt install -y stow zsh fzf ripgrep lazygit make ninja-build gettext cmake curl build-essential git git-delta tmux fish
 
+if ! require zoxide; then
+  echo "Installing zoxide..."
+  curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
+fi
+
 # Rust
 if ! require cargo; then
   echo "Installing Rust..."

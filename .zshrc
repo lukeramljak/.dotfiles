@@ -10,3 +10,4 @@ setopt hist_ignore_dups
 ps -p $PPID | grep -q fish || exec fish
 
 eval "$(mise activate zsh)"
+eval "$(zoxide init zsh)"
