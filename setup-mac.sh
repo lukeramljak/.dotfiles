@@ -22,7 +22,7 @@ fi
 
 # tools
 echo "Installing tools..."
-brew install btop coreutils fd fzf go jq lazygit neovim ripgrep stow tmux zoxide git-delta
+brew install btop coreutils fd fish fzf git-delta go jq lazygit neovim ripgrep stow tmux zoxide
 brew install jandedobbeleer/oh-my-posh/oh-my-posh
 
 # GUI applications
