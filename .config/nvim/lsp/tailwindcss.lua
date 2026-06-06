@@ -96,6 +96,7 @@ return {
         "useResolveClassNames",
         "cn",
         "clsx",
+        "mergeStyling",
       },
       includeLanguages = {
         eelixir = "html-eex",
