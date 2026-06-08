@@ -12,6 +12,7 @@ export PATH="$HOME/.local/scripts:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$HOME/go/bin:$PATH"
 export BROWSER=none
+export PATH="$HOME/.local/share/mise/shims:$PATH"
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
