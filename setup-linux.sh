@@ -128,6 +128,7 @@ fi
 # dotfiles
 echo "Installing dotfiles..."
 rm -f "$HOME/.zshrc"
+mkdir -p "$HOME/.config"   # ensure ~/.config is a real dir so stow folds per-package, not the whole tree
 cd "$HOME/.dotfiles"
 stow --restow .
 
