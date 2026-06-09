@@ -8,9 +8,10 @@ source "$SCRIPT_DIR/setup-common.sh"
 sudo apt-add-repository -y ppa:fish-shell/release-4
 
 # apt packages
+# make/ninja-build/gettext/cmake are build deps for neovim)
 echo "Installing apt packages..."
 sudo apt update
-sudo apt install -y stow zsh make curl build-essential git git-delta tmux fish
+sudo apt install -y stow zsh make ninja-build gettext cmake curl build-essential git git-delta tmux fish
 
 # Rust
 if ! require cargo; then
@@ -24,6 +25,17 @@ if ! require mise; then
   echo "Installing mise..."
   curl https://mise.run | sh
   eval "$($HOME/.local/bin/mise activate bash)"
+fi
+
+# Neovim
+if ! require nvim; then
+  echo "Installing Neovim..."
+  mkdir -p ~/git
+  git clone https://github.com/neovim/neovim.git ~/git/neovim
+  cd ~/git/neovim
+  make CMAKE_BUILD_TYPE=RelWithDebInfo
+  sudo make install
+  cd ~
 fi
 
 # Claude Code
