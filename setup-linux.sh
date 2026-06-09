@@ -131,6 +131,14 @@ rm -f "$HOME/.zshrc"
 cd "$HOME/.dotfiles"
 stow --restow .
 
+# system files for the Gigabyte Z590 UD AC (suspend fixes: unbind xHCI + amdgpu
+# around sleep via a systemd-sleep hook, plus amdgpu runpm=0)
+if [ "$(cat /sys/class/dmi/id/board_name 2>/dev/null)" = "Z590 UD AC" ]; then
+  echo "Installing Gigabyte Z590 system files (suspend workarounds)..."
+  sudo stow -t / system        # symlinks the system-sleep hook; no enable needed
+  sudo update-initramfs -u     # bake amdgpu.conf (runpm=0) into the initramfs
+fi
+
 # mise tools
 echo "Installing mise tools..."
 mise install

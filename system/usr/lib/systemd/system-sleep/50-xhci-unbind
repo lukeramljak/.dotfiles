@@ -1,0 +1,30 @@
+#!/bin/sh
+# Unbind the xHCI USB controller before system sleep and rebind it on resume.
+# Gigabyte Z590 UD AC
+#
+# `systemctl suspend` never completes on this box: usb2, the USB3 root hub on
+# xHCI 0000:00:14.0, returns -16 (EBUSY) from xhci_bus_suspend even with
+# nothing attached, which aborts the whole device-suspend phase (kernel logs
+# "Some devices failed to suspend, or early wake event detected", then
+# "suspend exit" ~5s later). Unbinding the controller removes that callback
+# from the suspend path; rebinding on resume re-enumerates the USB tree cleanly.
+#
+# Installed as a systemd-sleep hook, not a .service: a stow-symlinked unit
+# lands in systemd's "linked" state and its WantedBy=sleep.target is never
+# wired up, so the service never fires. system-sleep hooks just need to be
+# present and executable -- no enable step, reproducible straight from stow.
+
+[ "$(cat /sys/class/dmi/id/board_name 2>/dev/null)" = "Z590 UD AC" ] || exit 0
+
+XHCI=0000:00:14.0
+
+case "$1" in
+pre)
+  [ -e "/sys/bus/pci/drivers/xhci_hcd/$XHCI" ] && echo "$XHCI" >/sys/bus/pci/drivers/xhci_hcd/unbind
+  ;;
+post)
+  [ -e "/sys/bus/pci/drivers/xhci_hcd/$XHCI" ] || echo "$XHCI" >/sys/bus/pci/drivers/xhci_hcd/bind
+  ;;
+esac
+
+exit 0
