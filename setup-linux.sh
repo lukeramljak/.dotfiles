@@ -1,37 +1,17 @@
 #!/bin/bash
 set -e
 
-require() {
-  command -v "${1}" &>/dev/null && return 0
-  printf 'Missing required application: %s\n' "${1}" >&2
-  return 1
-}
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "$SCRIPT_DIR/setup-common.sh"
 
 # fish PPA for latest version
 sudo apt-add-repository -y ppa:fish-shell/release-4
 
-(type -p wget >/dev/null || (sudo apt update && sudo apt install wget -y)) &&
-  sudo mkdir -p -m 755 /etc/apt/keyrings &&
-  out=$(mktemp) && wget -nv -O$out https://cli.github.com/packages/githubcli-archive-keyring.gpg &&
-  cat $out | sudo tee /etc/apt/keyrings/githubcli-archive-keyring.gpg >/dev/null &&
-  sudo chmod go+r /etc/apt/keyrings/githubcli-archive-keyring.gpg &&
-  sudo mkdir -p -m 755 /etc/apt/sources.list.d &&
-  echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list >/dev/null
-
-if ! require task; then
-  echo "Installing taskfile repository"
-  curl -1sLf 'https://dl.cloudsmith.io/public/task/task/setup.deb.sh' | sudo -E bash
-fi
-
 # apt packages
+# make/ninja-build/gettext/cmake are build deps for neovim)
 echo "Installing apt packages..."
 sudo apt update
-sudo apt install -y stow zsh fzf ripgrep lazygit make ninja-build gettext cmake curl build-essential gh git git-delta tmux fish task
-
-if ! require zoxide; then
-  echo "Installing zoxide..."
-  curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
-fi
+sudo apt install -y stow zsh make ninja-build gettext cmake curl build-essential git git-delta tmux fish
 
 # Rust
 if ! require cargo; then
@@ -47,7 +27,7 @@ if ! require mise; then
   eval "$($HOME/.local/bin/mise activate bash)"
 fi
 
-# Neovim (build from source)
+# Neovim
 if ! require nvim; then
   echo "Installing Neovim..."
   mkdir -p ~/git
@@ -58,42 +38,10 @@ if ! require nvim; then
   cd ~
 fi
 
-# oh-my-posh
-if ! require oh-my-posh; then
-  echo "Installing oh-my-posh..."
-  curl -s https://ohmyposh.dev/install.sh | bash -s
-fi
-
-# diff-so-fancy
-if ! require diff-so-fancy; then
-  echo "Installing diff-so-fancy..."
-  curl -L -o /tmp/diff-so-fancy https://github.com/so-fancy/diff-so-fancy/releases/download/v1.4.10/diff-so-fancy
-  chmod +x /tmp/diff-so-fancy
-  sudo mv /tmp/diff-so-fancy /usr/local/bin/
-fi
-
-# cargo-binstall
-if ! require cargo-binstall; then
-  echo "Installing cargo-binstall..."
-  curl -L --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.sh | bash
-fi
-
-# tree-sitter (via cargo-binstall)
-if ! require tree-sitter; then
-  echo "Installing tree-sitter-cli..."
-  cargo binstall tree-sitter-cli -y
-fi
-
 # Claude Code
 if ! require claude; then
   echo "Installing Claude Code..."
   curl -fsSL https://claude.ai/install.sh | bash
-fi
-
-# uv
-if ! require uv; then
-  echo "Installing uv..."
-  curl -LsSf https://astral.sh/uv/install.sh | sh
 fi
 
 # Tailscale
@@ -102,13 +50,7 @@ if ! require tailscale; then
   curl -fsSL https://tailscale.com/install.sh | sh
 fi
 
-# tmux plugin manager
-TPM_DIR=$HOME/.tmux/plugins/tpm
-if [ ! -d "$TPM_DIR" ]; then
-  echo "Installing tpm..."
-  git clone https://github.com/tmux-plugins/tpm "$TPM_DIR"
-fi
-"$TPM_DIR/bin/install_plugins"
+install_tpm
 
 # pnpm
 if ! require pnpm; then
@@ -125,12 +67,7 @@ if ! require docker; then
   sudo usermod -aG docker $USER
 fi
 
-# dotfiles
-echo "Installing dotfiles..."
-rm -f "$HOME/.zshrc"
-mkdir -p "$HOME/.config"   # ensure ~/.config is a real dir so stow folds per-package, not the whole tree
-cd "$HOME/.dotfiles"
-stow --restow .
+link_dotfiles
 
 # system files for the Gigabyte Z590 UD AC (suspend fixes: unbind xHCI + amdgpu
 # around sleep via a systemd-sleep hook, plus amdgpu runpm=0)
@@ -140,9 +77,7 @@ if [ "$(cat /sys/class/dmi/id/board_name 2>/dev/null)" = "Z590 UD AC" ]; then
   sudo update-initramfs -u     # bake amdgpu.conf (runpm=0) into the initramfs
 fi
 
-# mise tools
-echo "Installing mise tools..."
-mise install
+install_mise_tools
 
 # default shell
 echo "Setting zsh as default shell..."

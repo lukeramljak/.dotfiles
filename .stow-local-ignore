@@ -1,6 +1,8 @@
 setup.sh
 setup-mac.sh
 setup-linux.sh
+setup-common.sh
+Brewfile
 .DS_Store
 .git
 .gitignore

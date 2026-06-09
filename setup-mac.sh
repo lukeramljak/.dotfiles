@@ -1,12 +1,8 @@
 #!/bin/bash
 set -e
 
-# function to check if a command exists
-require() {
-  command -v "${1}" &>/dev/null && return 0
-  printf 'Missing required application: %s\n' "${1}" >&2
-  return 1
-}
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "$SCRIPT_DIR/setup-common.sh"
 
 # check for Homebrew and install or update
 if ! require brew; then
@@ -20,33 +16,13 @@ else
   brew update
 fi
 
-# tools
-echo "Installing tools..."
-brew install btop coreutils fd fish fzf gh git-delta go jq lazygit neovim ripgrep stow tmux zoxide
-brew install jandedobbeleer/oh-my-posh/oh-my-posh
+# Homebrew formulae, casks and fonts (see Brewfile)
+echo "Installing Homebrew packages..."
+brew bundle --file="$SCRIPT_DIR/Brewfile"
 
-# GUI applications
-echo "Installing GUI applications..."
-brew install alt-tab betterdisplay bitwarden dbeaver-community discord firefox ghostty handbrake insomnia obsidian orbstack raycast rectangle shottr visual-studio-code zed
-
-# fonts
-echo "Installing fonts..."
-brew install font-blex-mono-nerd-font font-fira-code-nerd-font font-geist-mono font-hack-nerd-font font-ibm-plex-mono font-jetbrains-mono-nerd-font
-
-# tmux package manager
-TPM_DIR=$HOME/.tmux/plugins/tpm
-if [ ! -d "$TPM_DIR" ]; then
-  echo "Installing tpm..."
-  git clone https://github.com/tmux-plugins/tpm "$TPM_DIR"
-fi
-echo "Installing tmux plugins..."
-"$TPM_DIR/bin/install_plugins"
-
-# dotfiles
-echo "Installing dotfiles..."
-rm -f "$HOME/.zshrc"
-cd "$HOME/.dotfiles"
-stow --restow .
+install_tpm
+link_dotfiles
+install_mise_tools
 
 # macOS settings
 echo "Applying macOS settings..."
