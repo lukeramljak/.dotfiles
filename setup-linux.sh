@@ -1,29 +1,16 @@
 #!/bin/bash
 set -e
 
-require() {
-  command -v "${1}" &>/dev/null && return 0
-  printf 'Missing required application: %s\n' "${1}" >&2
-  return 1
-}
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "$SCRIPT_DIR/setup-common.sh"
 
 # fish PPA for latest version
 sudo apt-add-repository -y ppa:fish-shell/release-4
 
-if ! require task; then
-  echo "Installing taskfile repository"
-  curl -1sLf 'https://dl.cloudsmith.io/public/task/task/setup.deb.sh' | sudo -E bash
-fi
-
 # apt packages
 echo "Installing apt packages..."
 sudo apt update
-sudo apt install -y stow zsh fzf ripgrep lazygit make ninja-build gettext cmake curl build-essential git git-delta tmux fish task
-
-if ! require zoxide; then
-  echo "Installing zoxide..."
-  curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
-fi
+sudo apt install -y stow zsh make curl build-essential git git-delta tmux fish
 
 # Rust
 if ! require cargo; then
@@ -39,53 +26,10 @@ if ! require mise; then
   eval "$($HOME/.local/bin/mise activate bash)"
 fi
 
-# Neovim (build from source)
-if ! require nvim; then
-  echo "Installing Neovim..."
-  mkdir -p ~/git
-  git clone https://github.com/neovim/neovim.git ~/git/neovim
-  cd ~/git/neovim
-  make CMAKE_BUILD_TYPE=RelWithDebInfo
-  sudo make install
-  cd ~
-fi
-
-# oh-my-posh
-if ! require oh-my-posh; then
-  echo "Installing oh-my-posh..."
-  curl -s https://ohmyposh.dev/install.sh | bash -s
-fi
-
-# diff-so-fancy
-if ! require diff-so-fancy; then
-  echo "Installing diff-so-fancy..."
-  curl -L -o /tmp/diff-so-fancy https://github.com/so-fancy/diff-so-fancy/releases/download/v1.4.10/diff-so-fancy
-  chmod +x /tmp/diff-so-fancy
-  sudo mv /tmp/diff-so-fancy /usr/local/bin/
-fi
-
-# cargo-binstall
-if ! require cargo-binstall; then
-  echo "Installing cargo-binstall..."
-  curl -L --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.sh | bash
-fi
-
-# tree-sitter (via cargo-binstall)
-if ! require tree-sitter; then
-  echo "Installing tree-sitter-cli..."
-  cargo binstall tree-sitter-cli -y
-fi
-
 # Claude Code
 if ! require claude; then
   echo "Installing Claude Code..."
   curl -fsSL https://claude.ai/install.sh | bash
-fi
-
-# uv
-if ! require uv; then
-  echo "Installing uv..."
-  curl -LsSf https://astral.sh/uv/install.sh | sh
 fi
 
 # Tailscale
@@ -94,13 +38,7 @@ if ! require tailscale; then
   curl -fsSL https://tailscale.com/install.sh | sh
 fi
 
-# tmux plugin manager
-TPM_DIR=$HOME/.tmux/plugins/tpm
-if [ ! -d "$TPM_DIR" ]; then
-  echo "Installing tpm..."
-  git clone https://github.com/tmux-plugins/tpm "$TPM_DIR"
-fi
-"$TPM_DIR/bin/install_plugins"
+install_tpm
 
 # pnpm
 if ! require pnpm; then
@@ -117,15 +55,8 @@ if ! require docker; then
   sudo usermod -aG docker $USER
 fi
 
-# dotfiles
-echo "Installing dotfiles..."
-rm -f "$HOME/.zshrc"
-cd "$HOME/.dotfiles"
-stow --restow .
-
-# mise tools
-echo "Installing mise tools..."
-mise install
+link_dotfiles
+install_mise_tools
 
 # default shell
 echo "Setting zsh as default shell..."

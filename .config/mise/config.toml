@@ -1,4 +1,16 @@
 [tools]
+# CLI tools (prebuilt-binary backends so no platform needs a compiler)
+"aqua:JanDeDobbeleer/oh-my-posh" = "latest"
+"aqua:astral-sh/uv" = "latest"
+"aqua:go-task/task" = "latest"
+"aqua:neovim/neovim" = "latest"
+"ubi:BurntSushi/ripgrep" = "latest"
+"ubi:ajeetdsouza/zoxide" = "latest"
+"ubi:jesseduffield/lazygit" = "latest"
+"ubi:junegunn/fzf" = "latest"
+"ubi:tree-sitter/tree-sitter" = "latest"
+
+# dev tooling / language servers / formatters
 ast-grep = "latest"
 biome = "latest"
 dprint = "latest"
@@ -8,16 +20,17 @@ golangci-lint = "latest"
 golangci-lint-langserver = "latest"
 lua-language-server = "latest"
 node = "latest"
-"npm:prettier" = "latest"
-"npm:@tailwindcss/language-server" = "latest"
-"npm:@vtsls/language-server" = "latest"
-"npm:vscode-langservers-extracted" = "latest"
-"npm:svelte-language-server" = "latest"
-"npm:@typescript/native-preview" = "latest"
-"npm:typescript-svelte-plugin" = "latest"
-"npm:yaml-language-server" = "latest"
 shfmt = "latest"
 stylua = "latest"
+
+"npm:@tailwindcss/language-server" = "latest"
+"npm:@typescript/native-preview" = "latest"
+"npm:@vtsls/language-server" = "latest"
+"npm:prettier" = "latest"
+"npm:svelte-language-server" = "latest"
+"npm:typescript-svelte-plugin" = "latest"
+"npm:vscode-langservers-extracted" = "latest"
+"npm:yaml-language-server" = "latest"
 
 [settings]
 idiomatic_version_file_enable_tools = ["node"]
