@@ -10,6 +10,14 @@ require() {
 # fish PPA for latest version
 sudo apt-add-repository -y ppa:fish-shell/release-4
 
+(type -p wget >/dev/null || (sudo apt update && sudo apt install wget -y)) &&
+  sudo mkdir -p -m 755 /etc/apt/keyrings &&
+  out=$(mktemp) && wget -nv -O$out https://cli.github.com/packages/githubcli-archive-keyring.gpg &&
+  cat $out | sudo tee /etc/apt/keyrings/githubcli-archive-keyring.gpg >/dev/null &&
+  sudo chmod go+r /etc/apt/keyrings/githubcli-archive-keyring.gpg &&
+  sudo mkdir -p -m 755 /etc/apt/sources.list.d &&
+  echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list >/dev/null
+
 if ! require task; then
   echo "Installing taskfile repository"
   curl -1sLf 'https://dl.cloudsmith.io/public/task/task/setup.deb.sh' | sudo -E bash
@@ -18,7 +26,7 @@ fi
 # apt packages
 echo "Installing apt packages..."
 sudo apt update
-sudo apt install -y stow zsh fzf ripgrep lazygit make ninja-build gettext cmake curl build-essential git git-delta tmux fish task
+sudo apt install -y stow zsh fzf ripgrep lazygit make ninja-build gettext cmake curl build-essential gh git git-delta tmux fish task
 
 if ! require zoxide; then
   echo "Installing zoxide..."
