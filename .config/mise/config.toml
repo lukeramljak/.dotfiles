@@ -34,3 +34,6 @@ stylua = "latest"
 
 [settings]
 idiomatic_version_file_enable_tools = ["node"]
+
+[settings.github]
+use_git_credentials = true
