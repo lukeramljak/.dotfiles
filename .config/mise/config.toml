@@ -1,14 +1,13 @@
 [tools]
 # CLI tools (prebuilt-binary backends so no platform needs a compiler)
+"aqua:BurntSushi/ripgrep" = "latest"
 "aqua:JanDeDobbeleer/oh-my-posh" = "latest"
+"aqua:ajeetdsouza/zoxide" = "latest"
 "aqua:astral-sh/uv" = "latest"
 "aqua:go-task/task" = "latest"
-"aqua:neovim/neovim" = "latest"
-"ubi:BurntSushi/ripgrep" = "latest"
-"ubi:ajeetdsouza/zoxide" = "latest"
-"ubi:jesseduffield/lazygit" = "latest"
-"ubi:junegunn/fzf" = "latest"
-"ubi:tree-sitter/tree-sitter" = "latest"
+"aqua:jesseduffield/lazygit" = "latest"
+"aqua:junegunn/fzf" = "latest"
+"aqua:tree-sitter/tree-sitter" = "latest"
 
 # dev tooling / language servers / formatters
 ast-grep = "latest"
