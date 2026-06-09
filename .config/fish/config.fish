@@ -51,5 +51,4 @@ else
     abbr -a devbox-sleep "ssh devbox 'sudo systemctl suspend'"
 end
 
-mise activate fish | source
 zoxide init fish | source
