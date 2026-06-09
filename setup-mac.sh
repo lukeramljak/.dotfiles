@@ -72,4 +72,6 @@ for app in "${APPS[@]}"; do
   killall "${app}" &>/dev/null
 done
 
+finalize_notes
+
 echo "Done!"

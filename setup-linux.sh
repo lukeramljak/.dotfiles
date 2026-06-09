@@ -83,4 +83,6 @@ install_mise_tools
 echo "Setting zsh as default shell..."
 chsh -s $(which zsh)
 
+finalize_notes
+
 echo "Done!"

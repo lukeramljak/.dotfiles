@@ -36,3 +36,14 @@ install_mise_tools() {
   echo "Installing mise tools..."
   mise install
 }
+
+# post-install reminders for steps that can't be automated (secrets, auth)
+finalize_notes() {
+  cat <<'EOF'
+
+Next steps (manual):
+  - Authenticate GitHub CLI:  gh auth login
+    (creds live in the OS keyring/hosts.yml, not in these dotfiles, so each
+     machine needs this once. lazygit's gh features depend on it.)
+EOF
+}
