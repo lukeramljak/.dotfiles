@@ -1,0 +1,7 @@
+# Persistently arm Wake-on-LAN (magic packet) on the wired NIC so devbox can be
+# woken from suspend. `ethtool -s <if> wol g` is not persistent across reboots,
+# so re-apply it via udev whenever the NIC appears. Priority 81 means this runs
+# AFTER systemd's 80-net-setup-link has already renamed the device to enp10s0.
+# Scoped to this NIC's MAC (Realtek r8169) so it can't touch any other interface.
+# Setting `wol g` also flips the PCI device's power/wakeup to "enabled".
+ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="18:c0:4d:8f:a9:8b", RUN+="/usr/sbin/ethtool -s enp10s0 wol g"
