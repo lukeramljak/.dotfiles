@@ -1,6 +1,7 @@
 vim.filetype.add({
   filename = {
     [".eslintrc.json"] = "jsonc",
+    Caddyfile = "caddy",
   },
   pattern = {
     ["tsconfig*.json"] = "jsonc",

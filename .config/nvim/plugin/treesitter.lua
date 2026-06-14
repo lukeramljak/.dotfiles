@@ -1,4 +1,5 @@
 local parsers = {
+  "caddy",
   "css",
   "go",
   "javascript",

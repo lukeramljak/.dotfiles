@@ -2,6 +2,7 @@ require("conform").setup({
   notify_on_error = false,
   notify_no_formatters = false,
   formatters_by_ft = {
+    caddy = { "caddy" },
     css = { "biome-check" },
     go = { "goimports", "gofumpt" },
     javascript = { "biome-check", "prettier" },
@@ -20,6 +21,11 @@ require("conform").setup({
   },
   format_on_save = { timeout_ms = 3000, async = false, quiet = false, lsp_format = "fallback" },
   formatters = {
+    caddy = {
+      command = "caddy",
+      args = { "fmt", "-" },
+      stdin = true,
+    },
     -- Require a configuration file to format.
     biome = { require_cwd = true },
     prettier = { require_cwd = true },
