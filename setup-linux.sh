@@ -11,7 +11,7 @@ sudo apt-add-repository -y ppa:fish-shell/release-4
 # make/ninja-build/gettext/cmake are build deps for neovim)
 echo "Installing apt packages..."
 sudo apt update
-sudo apt install -y stow zsh make ninja-build gettext cmake curl build-essential git git-delta tmux fish
+sudo apt install -y stow zsh make ninja-build gettext cmake curl build-essential git git-delta tmux fish ansible
 
 # Rust
 if ! require cargo; then
@@ -73,8 +73,8 @@ link_dotfiles
 # around sleep via a systemd-sleep hook, plus amdgpu runpm=0)
 if [ "$(cat /sys/class/dmi/id/board_name 2>/dev/null)" = "Z590 UD AC" ]; then
   echo "Installing Gigabyte Z590 system files (suspend workarounds)..."
-  sudo stow -t / system        # symlinks the system-sleep hook; no enable needed
-  sudo update-initramfs -u     # bake amdgpu.conf (runpm=0) into the initramfs
+  sudo stow -t / system    # symlinks the system-sleep hook; no enable needed
+  sudo update-initramfs -u # bake amdgpu.conf (runpm=0) into the initramfs
 fi
 
 install_mise_tools

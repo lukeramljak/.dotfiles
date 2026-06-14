@@ -1,6 +1,7 @@
 # Homebrew bundle for macOS. Apply with: brew bundle --file Brewfile
 
 # formulae
+brew "ansible"
 brew "btop"
 brew "coreutils"
 brew "fd"
