@@ -21,11 +21,6 @@ vim.keymap.set("n", "<c-l>", "<cmd>wincmd l<cr>", { desc = "Move to Right Window
 vim.keymap.set("n", "<leader>pu", "<cmd>packupdate<cr>", { desc = "Update packages" })
 vim.keymap.set("n", "<leader>ps", "<cmd>packupdate ++lockfile<cr>", { desc = "Sync packages to lockfile" })
 
--- Git
-vim.keymap.set("n", "<leader>gg", function()
-  require("term").open("lazygit")
-end, { desc = "Open lazygit in floating terminal" })
-
 -- Misc
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<cr>")
 vim.keymap.set(

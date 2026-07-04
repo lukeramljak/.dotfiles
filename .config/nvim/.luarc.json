@@ -13,7 +13,6 @@
 			"${3rd}/luv/library",
 			"lua/icons.lua",
 			"lua/lightbulb.lua",
-			"lua/term.lua",
 			"lua/vim-pack.lua",
 			"$XDG_DATA_HOME/nvim/site/pack/core/opt/LuaSnip/lua",
 			"$XDG_DATA_HOME/nvim/site/pack/core/opt/blink.cmp/lua",
