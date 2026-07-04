@@ -1,3 +1,6 @@
+-- Enable the experimental Lua module loader
+vim.loader.enable()
+
 vim.g.projects_dir = vim.env.HOME .. "/dev"
 
 require("settings")
@@ -6,25 +9,6 @@ require("commands")
 require("keymaps")
 require("lsp")
 require("winbar")
-
-local function gh(url)
-  return "https://github.com/" .. url
-end
-
-vim.pack.add({
-  gh("esmuellert/codediff.nvim"),
-  gh("stevearc/conform.nvim"),
-  gh("lewis6991/gitsigns.nvim"),
-  gh("MagicDuck/grug-far.nvim"),
-  gh("OXY2DEV/markview.nvim"),
-  gh("nvim-mini/mini.nvim"),
-  gh("windwp/nvim-autopairs"),
-  gh("nvim-treesitter/nvim-treesitter"),
-  gh("nvim-treesitter/nvim-treesitter-context"),
-  gh("windwp/nvim-ts-autotag"),
-  gh("stevearc/quicker.nvim"),
-  { src = gh("catppuccin/nvim"), name = "catppuccin" },
-})
 
 -- Interactive textual undotree
 vim.cmd.packadd("nvim.undotree")

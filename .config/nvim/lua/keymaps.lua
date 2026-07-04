@@ -26,9 +26,6 @@ vim.keymap.set("n", "<leader>gg", function()
   require("term").open("lazygit")
 end, { desc = "Open lazygit in floating terminal" })
 
--- Package manager
-vim.keymap.set("n", "<leader>pu", "<cmd>lua vim.pack.update()<cr>", { desc = "Update plugins" })
-
 -- Misc
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<cr>")
 vim.keymap.set(
