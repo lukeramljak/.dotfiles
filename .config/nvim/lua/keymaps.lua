@@ -18,8 +18,8 @@ vim.keymap.set("n", "<c-k>", "<cmd>wincmd k<cr>", { desc = "Move to Up Window", 
 vim.keymap.set("n", "<c-l>", "<cmd>wincmd l<cr>", { desc = "Move to Right Window", remap = true })
 
 -- Splits
-vim.keymap.set("n", "<leader>_", "<cmd>split<cr>", { desc = "Horizontal split" })
-vim.keymap.set("n", "<leader>|", "<cmd>vsplit<cr>", { desc = "Vertical split" })
+vim.keymap.set("n", "<leader>pu", "<cmd>packupdate<cr>", { desc = "Update packages" })
+vim.keymap.set("n", "<leader>ps", "<cmd>packupdate ++lockfile<cr>", { desc = "Sync packages to lockfile" })
 
 -- Git
 vim.keymap.set("n", "<leader>gg", function()
