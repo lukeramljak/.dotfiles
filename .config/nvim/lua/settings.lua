@@ -11,8 +11,8 @@ vim.o.tabstop = 2
 vim.o.smartindent = true
 
 -- Show whitespace
-vim.o.list = false
--- vim.opt.listchars = { space = "⋅", trail = "⋅", tab = "  ↦" }
+vim.o.list = true
+vim.opt.listchars = { space = "⋅", trail = "⋅", tab = "  ↦" }
 
 -- Line numbers
 vim.o.number = true
@@ -36,7 +36,6 @@ vim.o.wrap = false
 
 -- Rounded borders for floating and popup windows
 vim.o.winborder = "rounded"
-vim.o.pumborder = "rounded"
 
 -- Sync clipboard between the OS and Neovim
 vim.o.clipboard = "unnamedplus"
@@ -50,8 +49,10 @@ vim.o.timeoutlen = 500
 vim.o.ttimeoutlen = 10
 
 -- Completion
+vim.opt.wildignore:append({ ".DS_Store" })
 vim.o.completeopt = "menuone,noselect,fuzzy,nosort"
-vim.o.pumheight = 7
+vim.o.pumheight = 15
+vim.o.pumborder = "rounded"
 
 -- Save undo history
 vim.o.undofile = true
@@ -72,20 +73,42 @@ vim.o.swapfile = false
 vim.o.cursorline = true
 
 -- Folding
-vim.o.foldexpr = "v:lua.vim.lsp.foldexpr()"
 vim.o.foldcolumn = "1"
-vim.o.foldlevel = 99
-vim.o.foldmethod = "expr"
-vim.o.foldtext = ""
+vim.o.foldlevelstart = 99
+vim.wo.foldtext = ""
+
+-- UI characters
 vim.opt.fillchars = {
+  eob = " ",
   fold = " ",
   foldclose = arrows.right,
   foldopen = arrows.down,
   foldsep = " ",
   foldinner = " ",
+  msgsep = "─",
 }
 
+-- Status line
+vim.o.laststatus = 3
 vim.o.cmdheight = 0
 
 -- Specify what’s saved in a session. Needs options to work properly
 vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,options"
+
+-- Diff mode settings
+-- Setting the context to a very large number disables folding.
+vim.opt.diffopt:append("followwrap,vertical,context:99")
+
+vim.opt.shortmess:append({
+  w = true,
+  s = true,
+})
+
+-- Disable cursor blinking in terminal mode
+vim.o.guicursor = "n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20,t:block-TermCursor"
+
+-- Disable health checks for these providers
+vim.g.loaded_python3_provider = 0
+vim.g.loaded_ruby_provider = 0
+vim.g.loaded_perl_provider = 0
+vim.g.loaded_node_provider = 0
