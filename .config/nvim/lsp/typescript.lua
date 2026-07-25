@@ -1,6 +1,4 @@
--- Install with: npm i -g @typescript/native-preview
-
-local util = require("lsp")
+-- Install with: npm i -g typescript@7
 
 ---@type vim.lsp.Config
 return {
@@ -19,10 +17,7 @@ return {
       },
     },
   },
-  cmd = function(dispatchers, config)
-    local cmd = util.resolve_node_modules_cmd("tsgo", config)
-    return vim.lsp.rpc.start({ cmd, "--lsp", "--stdio" }, dispatchers)
-  end,
+  cmd = { "tsc", "--lsp", "--stdio" },
   filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
   root_dir = function(bufnr, on_dir)
     -- Defer to vtsls in Svelte projects.
