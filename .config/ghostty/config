@@ -16,4 +16,10 @@ macos-custom-icon = ~/.config/ghostty/catppuccin-mocha.icns
 
 shell-integration-features = true
 
+# Override the native 'edit config' shortcut with the CLI action, respecting ${VISUAL:-${EDITOR}}
+#   1. `\x1bq` runs the zsh `push-line-or-edit` widget (bound to alt-q)
+#   2. `ghostty +edit-config` is sent to the shell prompt
+#   3. `\x0d` enters/executes the command currently on the prompt
+keybind = unconsumed:super+,=text:\x1bqghostty +edit-config\x0d
+
 # vim: set ft=conf
