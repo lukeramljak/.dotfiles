@@ -1,1 +1,6 @@
 .DS_Store
+
+# Local runtime data and tool-managed installs. Keep portable helper scripts.
+/.local/*
+!/.local/scripts/
+!/.local/scripts/**
