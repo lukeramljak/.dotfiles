@@ -10,6 +10,7 @@ add({
         solid = false,
       },
       no_italic = true,
+      transparent_background = true,
     },
   },
 })
