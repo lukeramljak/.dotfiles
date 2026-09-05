@@ -17,51 +17,6 @@ function M.action(action)
   })
 end
 
---- Appends `new_names` to `root_files` if `field` is found in any such file in any ancestor of `fname`.
----
---- NOTE: this does a "breadth-first" search, so is broken for multi-project workspaces:
---- https://github.com/neovim/nvim-lspconfig/issues/3818#issuecomment-2848836794
----
---- @param root_files string[] List of root-marker files to append to.
---- @param new_names string[] Potential root-marker filenames (e.g. `{ 'package.json', 'package.json5' }`) to inspect for the given `field`.
---- @param field string Field to search for in the given `new_names` files.
---- @param fname string Full path of the current buffer name to start searching upwards from.
-function M.root_markers_with_field(root_files, new_names, field, fname)
-  local path = vim.fn.fnamemodify(fname, ":h")
-  local found = vim.fs.find(new_names, { path = path, upward = true, type = "file" })
-
-  for _, f in ipairs(found or {}) do
-    -- Match the given `field`.
-    for line in io.lines(f) do
-      if line:find(field) then
-        root_files[#root_files + 1] = vim.fs.basename(f)
-        break
-      end
-    end
-  end
-
-  return root_files
-end
-
-function M.insert_package_json(root_files, field, fname)
-  return M.root_markers_with_field(root_files, { "package.json", "package.json5" }, field, fname)
-end
-
----Resolves a command to its local node_modules/.bin version if available,
----falling back to the global command otherwise.
----@param cmd string The command name to resolve (e.g. "vscode-langservers-extracted")
----@param config vim.lsp.ClientConfig LSP client config, used to determine root_dir
----@return string cmd The resolved command path
-function M.resolve_node_modules_cmd(cmd, config)
-  if (config or {}).root_dir then
-    local local_cmd = vim.fs.joinpath(config.root_dir, "node_modules/.bin", cmd)
-    if vim.fn.executable(local_cmd) == 1 then
-      return local_cmd
-    end
-  end
-  return cmd
-end
-
 --- Sets up LSP keymaps and autocommands for the given buffer.
 ---@param client vim.lsp.Client
 ---@param bufnr integer
@@ -269,16 +224,26 @@ vim.api.nvim_create_autocmd("LspAttach", {
 vim.api.nvim_create_autocmd({ "BufReadPre", "BufNewFile" }, {
   once = true,
   callback = function()
-    -- Extend neovim's client capabilities with the completion ones
+    vim.pack.add({ "https://github.com/neovim/nvim-lspconfig" })
+
     vim.lsp.config("*", { capabilities = require("blink.cmp").get_lsp_capabilities(nil, true) })
 
-    local servers = vim
-      .iter(vim.api.nvim_get_runtime_file("lsp/*.lua", true))
-      :map(function(file)
-        return vim.fn.fnamemodify(file, ":t:r")
-      end)
-      :totable()
-    vim.lsp.enable(servers)
+    vim.lsp.enable({
+      "biome",
+      "cssls",
+      "dprint",
+      "eslint",
+      "golangci_lint_ls",
+      "gopls",
+      "html",
+      "jsonls",
+      "lua_ls",
+      "svelte",
+      "tailwindcss",
+      "tsc",
+      "vtsls",
+      "yamlls",
+    })
   end,
 })
 
