@@ -1,4 +1,28 @@
 {
+  "disable_ai": true,
+  "code_lens": "on",
+  "inlay_hints": {
+    "enabled": false
+  },
+  "diff_view_style": "unified",
+  "vim": {
+    "toggle_relative_line_numbers": true
+  },
+  "load_direnv": "shell_hook",
+  "terminal": {
+    "shell": {
+      "program": "/opt/homebrew/bin/fish"
+    }
+  },
+  "cli_default_open_behavior": "existing_window",
+  "agent_servers": {
+    "claude-acp": {
+      "type": "registry"
+    },
+    "codex-acp": {
+      "type": "registry"
+    }
+  },
   "which_key": {
     "enabled": true
   },
@@ -53,6 +77,7 @@
     "dock": "left"
   },
   "collaboration_panel": {
+    "button": false,
     "dock": "left"
   },
   "git_panel": {
@@ -63,11 +88,11 @@
   },
   "show_edit_predictions": false,
   "icon_theme": "Zed (Default)",
-  "theme": "Vague",
+  "theme": "GitHub Dark",
   "ui_font_family": "BerkeleyMono Nerd Font",
   "buffer_font_family": "BerkeleyMono Nerd Font",
   "ui_font_size": 14,
-  "buffer_font_size": 14,
+  "buffer_font_size": 13.0,
   "vim_mode": true,
   "relative_line_numbers": "enabled",
   "format_on_save": "on",
@@ -89,11 +114,6 @@
   },
   "languages": {
     "JavaScript": {
-      "formatter": {
-        "language_server": {
-          "name": "biome"
-        }
-      },
       "code_actions_on_format": {
         "source.fixAll.biome": true,
         "source.organizeImports.biome": true
@@ -123,9 +143,39 @@
     }
   },
   "lsp": {
+    "vtsls": {
+      "settings": {
+        "typescript": {
+          "tsdk": "node_modules/typescript/lib",
+          "updateImportsOnFileMove": {
+            "enabled": "always"
+          }
+        },
+        "javascript": {
+          "updateImportsOnFileMove": {
+            "enabled": "always"
+          }
+        }
+      },
+      "enable_lsp_tasks": true
+    },
     "biome": {
       "settings": {
         "require_config_file": true
+      }
+    },
+    "oxlint": {
+      "initialization_options": {
+        "require_config_file": true
+      }
+    },
+    "yaml-language-server": {
+      "settings": {
+        "yaml": {
+          "format": {
+            "singleQuote": true
+          }
+        }
       }
     },
     "tailwindcss-language-server": {
@@ -139,7 +189,15 @@
         ],
         "experimental": {
           "classRegex": [
-            "[a-z]*[Cc]lassName\\s*[=:]\\s*\"([^\"]*)\""
+            "\\.className\\s*[+]?=\\s*['\"]([^'\"]*)['\"]",
+            "\\.setAttributeNS\\(.*,\\s*['\"]class['\"],\\s*['\"]([^'\"]*)['\"]",
+            "\\.setAttribute\\(['\"]class['\"],\\s*['\"]([^'\"]*)['\"]",
+            "\\.classList\\.add\\(['\"]([^'\"]*)['\"]",
+            "\\.classList\\.remove\\(['\"]([^'\"]*)['\"]",
+            "\\.classList\\.toggle\\(['\"]([^'\"]*)['\"]",
+            "\\.classList\\.contains\\(['\"]([^'\"]*)['\"]",
+            "\\.classList\\.replace\\(\\s*['\"]([^'\"]*)['\"]",
+            "\\.classList\\.replace\\([^,)]+,\\s*['\"]([^'\"]*)['\"]"
           ]
         }
       }
