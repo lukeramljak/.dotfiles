@@ -2,9 +2,9 @@ notARepository: 'quit'
 promptToReturnFromSubprocess: false
 git:
   overrideGpg: true
-  pagers:
+  diffRenderers:
     - colorArg: always
-      pager: delta --dark --paging=never
+      command: delta --dark --paging=never
 os:
   editPreset: nvim
 gui:
@@ -24,3 +24,8 @@ customCommands:
     description: Commit changes without pre-commit hook
     command: git commit -n -m '{{index .PromptResponses 0}}'
     context: files
+  - key: i
+    description: Install deps and copy env files into the selected worktree
+    command: $HOME/.local/bin/worktree-init '{{ .SelectedWorktree.Path }}'
+    context: worktrees
+    output: terminal
