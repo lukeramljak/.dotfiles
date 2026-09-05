@@ -28,13 +28,14 @@ sqlc = "latest"
 "npm:@vtsls/language-server" = "latest"
 "npm:prettier" = "latest"
 "npm:svelte-language-server" = "latest"
-"npm:typescript" = "7"
+"npm:typescript" = "latest"
 "npm:typescript-svelte-plugin" = "latest"
 "npm:vscode-langservers-extracted" = "latest"
 "npm:yaml-language-server" = "latest"
 
 [settings]
 idiomatic_version_file_enable_tools = ["node"]
+npm.package_manager = "npm"
 
 [settings.github]
 use_git_credentials = true
