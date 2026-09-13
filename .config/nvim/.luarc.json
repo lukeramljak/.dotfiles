@@ -32,8 +32,7 @@
 			"$XDG_DATA_HOME/nvim/site/pack/core/opt/nvim-autopairs/lua",
 			"$XDG_DATA_HOME/nvim/site/pack/core/opt/nvim-treesitter-context/lua",
 			"$XDG_DATA_HOME/nvim/site/pack/core/opt/nvim-ts-autotag/lua",
-			"$XDG_DATA_HOME/nvim/site/pack/core/opt/quicker.nvim/lua",
-			"$XDG_DATA_HOME/nvim/site/pack/core/opt/snacks.nvim/lua"
+			"$XDG_DATA_HOME/nvim/site/pack/core/opt/quicker.nvim/lua"
 		]
 	}
 }
