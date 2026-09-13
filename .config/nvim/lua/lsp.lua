@@ -236,7 +236,6 @@ vim.api.nvim_create_autocmd({ "BufReadPre", "BufNewFile" }, {
       "svelte",
       "tailwindcss",
       "tsc",
-      "vtsls",
       "yamlls",
     })
   end,

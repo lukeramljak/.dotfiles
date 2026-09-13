@@ -25,7 +25,6 @@ stylua = "latest"
 sqlc = "latest"
 
 "npm:@tailwindcss/language-server" = "latest"
-"npm:@vtsls/language-server" = "latest"
 "npm:oxfmt" = "latest"
 "npm:prettier" = "latest"
 "npm:svelte-language-server" = "latest"
