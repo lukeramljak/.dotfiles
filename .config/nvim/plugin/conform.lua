@@ -10,17 +10,17 @@ add_on_event("BufWritePre", {
         caddy = { "caddy" },
         css = { "biome-check" },
         go = { "goimports", "gofumpt" },
-        javascript = { "biome-check", "prettier" },
-        json = { "biome-check", "prettier" },
-        jsonc = { "biome-check", "prettier" },
+        javascript = { "biome-check", "oxfmt", stop_after_first = true },
+        json = { "biome-check", "oxfmt", stop_after_first = true },
+        jsonc = { "biome-check", "oxfmt", stop_after_first = true },
         lua = { "stylua" },
-        markdown = { "biome-check", "prettier" },
+        markdown = { "biome-check", "oxfmt", stop_after_first = true },
         fish = { "fish_indent" },
         sh = { "shfmt" },
-        svelte = { "biome-check", "prettier" },
-        typescript = { "biome-check", "prettier" },
-        typescriptreact = { "biome-check", "prettier" },
-        yaml = { "prettier" },
+        svelte = { "biome-check", "oxfmt", stop_after_first = true },
+        typescript = { "biome-check", "oxfmt", stop_after_first = true },
+        typescriptreact = { "biome-check", "oxfmt", stop_after_first = true },
+        yaml = { "oxfmt" },
         -- For filetypes without a formatter:
         ["_"] = { "trim_whitespace", "trim_newlines" },
       },
@@ -33,8 +33,10 @@ add_on_event("BufWritePre", {
         },
         -- Require a configuration file to format
         biome = { require_cwd = true },
-        prettier = { require_cwd = true },
+        oxfmt = { require_cwd = true },
       },
     },
   },
 })
+
+vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
