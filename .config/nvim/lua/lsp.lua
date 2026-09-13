@@ -228,8 +228,6 @@ vim.api.nvim_create_autocmd({ "BufReadPre", "BufNewFile" }, {
     vim.lsp.enable({
       "biome",
       "cssls",
-      "dprint",
-      "eslint",
       "golangci_lint_ls",
       "gopls",
       "html",
