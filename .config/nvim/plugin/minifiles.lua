@@ -81,7 +81,12 @@ add({
           end, sorted)
         end,
       },
-      windows = { width_nofocus = 25 },
+      windows = {
+        preview = true,
+        width_focus = 30,
+        width_preview = 50,
+        width_nofocus = 25,
+      },
       -- Move stuff to the minifiles trash instead of it being gone forever
       options = { permanent_delete = false },
     },
