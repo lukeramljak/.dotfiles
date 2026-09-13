@@ -49,9 +49,13 @@ vim.o.timeoutlen = 500
 vim.o.ttimeoutlen = 10
 
 -- Completion
+vim.o.autocomplete = true
+vim.o.autocompletedelay = 250
+vim.o.complete = ".,w,b,o"
 vim.opt.wildignore:append({ ".DS_Store" })
-vim.o.completeopt = "menuone,noselect,fuzzy,nosort"
-vim.o.pumheight = 15
+vim.o.completeopt = "menuone,noselect,fuzzy"
+vim.o.pumheight = 8
+vim.o.pummaxwidth = 80
 vim.o.pumborder = "rounded"
 
 -- Save undo history

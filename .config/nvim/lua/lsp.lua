@@ -46,6 +46,10 @@ local function on_attach(client, bufnr)
     vim.diagnostic.jump({ count = 1, severity = vim.diagnostic.severity.ERROR })
   end, "Next error")
 
+  keymap("<C-Space>", function()
+    vim.lsp.completion.get()
+  end, "Trigger completion", "i")
+
   if client:supports_method("textDocument/codeAction") then
     require("lightbulb").attach_lightbulb(bufnr, client)
   end
@@ -83,11 +87,6 @@ local function on_attach(client, bufnr)
 
   if client:supports_method("textDocument/signatureHelp") then
     keymap("<C-k>", function()
-      -- Close the completion menu first (if open)
-      if require("blink.cmp.completion.windows.menu").win:is_open() then
-        require("blink.cmp").hide()
-      end
-
       vim.lsp.buf.signature_help()
     end, "Signature help", "i")
   end
@@ -225,8 +224,6 @@ vim.api.nvim_create_autocmd({ "BufReadPre", "BufNewFile" }, {
   once = true,
   callback = function()
     vim.pack.add({ "https://github.com/neovim/nvim-lspconfig" })
-
-    vim.lsp.config("*", { capabilities = require("blink.cmp").get_lsp_capabilities(nil, true) })
 
     vim.lsp.enable({
       "biome",
